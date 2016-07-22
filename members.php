@@ -162,36 +162,21 @@
 
 								<div class="col-md-6">
 									<ul class="skills">
-										<li data-percent="80">
-											<span>Wordpress</span>
+                                        <?php 
+                                            $r = mysql_query("select * from skills where STUDENT_ID='{$row['STUDENT_ID']}'");
+                                            while($skill = mysql_fetch_array($r)){
+                                        
+                                        ?>
+										<li data-percent="<?php echo $skill['SKILL_SCORE'];?>">
+											<span><?php echo $skill['SKILL_NAME'];?></span>
 											<div class="progress">
-												<div class="progress-percent"><div class="counter counter-inherit counter-instant"><span data-from="0" data-to="80" data-refresh-interval="30" data-speed="1100"></span>%</div></div>
+												<div class="progress-percent"><div class="counter counter-inherit counter-instant"><span data-from="0" data-to="<?php echo $skill['SKILL_SCORE'];?>" data-refresh-interval="30" data-speed="1100"></span>%</div></div>
 											</div>
 										</li>
-										<li data-percent="60">
-											<span>CSS3</span>
-											<div class="progress">
-												<div class="progress-percent"><div class="counter counter-inherit counter-instant"><span data-from="0" data-to="60" data-refresh-interval="30" data-speed="1100"></span>%</div></div>
-											</div>
-										</li>
-										<li data-percent="90">
-											<span>HTML5</span>
-											<div class="progress">
-												<div class="progress-percent"><div class="counter counter-inherit counter-instant"><span data-from="0" data-to="90" data-refresh-interval="30" data-speed="1100"></span>%</div></div>
-											</div>
-										</li>
-										<li data-percent="70">
-											<span>jQuery</span>
-											<div class="progress">
-												<div class="progress-percent"><div class="counter counter-inherit counter-instant"><span data-from="0" data-to="70" data-refresh-interval="30" data-speed="1100"></span>%</div></div>
-											</div>
-										</li>
-										<li data-percent="85">
-											<span>Ruby</span>
-											<div class="progress">
-												<div class="progress-percent"><div class="counter counter-inherit counter-instant"><span data-from="0" data-to="85" data-refresh-interval="30" data-speed="1100"></span>%</div></div>
-											</div>
-										</li>
+                                        
+                                        <?php
+                                            }
+                                        ?>
 									</ul>
 								</div>
 
@@ -224,37 +209,22 @@
 
 								<div class="col-md-6">
 									<ul class="skills">
-										<li data-percent="80">
-											<span>Wordpress</span>
+                                        <?php 
+                                            $r = mysql_query("select * from skills where STUDENT_ID='{$row['STUDENT_ID']}'");
+                                            while($skill = mysql_fetch_array($r)){
+                                        
+                                        ?>
+										<li data-percent="<?php echo $skill['SKILL_SCORE'];?>">
+											<span><?php echo $skill['SKILL_NAME'];?></span>
 											<div class="progress">
-												<div class="progress-percent"><div class="counter counter-inherit counter-instant"><span data-from="0" data-to="80" data-refresh-interval="30" data-speed="1100"></span>%</div></div>
+												<div class="progress-percent"><div class="counter counter-inherit counter-instant"><span data-from="0" data-to="<?php echo $skill['SKILL_SCORE'];?>" data-refresh-interval="30" data-speed="1100"></span>%</div></div>
 											</div>
 										</li>
-										<li data-percent="60">
-											<span>CSS3</span>
-											<div class="progress">
-												<div class="progress-percent"><div class="counter counter-inherit counter-instant"><span data-from="0" data-to="60" data-refresh-interval="30" data-speed="1100"></span>%</div></div>
-											</div>
-										</li>
-										<li data-percent="90">
-											<span>HTML5</span>
-											<div class="progress">
-												<div class="progress-percent"><div class="counter counter-inherit counter-instant"><span data-from="0" data-to="90" data-refresh-interval="30" data-speed="1100"></span>%</div></div>
-											</div>
-										</li>
-										<li data-percent="70">
-											<span>jQuery</span>
-											<div class="progress">
-												<div class="progress-percent"><div class="counter counter-inherit counter-instant"><span data-from="0" data-to="70" data-refresh-interval="30" data-speed="1100"></span>%</div></div>
-											</div>
-										</li>
-										<li data-percent="85">
-											<span>Ruby</span>
-											<div class="progress">
-												<div class="progress-percent"><div class="counter counter-inherit counter-instant"><span data-from="0" data-to="85" data-refresh-interval="30" data-speed="1100"></span>%</div></div>
-											</div>
-										</li>
-									</ul>
+                                        
+                                        <?php
+                                            }
+                                        ?>
+                                    </ul>
 								</div>
 
 							</div>
