@@ -132,6 +132,7 @@ if (isset($_POST['upload_check'])) {
             <option value='2'>박사 졸업</option>
             <option value='3'>석사 재학</option>
             <option value='4'>석사 졸업</option>
+            <option value='6'>석박 통합과정 재학</option>
             <option value='5'>인턴 | 학부연구생</option>
         </select>
     </p>

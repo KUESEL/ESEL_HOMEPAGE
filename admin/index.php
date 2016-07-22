@@ -136,6 +136,7 @@ document.getElementById("lead_author").value = returnValue;
                                         case 2 : $degree = "박사 졸업"; break;
                                         case 3 : $degree = "석사 재학"; break;
                                         case 4 : $degree = "석사 졸업"; break;
+                                        case 6 : $degree = "석박통합과정 재학"; break;
                                         case 5 : $degree = "인턴|학부연구생"; break;
                                         default : $degree = ""; break;
                         }

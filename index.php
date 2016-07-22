@@ -196,7 +196,7 @@
                             <h3>Our Members</h3>
                         </div>
                         <?php
-                            $query = "select * from members";
+                            $query = "select * from members order by STUDENT_NUMBER";
                             $res = mysql_query($query, $conn);
                             if (!$res) {
                                 die('Query Error : ' . mysql_error());
@@ -217,10 +217,11 @@
                                 <?php
                                     switch($member['DEGREE']){
                                         case 0 : $degree = "연구교수"; break;
-                                        case 1 : $degree = "박사 재학"; break;
+                                        case 1 : $degree = "박사 과정"; break;
                                         case 2 : $degree = "박사 졸업"; break;
-                                        case 3 : $degree = "석사 재학"; break;
+                                        case 3 : $degree = "석사 과정"; break;
                                         case 4 : $degree = "석사 졸업"; break;
+                                        case 6 : $degree = "석박통합과정"; break;
                                         case 5 : $degree = "인턴|학부연구생"; break;
                                         default : $degree = ""; break;
                                     }

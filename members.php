@@ -53,7 +53,7 @@
 
 			<div class="container clearfix">
 				<h1>ESEL을 만들어가는 사람들</h1>
-				<span>오늘도 불철주야 연구밖에 모르는 바보.. 넌 바보야!</span>
+				<!-- <span>오늘도 불철주야 연구밖에 모르는 바보.. 넌 바보야!</span> -->
                 			
 
 			</div>
@@ -74,11 +74,11 @@
 							<h4>OUR <span>VISION</span>.</h4>
 						</div>
 
-						<p>
+						<p><b>
 							1. ESEL의 연구원들은 노력을 혁신으로 만듭니다.<br/>
 							2. ESEL의 연구원들은 자기 계발을 위해 노력합니다.<br/>
 							3. ESEL의 연구원들은 서로 돕습니다.
-						</p>
+						</b></p>
 
 					</div>
 
@@ -88,7 +88,7 @@
 							<h4>OUR <span>MISSION</span>.</h4>
 						</div>
 
-						<p>ESEL의 연구원들은 인호 교수님의 지도 아래에서 열심히 연구하여 소프트웨어 공학 분야를 주도하는 인재로 도약하는 것을 목표로 합니다. </p>
+						<p><b>ESEL의 연구원들은 인호 교수님의 지도 아래에서 열심히 연구하여 소프트웨어 공학 분야를 주도하는 인재로 도약하는 것을 목표로 합니다. </b></p>
 
 					</div>
 
@@ -98,9 +98,10 @@
 							<h4>Key<span>Words</span>.</h4>
 						</div>
 
-						<p>
-							Interdependence<br/>
-							Highly Effective People<br/>
+						<p class="center">
+							<b>자유(Freedom)</b><br/>
+							<b>노력(Effort)</b><br/>
+							<b>혁신(Innovation)</b><br/>
 						</p>
 						
 
@@ -120,7 +121,7 @@
 				</div>
 
                 <?php
-                    $query = "select * from members";
+                    $query = "select * from members order by STUDENT_NUMBER";
                             $res = mysql_query($query, $conn);
                             if (!$res) {
                                 die('Query Error : ' . mysql_error());
@@ -129,12 +130,13 @@
                     while($row = mysql_fetch_array($res)){
                         if($row['DEGREE'] != 2 && $row['DEGREE'] != 4 ){
                                     switch($row['DEGREE']){
-                                        case 0 : $degree = "연구교수"; break;
-                                        case 1 : $degree = "박사 재학"; break;
+                                        case 0 : $degree = "연구 교수"; break;
+                                        case 1 : $degree = "박사 과정"; break;
                                         case 2 : $degree = "박사 졸업"; break;
-                                        case 3 : $degree = "석사 재학"; break;
+                                        case 3 : $degree = "석사 과정"; break;
                                         case 4 : $degree = "석사 졸업"; break;
                                         case 5 : $degree = "인턴 | 학부연구생"; break;
+                                        case 6 : $degree = "석박통합과정"; break;
                                         default : $degree = ""; break;
                                     }
                         if($index%2 == 0){
@@ -149,7 +151,7 @@
 							<div class="heading-block">
 								<span class="before-heading color"><strong><?php echo $degree;?></strong></span>
 								<h3><?php echo $row['STUDENT_NAME'];?></h3>
-                                <?php echo $row['STUDENT_NUMBER'];?>
+                                <!-- <?php echo $row['STUDENT_NUMBER'];?> -->
 							</div>
 
 							<div class="row clearfix">
@@ -211,7 +213,7 @@
 							<div class="heading-block">
 								<span class="before-heading color"><strong><?php echo $degree; ?></strong></span>
 								<h3><?php echo $row['STUDENT_NAME'];?></h3>
-                                <?php echo $row['STUDENT_NUMBER'];?>
+                                <!-- <?php echo $row['STUDENT_NUMBER'];?> -->
 							</div>
 
 							<div class="row clearfix">
@@ -284,7 +286,7 @@
 
 
 					<?php
-                    $query = "select * from members";
+                    $query = "select * from members order by GRADUATE_YEAR DESC";
                             $res = mysql_query($query, $conn);
                             if (!$res) {
                                 die('Query Error : ' . mysql_error());
@@ -293,12 +295,8 @@
                     while($row = mysql_fetch_array($res)){
                         if($row['DEGREE'] == 2 || $row['DEGREE'] == 4 ){
                                     switch($row['DEGREE']){
-                                        case 0 : $degree = "연구교수"; break;
-                                        case 1 : $degree = "박사 재학"; break;
                                         case 2 : $degree = "박사 졸업"; break;
-                                        case 3 : $degree = "석사 재학"; break;
                                         case 4 : $degree = "석사 졸업"; break;
-                                        case 5 : $degree = "인턴 | 학부연구생"; break;
                                         default : $degree = ""; break;
                                     }
                 ?>

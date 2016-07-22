@@ -152,11 +152,13 @@ if (isset($_POST['upload_check'])) {
         <select name="degree" id="degree">
             <option value="-1">선택해 주십시오.</option>
             <option value='0' <?php if($degree == 0) echo "selected";?>>연구교수</option>
-            <option value='1' <?php if($degree == 1) echo "selected";?>>박사 재학</option>
+            <option value='1' <?php if($degree == 1) echo "selected";?>>박사 과정 재학</option>
             <option value='2' <?php if($degree == 2) echo "selected";?>>박사 졸업</option>
-            <option value='3' <?php if($degree == 3) echo "selected";?>>석사 재학</option>
+            <option value='3' <?php if($degree == 3) echo "selected";?>>석사 과정 재학</option>
             <option value='4' <?php if($degree == 4) echo "selected";?>>석사 졸업</option>
+            <option value='6' <?php if($degree == 6) echo "selected";?>>석박통합과정 재학</option>
             <option value='5' <?php if($degree == 5) echo "selected";?>>인턴 | 학부연구생</option>
+
         </select>
     </p>
     <p>
