@@ -24,7 +24,7 @@
 
 	<!-- Document Title
 	============================================= -->
-	<title>Blog - Timeline | Canvas</title>
+	<title>ESEL - Articles</title>
 
 </head>
 
@@ -40,20 +40,16 @@
             <?php include('header.php'); ?>
 		</header><!-- #header end -->
 
-        <!-- Page Title
-		============================================= -->
-		<section id="page-title">
+ 		<section id="page-title" class="page-title-parallax page-title-dark" style="padding: 250px 0; background-image: url('res/articles.jpg'); background-size: cover; background-position: center center;" data-stellar-background-ratio="0.4">
 
 			<div class="container clearfix">
-				<h1>Blog</h1>
-				<span>Our Latest News in Timeline Layout</span>
-				<ol class="breadcrumb">
-					<li><a href="#">Home</a></li>
-					<li class="active">Blog</li>
-				</ol>
+				<h1>ARTICLES</h1>
+				<!-- <span>오늘도 불철주야 연구밖에 모르는 바보.. 넌 바보야!</span> -->
+                			
+
 			</div>
 
-		</section><!-- #page-title end -->
+		</section>
 
 		<!-- Content
 		============================================= -->
