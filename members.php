@@ -74,9 +74,10 @@
 							<h4>OUR <span>VISION</span>.</h4>
 						</div>
 
-						<p>1. ESEL의 연구원들은 노력을 혁신으로 만듭니다.
-							<br/>2. ESEL의 연구원들은 자기 계발을 위해 노력합니다.
-							<br/>3. ESEL의 연구원들은 서로 돕습니다.
+						<p>
+							1. ESEL의 연구원들은 노력을 혁신으로 만듭니다.<br/>
+							2. ESEL의 연구원들은 자기 계발을 위해 노력합니다.<br/>
+							3. ESEL의 연구원들은 서로 돕습니다.
 						</p>
 
 					</div>
@@ -87,17 +88,21 @@
 							<h4>OUR <span>MISSION</span>.</h4>
 						</div>
 
-						<p>ESEL의 연구원들은 인호 교수님의 지도 아래에서 열심히 연구하여 임베디드 소프트웨어 공학 분야를 주도하는 인재로 도약하는 것을 목표로 합니다. </p>
+						<p>ESEL의 연구원들은 인호 교수님의 지도 아래에서 열심히 연구하여 소프트웨어 공학 분야를 주도하는 인재로 도약하는 것을 목표로 합니다. </p>
 
 					</div>
 
 					<div class="col_one_third col_last">
 
 						<div class="heading-block fancy-title nobottomborder title-bottom-border">
-							<h4>What we <span>Do</span>.</h4>
+							<h4>Key<span>Words</span>.</h4>
 						</div>
 
-						<p>연구..연구만이 살길이다..연구우우우!</p>
+						<p>
+							Interdependence<br/>
+							Highly Effective People<br/>
+						</p>
+						
 
 					</div>
 
