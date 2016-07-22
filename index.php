@@ -29,7 +29,7 @@
 
 	<!-- Document Title
 	============================================= -->
-	<title>ESE Lab.</title>
+	<title>ESEL</title>
 
 </head>
 

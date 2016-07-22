@@ -47,22 +47,16 @@
 
 		</header><!-- #header end -->
 
-		<!-- Page Title
-		============================================= -->
-		<section id="page-title">
+		<section id="page-title" class="page-title-parallax page-title-dark" style="padding: 250px 0; background-image: url('res/gallery.jpg'); background-size: cover; background-position: center center;" data-stellar-background-ratio="0.4">
 
 			<div class="container clearfix">
-				<h1>Gallery</h1>
-				<span>gallery gallery</span>
-                <!--
-				<ol class="breadcrumb">
-					<li><a href="#">Home</a></li>
-					<li class="active">Portfolio</li>
-				</ol>
-                -->
+				<h1>GALLERY</h1>
+				<!-- <span>오늘도 불철주야 연구밖에 모르는 바보.. 넌 바보야!</span> -->
+                			
+
 			</div>
 
-		</section><!-- #page-title end -->
+		</section>
 
 		<!-- Content
 		============================================= -->
@@ -73,7 +67,7 @@
 				<div class="container clearfix">
 
 					<!-- Portfolio Filter
-					============================================= -->
+					============================================= --><!-- 
 					<ul id="portfolio-filter" class="portfolio-filter clearfix" data-container="#portfolio">
 
 						<li class="activeFilter"><a href="#" data-filter="*">Show All</a></li>
@@ -83,14 +77,15 @@
 						<li><a href="#" data-filter=".pf-media">Media</a></li>
 						<li><a href="#" data-filter=".pf-graphics">Graphics</a></li>
 
-					</ul><!-- #portfolio-filter end -->
+					</ul> -->
+					<!-- #portfolio-filter end -->
 
 					<div id="portfolio-shuffle" class="portfolio-shuffle" data-container="#portfolio">
 						<i class="icon-random"></i>
 					</div>
 
 					<div class="clear"></div>
-
+					<br/>
 					<!-- Portfolio Items
 					============================================= -->
 					<div id="portfolio" class="portfolio grid-container portfolio-3 clearfix">
@@ -98,9 +93,12 @@
                             while($photo = mysql_fetch_array($ret)){?>
 						<article class="portfolio-item pf-media pf-icons">
 							<div class="portfolio-image">
-								<a href="portfolio-single.html">
-									<img src="admin/<?php echo $photo['PHOTO_URI'];?>" alt="Open Imagination">
+								<a href="portfolio-single.php?index=<?php echo $photo['PHOTO_ID'];?>">
+									<div style="background: url(admin/<?php echo $photo['PHOTO_URI']?>) no-repeat;height:300px;background-size:cover">
 								</a>
+								<!-- <a href="portfolio-single.html">
+									<img src="admin/<?php echo $photo['PHOTO_URI'];?>" alt="Open Imagination">
+								</a> -->
 								<div class="portfolio-overlay">
 									<a href="images/portfolio/full/1.jpg" class="left-icon" data-lightbox="image"><i class="icon-line-plus"></i></a>
 									<a href="portfolio-single.html" class="right-icon"><i class="icon-line-ellipsis"></i></a>
