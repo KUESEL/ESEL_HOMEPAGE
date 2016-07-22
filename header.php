@@ -19,8 +19,8 @@
 				<li><a href="index.php"><div>Home</div></a></li>
 				<li><a href="professor.php"><div>Professor</div></a></li>
 				<li><a href="members.php"><div>Members</div></a></li>
-				<li><a href="paper-list.php"><div>Research</div></a></li>
-                <li><a href="articles.php"><div>Articles</div></a></li>
+				<li><a href="paper-list.php"><div>Papers</div></a></li>
+                			<li><a href="articles.php"><div>Articles</div></a></li>
 				<li><a href="gallery.php"><div>Gallery</div></a></li>
 				
 			</ul>
