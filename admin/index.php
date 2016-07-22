@@ -87,12 +87,15 @@ if (isset($_POST['upload_check'])) {
     <head>
         <title>Test page for server-side</title>
         <meta charset="UTF-8">
+        <script src="js/jquery-3.0.0.min.js"></script>
     </head>
 
     <body>
         
 <script>
-function openNewWindow(url) {
+var flag = 0;
+function openNewWindow(url, v) {
+    flag = v;
   var name = '_blank';
   var specs = 'width=460px,height=573px,scrollbars=yes,menubar=no,status=no,toolbar=no';
   var newWindow = window.open(url, name, specs);
@@ -100,9 +103,42 @@ function openNewWindow(url) {
 }
 
 function getReturnValue(returnValue) {
-document.getElementById("lead_author").value = returnValue;
+    if(flag == 0)
+        document.getElementById("lead_author").value = returnValue;
+    else
+        document.getElementById("member_name").value = returnValue;
 }
-        
+$(document).ready(function(){
+			var $pc1 = $('#progressController1');
+
+			
+			$pc1.on('change', function(){
+				var percentage = $(this).val() + '%';
+                document.getElementById("skill1_val").value = percentage;
+			});
+			var $pc2 = $('#progressController2');
+
+			
+			$pc2.on('change', function(){
+				var percentage = $(this).val() + '%';
+                document.getElementById("skill2_val").value = percentage;
+			});
+			var $pc3 = $('#progressController3');
+
+			
+			$pc3.on('change', function(){
+				var percentage = $(this).val() + '%';
+                document.getElementById("skill3_val").value = percentage;
+			});
+			var $pc4 = $('#progressController4');
+
+			
+			$pc4.on('change', function(){
+				var percentage = $(this).val() + '%';
+                document.getElementById("skill4_val").value = percentage;
+			});
+			
+		});        
 </script>
         <fieldset><legend>멤버</legend>
         <input type="button" onclick="window.location = 'insert_member.php'" value="추가"/>
@@ -178,7 +214,7 @@ document.getElementById("lead_author").value = returnValue;
             <p>
                 <label for="lead_author">주 저자</label>
                 <input type="text" name="lead_author" id="lead_author" value=""  readonly="readonly"/>
-                <input type="button" value="검색" onClick="openNewWindow('search_member.php');"/>
+                <input type="button" value="검색" onClick="openNewWindow('search_member.php', 0);"/>
             </p>
             <p>
                 <label for="co_author">공동저자(','로 구분)</label>
@@ -261,21 +297,41 @@ document.getElementById("lead_author").value = returnValue;
         </fieldset>
         
         
-        <fieldset><legend>Member Skills</legend>
+        <fieldset><legend>Skills</legend>
 	
 	
-	<!--
-	    <form enctype="multipart/form-data" action="insert_thesis.php" method="post">
+	
+	    <form action="insert_skills.php" method="post">
 
             <p>
-                <label for="title">제목</label>
-                <input type="text" name="title" id="title" placeholder="Title of thesis">
+                <label for="member_name">Member</label>
+                <input type="text" name="member_name" id="member_name" value=""  readonly="readonly"/>
+                <input type="button" value="검색" onClick="openNewWindow('search_member.php', 1);"/>
+            </p>
+            <p>
+                <input type="text" name="skill1_name"/>
+                <input type="range" id="progressController1" min="0" max="100" value="0" />
+                <input type="text" name="skill1_val" id="skill1_val" value="0%" size='1' readonly/>
+            </p>
+            <p>
+                <input type="text" name="skill2_name"/>
+                <input type="range" id="progressController2" min="0" max="100" value="0" />
+                <input type="text" name="skill2_val" id="skill2_val" value="0%" size='1' readonly/>
+            </p>
+            <p>
+                <input type="text" name="skill3_name"/>
+                <input type="range" id="progressController3" min="0" max="100" value="0" />
+                <input type="text" name="skill3_val" id="skill3_val" value="0%" size='1' readonly/>
+            </p>
+            <p>
+                <input type="text" name="skill4_name"/>
+                <input type="range" id="progressController4" min="0" max="100" value="0" />
+                <input type="text" name="skill4_val" id="skill4_val" value="0%" size='1' readonly/>
             </p>
 
             <input type="submit" value="등록"/>
         </form>
-    -->
-        </fieldset>        
+        </fieldset>      
         <br>
         <br>
         <br>
