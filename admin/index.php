@@ -94,20 +94,6 @@ if (isset($_POST['upload_check'])) {
         
 <script>
 var flag = 0;
-function openNewWindow(url, v) {
-    flag = v;
-  var name = '_blank';
-  var specs = 'width=460px,height=573px,scrollbars=yes,menubar=no,status=no,toolbar=no';
-  var newWindow = window.open(url, name, specs);
-  newWindow.focus();
-}
-
-function getReturnValue(returnValue) {
-    if(flag == 0)
-        document.getElementById("lead_author").value = returnValue;
-    else
-        document.getElementById("member_name").value = returnValue;
-}
 $(document).ready(function(){
 			var $pc1 = $('#progressController1');
 
@@ -139,6 +125,35 @@ $(document).ready(function(){
 			});
 			
 		});        
+function openNewWindow(url, v) {
+    flag = v;
+  var name = '_blank';
+  var specs = 'width=460px,height=573px,scrollbars=yes,menubar=no,status=no,toolbar=no';
+  var newWindow = window.open(url, name, specs);
+  newWindow.focus();
+}
+
+function getReturnValue(returnValue) {
+    if(flag == 0)
+        document.getElementById("lead_author").value = returnValue.id;
+    else{
+        document.getElementById("member_name").value = returnValue.id;
+        if("skill1" in returnValue){
+            document.getElementById("skill1_name").value = returnValue.skill1;
+            document.getElementById("skill2_name").value = returnValue.skill2;
+            document.getElementById("skill3_name").value = returnValue.skill3;
+            document.getElementById("skill4_name").value = returnValue.skill4;
+            document.getElementById("progressController1").value = returnValue.value1;
+            document.getElementById("progressController2").value = returnValue.value2;
+            document.getElementById("progressController3").value = returnValue.value3;
+            document.getElementById("progressController4").value = returnValue.value4;
+            document.getElementById("skill1_val").value = returnValue.value1 + '%';
+            document.getElementById("skill2_val").value = returnValue.value2 + '%';
+            document.getElementById("skill3_val").value = returnValue.value3 + '%';
+            document.getElementById("skill4_val").value = returnValue.value4 + '%';
+        }
+    }
+}
 </script>
         <fieldset><legend>멤버</legend>
         <input type="button" onclick="window.location = 'insert_member.php'" value="추가"/>
@@ -309,22 +324,22 @@ $(document).ready(function(){
                 <input type="button" value="검색" onClick="openNewWindow('search_member.php', 1);"/>
             </p>
             <p>
-                <input type="text" name="skill1_name"/>
+                <input type="text" id="skill1_name" name="skill1_name"/>
                 <input type="range" id="progressController1" min="0" max="100" value="0" />
                 <input type="text" name="skill1_val" id="skill1_val" value="0%" size='1' readonly/>
             </p>
             <p>
-                <input type="text" name="skill2_name"/>
+                <input type="text" id="skill2_name" name="skill2_name"/>
                 <input type="range" id="progressController2" min="0" max="100" value="0" />
                 <input type="text" name="skill2_val" id="skill2_val" value="0%" size='1' readonly/>
             </p>
             <p>
-                <input type="text" name="skill3_name"/>
+                <input type="text" id="skill3_name" name="skill3_name"/>
                 <input type="range" id="progressController3" min="0" max="100" value="0" />
                 <input type="text" name="skill3_val" id="skill3_val" value="0%" size='1' readonly/>
             </p>
             <p>
-                <input type="text" name="skill4_name"/>
+                <input type="text" id="skill4_name" name="skill4_name"/>
                 <input type="range" id="progressController4" min="0" max="100" value="0" />
                 <input type="text" name="skill4_val" id="skill4_val" value="0%" size='1' readonly/>
             </p>

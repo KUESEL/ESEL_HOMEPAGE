@@ -11,6 +11,10 @@ $skill3 = $_POST['skill3_name'];
 $value3 = explode('%' , $_POST['skill3_val'])[0];
 $skill4 = $_POST['skill4_name'];
 $value4 = explode('%' , $_POST['skill4_val'])[0];
+if (mysql_num_rows(mysql_query("select * from skills where STUDENT_ID = $id"))!=0){
+    $query = "delete from skills where `STUDENT_ID` = $id";
+    mysql_query($query, $conn);
+}
 $ret = mysql_query("insert into skills (STUDENT_ID, SKILL_NAME, SKILL_SCORE) values($id, '$skill1', $value1)",$conn);
 $ret = mysql_query("insert into skills (STUDENT_ID, SKILL_NAME, SKILL_SCORE) values($id, '$skill2', $value2)",$conn);
 $ret = mysql_query("insert into skills (STUDENT_ID, SKILL_NAME, SKILL_SCORE) values($id, '$skill3', $value3)",$conn);
