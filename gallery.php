@@ -1,6 +1,6 @@
 <?php
     include("config.php");
-    $ret = mysql_query("select * from photos ORDER BY CREATED_AT", $conn);
+    $ret = mysql_query("select * from photos ORDER BY CREATED_AT DESC", $conn);
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
@@ -28,7 +28,7 @@
 
 	<!-- Document Title
 	============================================= -->
-	<title>Portfolio - 3 Columns | Canvas</title>
+	<title>ESEL - Gallery</title>
 
 </head>
 
@@ -94,19 +94,18 @@
 						<article class="portfolio-item pf-media pf-icons">
 							<div class="portfolio-image">
 								<a href="portfolio-single.php?index=<?php echo $photo['PHOTO_ID'];?>">
-									<div style="background: url(admin/<?php echo $photo['PHOTO_URI']?>) no-repeat;height:300px;background-size:cover">
+									<div style="background: url(admin/<?php echo $photo['PHOTO_URI']?>);height:300px;background-size:cover">
 								</a>
 								<!-- <a href="portfolio-single.html">
 									<img src="admin/<?php echo $photo['PHOTO_URI'];?>" alt="Open Imagination">
 								</a> -->
 								<div class="portfolio-overlay">
-									<a href="images/portfolio/full/1.jpg" class="left-icon" data-lightbox="image"><i class="icon-line-plus"></i></a>
-									<a href="portfolio-single.html" class="right-icon"><i class="icon-line-ellipsis"></i></a>
+									<a href="admin/<?php echo $photo['PHOTO_URI'];?>" class= "center-icon" data-lightbox="image"><i class="icon-line-plus"></i></a>
 								</div>
 							</div>
 							<div class="portfolio-desc">
 								<h3><a href="portfolio-single.html"><?php echo $photo['PHOTO_TITLE'];?></a></h3>
-								<span><?php echo $photo['PHOTO_PLACE'];?></span>
+								<span><i class="icon-calendar3"></i> <?php echo substr($photo['CREATED_AT'],0,10);?> @<?php echo $photo['PHOTO_PLACE'];?> </span>
 							</div>
 						</article>
                         <?php
