@@ -9897,23 +9897,25 @@ body:not(.device-touch) .rounded-skill {
 
 .skills li .progress-percent {
 	position: absolute;
-	top: -28px;
-	right: 0;
-	background-color: #333;
-	color: #F9F9F9;
+	/*top: -28px;*/
+	top: 0px;
+	right: -15px;
+	/*background-color: #333;*/
+	/*color: #F9F9F9;*/
+	color: #333;
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
 	height: 22px;
 	line-height: 22px;
 	padding: 0px 5px;
 	font-size: 11px;
-	border-radius: 2px;
+	/*border-radius: 2px;*/
 }
 
 .skills li .progress-percent .counter {
 	font-weight: 400;
     font-family: 'Jeju Gothic', serif;
 }
-
+/*
 .progress-percent:after, .progress-percent:before {
 	top: 100%;
 	border: solid transparent;
@@ -9936,7 +9938,7 @@ body:not(.device-touch) .rounded-skill {
 	border-width: 5px;
 	left: 50%;
 	margin-left: -5px;
-}
+}*/
 
 .skills li > span {
 	position: absolute;

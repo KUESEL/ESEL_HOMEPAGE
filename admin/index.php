@@ -25,8 +25,8 @@ if (isset($_POST['upload_check'])) {
 
         if (in_array($_FILES['upload']['type'], $imageKind)) {
             $type = explode(".", $_FILES['upload']['name'])[1];
-            if (move_uploaded_file ($_FILES['upload']['tmp_name'], $image_storage.$title.$loc.".".$type)) {
-                $URI = $image_storage.$title.$loc.".".$type;
+            $URI = "$image_storage"."esel_".md5($title.$loc).".".$type;
+            if (move_uploaded_file ($_FILES['upload']['tmp_name'], $URI)) {
                 $ret = mysql_query("insert into `photos` (PHOTO_URI, PHOTO_TITLE, PHOTO_DESC, PHOTO_PLACE) values('$URI', '$title', '$desc', '$loc')",$conn);
                 if($ret){
                 echo "<script>alert('Complete');window.location = 'index.php';</script>";
