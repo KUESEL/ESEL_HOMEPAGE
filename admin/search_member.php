@@ -42,7 +42,7 @@ if (array_key_exists("name", $_POST)) {
                 $Name[] = $row;
 
                 echo $row['STUDENT_NAME']." / ".$row['STUDENT_NUMBER']." / ".$row['ADMISSION_YEAR'];
-                $query = "select * from skills where STUDENT_ID=".$row['STUDENT_ID'];
+                $query = "select * from skills where STUDENT_ID=$row['STUDENT_ID'] order by SKILL_ID";
                 $ret = mysql_query($query, $conn);
                 $value = "{id:'".$row['STUDENT_ID']."'";
                 $i = 1;
