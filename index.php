@@ -1,5 +1,5 @@
 <?php
-    include "config.php";
+include "config.php";
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
@@ -42,7 +42,9 @@
 		<!-- Header
 		============================================= -->
 		<header id="header" class="transparent-header full-header dark" data-sticky-class="not-dark">
-            <?php include('header.php'); ?>
+            <?php
+include('header.php');
+?>
 		</header><!-- #header end -->
 
         <section id="slider" class="slider-parallax swiper_wrapper full-screen clearfix">
@@ -196,48 +198,74 @@
                             <h3>Our Members</h3>
                         </div>
                         <?php
-                            $query = "select * from members order by STUDENT_NUMBER";
-                            $res = mysql_query($query, $conn);
-                            if (!$res) {
-                                die('Query Error : ' . mysql_error());
-                            }
-                            while($member = mysql_fetch_array($res)){
-                                if($member['DEGREE'] != 2 && $member['DEGREE'] != 4 ){
-                        ?>
+$query = "select * from members order by STUDENT_NUMBER";
+$res   = mysql_query($query, $conn);
+if (!$res) {
+    die('Query Error : ' . mysql_error());
+}
+while ($member = mysql_fetch_array($res)) {
+    if ($member['DEGREE'] != 2 && $member['DEGREE'] != 4) {
+?>
 
                         <div class="col-md-3 col-sm-6 bottommargin">
 
                             <div class="team">
                                 <div class="team-image">
-                                    <a href="portfolio-single.php?index=<?php echo $member['STUDENT_ID'];?>">
-                                    	<!-- <div style="background: url(admin/<?php echo $member['PHOTO_URI']?>) no-repeat;height:300px;background-size:cover"> -->
-                                        <img  style="background: url(admin/<?php echo $member['PROFILE_PHOTO_URI']?>) no-repeat; height: 300px; background-size:cover">
+                                    <a href="portfolio-single.php?index=<?php
+        echo $member['STUDENT_ID'];
+?>">
+                                    	<!-- <div style="background: url(admin/<?php
+        echo $member['PHOTO_URI'];
+?>) no-repeat;height:300px;background-size:cover"> -->
+                                        <img  style="background: url(admin/<?php
+        echo $member['PROFILE_PHOTO_URI'];
+?>) no-repeat; height: 300px; background-size:cover">
                                     </a>
                                 </div>
                                 <?php
-                                    switch($member['DEGREE']){
-                                        case 0 : $degree = "연구교수"; break;
-                                        case 1 : $degree = "박사 과정"; break;
-                                        case 2 : $degree = "박사 졸업"; break;
-                                        case 3 : $degree = "석사 과정"; break;
-                                        case 4 : $degree = "석사 졸업"; break;
-                                        case 6 : $degree = "석박통합과정"; break;
-                                        case 5 : $degree = "인턴|학부연구생"; break;
-                                        default : $degree = ""; break;
-                                    }
-
-                                ?>
+        switch ($member['DEGREE']) {
+            case 0:
+                $degree = "연구교수";
+                break;
+            case 1:
+                $degree = "박사 과정";
+                break;
+            case 2:
+                $degree = "박사 졸업";
+                break;
+            case 3:
+                $degree = "석사 과정";
+                break;
+            case 4:
+                $degree = "석사 졸업";
+                break;
+            case 6:
+                $degree = "석박통합과정";
+                break;
+            case 5:
+                $degree = "인턴|학부연구생";
+                break;
+            default:
+                $degree = "";
+                break;
+        }
+        
+?>
                                 <div class="team-desc team-desc-bg">
-                                    <div class="team-title"><h4><?php echo $member['STUDENT_NAME'];?></h4><span><strong><?php echo $degree;?></strong></span></div>
+                                    <div class="team-title"><h4><?php
+        echo $member['STUDENT_NAME'];
+?></h4><span><strong><?php
+        echo $degree;
+?></strong></span></div>
                                 </div>
                             </div>
 
                         </div>
 
                         <?php
-                                }
-                            }
-                        ?>
+    }
+}
+?>
 
                     </div>
 
@@ -257,47 +285,42 @@
 				<div id="portfolio" class="portfolio portfolio-nomargin grid-container portfolio-notitle portfolio-full grid-container clearfix">
 
                     <?php
-                        $query = "select * from photos order by created_at desc limit 4";
-                        $res = mysql_query($query, $conn);
-                        if (!$res) {
-                            die('Query Error : ' . mysql_error());
-                        }
-                        while($photo = mysql_fetch_array($res)){
-                    ?>
-                    <article class="portfolio-item pf-media pf-icons">
+$query = "select * from photos order by created_at desc limit 8";
+$res   = mysql_query($query, $conn);
+if (!$res) {
+    die('Query Error : ' . mysql_error());
+}
+while ($photo = mysql_fetch_array($res)) {
+?>
+                    				<article class="portfolio-item pf-media pf-icons">
 						<div class="portfolio-image">
 							<a href="portfolio-single.php?index=<?php echo $photo['PHOTO_ID'];?>">
-								<div style="background: url(admin/<?php echo $photo['PHOTO_URI']?>) no-repeat;height:300px;background-size:cover">
+								<div style="background: url(admin/<?php echo $photo['PHOTO_URI'];?>) no-repeat ;height:300px;background-size:cover;">
 							</a>
 							<div class="portfolio-overlay">
-								<a href="admin/<?php echo $photo['PHOTO_URI']?>" class= "center-icon" data-lightbox="image"><i class="icon-line-plus"></i></a>
+								<a href="admin/<?php echo $photo['PHOTO_URI'];?>" class= "center-icon" data-lightbox="image"><i class="icon-line-plus"></i></a>
 							</div>
 						</div>
 						<div class="portfolio-desc">
-							<h3><a href="portfolio-single.php?index=<?php echo $photo['PHOTO_ID'];?>"><?php echo $photo['PHOTO_TITLE']?></a></h3>
-							<span><a href="#"><?php echo "@".$photo['PHOTO_PLACE'];?></a></span>
+							<h3><a href="portfolio-single.php?index=<?php echo $photo['PHOTO_ID'];?>"><?php echo $photo['PHOTO_TITLE'];?></a></h3>
+							<span><i class="icon-calendar3"></i> <?php echo substr($photo['CREATED_AT'],0,10);?> @<?php echo $photo['PHOTO_PLACE'];?> </span>
 						</div>
 					</article>
                     <?php
-                        }
-                    ?>
+}
+?>
 				</div>
 
 
 				<div class="clear"></div>
 
 
-				<div class="section notopmargin notopborder">
-					<div class="container clearfix">
-						<div class="heading-block center nomargin">
-							<h3>Articles</h3>
-						</div>
-					</div>
-				</div>
 
 				<div class="container clear-bottommargin clearfix">
-					<div class="row">
-
+					<div class="row topmargin-lg">
+						<div class="heading-block center">
+							<h3>Articles</h3>
+						</div>	
 						<div class="col-md-3 col-sm-6 bottommargin">
 							<div class="ipost clearfix">
 								<div class="entry-image">
@@ -378,7 +401,9 @@
 
 		</section><!-- #content end -->
 
-        <?php include('footer.html'); ?>
+        <?php
+include('footer.html');
+?>
 	</div><!-- #wrapper end -->
 
 	<!-- Go To Top
