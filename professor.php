@@ -24,7 +24,7 @@
 
 	<!-- Document Title
 	============================================= -->
-	<title>ESEL HOMEPAGE - Professor</title>
+	<title>ESEL - Professor</title>
 
 </head>
 
@@ -50,7 +50,7 @@
 			<div class="container clearfix">
 				<h1>인호 (Hoh Peter In)</h1>
 				<span>Professor</span>
-				<span>@Information College, Korea University</span>
+				<span>@ College of Informatics, Korea University</span>
 				
 			</div>
 
@@ -105,7 +105,7 @@
 
 				</div>
 				
-				<div class="section parallax dark bottommargin-lg" style="background-image: url('images/services/home-testi-bg.jpg'); padding: 100px 0;" data-stellar-background-ratio="0.3">
+				<div class="section parallax dark bottommargin-lg" style="background-image: url('res/prof_parallax_background2.jpg'); padding: 100px 0;" data-stellar-background-ratio="0.3">
 
 					<div class="container clearfix">
 

@@ -28,7 +28,7 @@
 
 	<!-- Document Title
 	============================================= -->
-	<title>Portfolio - 3 Columns | Canvas</title>
+	<title>ESEL - Gallery</title>
 
 </head>
 
@@ -94,7 +94,7 @@
 						<article class="portfolio-item pf-media pf-icons">
 							<div class="portfolio-image">
 								<a href="portfolio-single.php?index=<?php echo $photo['PHOTO_ID'];?>">
-									<div style="background: url(admin/<?php echo $photo['PHOTO_URI']?>) no-repeat;height:300px;background-size:cover">
+									<div style="background: url(admin/<?php echo $photo['PHOTO_URI']?>);height:300px;background-size:cover">
 								</a>
 								<!-- <a href="portfolio-single.html">
 									<img src="admin/<?php echo $photo['PHOTO_URI'];?>" alt="Open Imagination">

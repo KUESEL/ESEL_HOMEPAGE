@@ -27,7 +27,7 @@
 
 	<!-- Document Title
 	============================================= -->
-	<title> ESEL HOMEPAGE - 연구실을 만들어가는 사람들</title>
+	<title> ESEL - Members</title>
 
 </head>
 
@@ -285,7 +285,7 @@
 
 
 					<?php
-                    $query = "select * from members order by GRADUATE_YEAR DESC";
+                    $query = "select * from members order by GRADUATE_YEAR";
                             $res = mysql_query($query, $conn);
                             if (!$res) {
                                 die('Query Error : ' . mysql_error());
