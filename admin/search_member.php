@@ -5,6 +5,7 @@
     </head>
 <script>        
 function returnvalue(value) {
+  alert(value);
   window.opener.getReturnValue(value);
   window.close();
 }
@@ -41,8 +42,18 @@ if (array_key_exists("name", $_POST)) {
                 $Name[] = $row;
 
                 echo $row['STUDENT_NAME']." / ".$row['STUDENT_NUMBER']." / ".$row['ADMISSION_YEAR'];
+                $query = "select * from skills where STUDENT_ID=".$row['STUDENT_ID'];
+                $ret = mysql_query($query, $conn);
+                $value = "{id:'".$row['STUDENT_ID']."'";
+                $i = 1;
+                while($skill = mysql_fetch_array($ret)){
+                    $value = $value.", skill".$i.":'".$skill['SKILL_NAME']."'";
+                    $value = $value.", value".$i.":'".$skill['SKILL_SCORE']."'";
+                    $i++;
+                }
+                $value = $value."}"
 ?>
-                <input type="button" value="선택" onclick="returnvalue('<?php echo $row['STUDENT_ID']?>');"/>
+                <input type="button" value="선택" onclick="returnvalue(<?php echo $value;?>);"/>
 <?php
 
                     echo "<br/>";
