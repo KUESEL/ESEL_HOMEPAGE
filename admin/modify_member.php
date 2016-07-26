@@ -11,87 +11,162 @@
         $filename = $row['PROFILE_PHOTO_URI'];
         $desc = $row['DESCP'];
         $number = $row['STUDENT_NUMBER'];
+        $email = $row['EMAIL'];
+        $linkedin = $row['LINKED_IN_URL'];
+        $fb = $row['FACEBOOK_URL'];
+        $tw = $row['TWITTER_URL'];
+        $insta = $row['INSTAGRAM_URL'];
+        $blog = $row['BLOG_URL'];
     }
 
 
+if($_SERVER['REQUEST_METHOD']=='POST') {
 
-if(isset($_POST['name'])){
-    $name = $_POST['name'];
-    $year = $_POST['year'];
-    $degree = $_POST['degree'];
-    $desc = $_POST['desc'];
-    $gyear = $_POST['gyear'];
-    $number = $_POST['number'];
+    if(isset($_POST['name'])&&isset($_POST['number'])&&isset($_POST['year'])&&isset($_POST['degree'])&&isset($_POST['desc'])&&($_POST['email']!=NULL)){
+        $name = $_POST['name'];
+        $year = $_POST['year'];
+        $degree = $_POST['degree'];
+        $desc = $_POST['desc'];
+        $gyear = $_POST['gyear'];
+        $number = $_POST['number'];
+        $email = $_POST['email'];
+        $linkedin = $_POST['linkedin'];
+        $fb = $_POST['facebook'];
+        $tw = $_POST['twit'];
+        $insta = $_POST['insta'];
+        $blog = $_POST['blog'];
+
+        if (isset($_POST['upload_check'])) {
+
+            if (isset($_FILES['upload']) && !$_FILES['upload']['error']) {
+
+                $imageKind = array ('image/pjpeg', 'image/jpeg', 'image/JPG', 'image/X-PNG', 'image/PNG', 'image/png', 'image/x-png');
+
+                if (in_array($_FILES['upload']['type'], $imageKind)) {
+                    $type = explode(".", $_FILES['upload']['name'])[1];
+                    if (move_uploaded_file ($_FILES['upload']['tmp_name'], $image_storage.$name.$year.".".$type)) {
+        //                unlink($image_storage.$filename);
+                        $URI = $image_storage.$name.$year.".".$type;
+                        $query = "update `members` set STUDENT_NAME='$name', STUDENT_NUMBER='$number', ADMISSION_YEAR=$year, DEGREE=$degree, PROFILE_PHOTO_URI='$URI', DESCP='$desc'";
+
+                        if($gyear != -1)
+                            $query = $query.", GRADUATE_YEAR=$gyear";
+                        else
+                            $query = $query.", GRADUATE_YEAR=NULL";
+
+                        if($linkedin != NULL)
+                            $query = $query.", LINKED_IN_URL='$linkedin'";
+                        else
+                            $query = $query.", LINKED_IN_URL=NULL";
+                        if($fb != NULL)
+                            $query = $query.", FACEBOOK_URL='$fb'";
+                        else
+                            $query = $query.", FACEBOOK_URL=NULL";
+                        if($tw != NULL)
+                            $query = $query.", TWITTER_URL='$tw'";
+                        else
+                            $query = $query.", TWITTER_URL=NULL";
+                        if($insta != NULL)
+                            $query = $query.", INSTAGRAM_URL='$insta'";
+                        else
+                            $query = $query.", INSTAGRAM_URL=NULL";
+                        if($blog != NULL)
+                            $query = $query.", BLOG_URL='$blog'";
+                        else
+                            $query = $query.", BLOG_URL=NULL";
+
+
+
+                        $query = $query." where `STUDENT_ID` = $id";
+                        $ret = mysql_query($query,$conn);
+                        if($ret)
+                            echo "<script>alert('".$year.$degree."complete');window.location = 'index.php';</script>";
+
+                    }
+
+                } else {
+                    echo "<script>alert('JPEG 또는 PNG 이미지만 업로드 가능합니다.')</script>";
+                }
+
+            }
+
+            if ($_FILES['upload']['error'] > 0) {
+
+                switch ($_FILES['upload']['error']) {
+                    case 1:
+                        $error = 'php.ini 파일의 upload_max_filesize 설정값을 초과함(업로드 최대용량 초과)';
+                        break;
+                    case 2:
+                        $error = 'Form에서 설정된 MAX_FILE_SIZE 설정값을 초과함(업로드 최대용량 초과)';
+                        break;
+                    case 3:
+                        $error = '파일 일부만 업로드 됨';
+                        break;
+                    case 4:
+                        $query = "update `members` set STUDENT_NAME='$name', STUDENT_NUMBER='$number', ADMISSION_YEAR=$year, DEGREE=$degree, PROFILE_PHOTO_URI='$filename', DESCP='$desc'";
+
+                        if($gyear != -1)
+                            $query = $query.", GRADUATE_YEAR=$gyear";
+                        else
+                            $query = $query.", GRADUATE_YEAR=NULL";
+
+                        if($linkedin != NULL)
+                            $query = $query.", LINKED_IN_URL='$linkedin'";
+                        else
+                            $query = $query.", LINKED_IN_URL=NULL";
+                        if($fb != NULL)
+                            $query = $query.", FACEBOOK_URL='$fb'";
+                        else
+                            $query = $query.", FACEBOOK_URL=NULL";
+                        if($tw != NULL)
+                            $query = $query.", TWITTER_URL='$tw'";
+                        else
+                            $query = $query.", TWITTER_URL=NULL";
+                        if($insta != NULL)
+                            $query = $query.", INSTAGRAM_URL='$insta'";
+                        else
+                            $query = $query.", INSTAGRAM_URL=NULL";
+                        if($blog != NULL)
+                            $query = $query.", BLOG_URL='$blog'";
+                        else
+                            $query = $query.", BLOG_URL=NULL";
+
+
+
+                        $query = $query." where `STUDENT_ID` = $id";
+
+                        $ret = mysql_query($query,$conn);
+                        if($ret)
+                            echo "<script>alert('".$year.$degree."complete');window.location = 'index.php';</script>";
+                        break;
+                    case 6:
+                        $error = '사용가능한 임시폴더가 없음';
+                        break;
+                    case 7:
+                        $error = '디스크에 저장할수 없음';
+                        break;
+                    case 8:
+                        $error = '파일 업로드가 중지됨';
+                        break;
+                    default:
+                        $error = '시스템 오류가 발생';
+                        break;
+                }
+                echo "<script>alert('파일 업로드 실패 이유: ".$error."')</script>";
+
+            }
+
+            if (file_exists ($_FILES['upload']['tmp_name']) && is_file($_FILES['upload']['tmp_name']) ) {
+                unlink ($_FILES['upload']['tmp_name']);
+            }
+
+        }
+    }
+    else{
+        echo "<script>alert('양식을 정확히 입력')</script>";
+
+    }
 }
-if (isset($_POST['upload_check'])) {
-
-	if (isset($_FILES['upload']) && !$_FILES['upload']['error']) {
-
-		$imageKind = array ('image/pjpeg', 'image/jpeg', 'image/JPG', 'image/X-PNG', 'image/PNG', 'image/png', 'image/x-png');
-
-		if (in_array($_FILES['upload']['type'], $imageKind)) {
-            $type = explode(".", $_FILES['upload']['name'])[1];
-			if (move_uploaded_file ($_FILES['upload']['tmp_name'], $image_storage.$name.$year.".".$type)) {
-//                unlink($image_storage.$filename);
-                $URI = $image_storage.$name.$year.".".$type;
-                
-                if($gyear != -1)
-                    $ret = mysql_query("update `members` set STUDENT_NAME='$name', STUDENT_NUMBER='$number', ADMISSION_YEAR=$year, GRADUATE_YEAR=$gyear, DEGREE=$degree, PROFILE_PHOTO_URI='$URI', DESCP='$desc' where `STUDENT_ID` = $id",$conn);
-                else
-                    $ret = mysql_query("update `members` set STUDENT_NAME='$name', STUDENT_NUMBER='$number', ADMISSION_YEAR=$year, GRADUATE_YEAR=NULL, DEGREE=$degree, PROFILE_PHOTO_URI='$URI', DESCP='$desc' where `STUDENT_ID` = $id",$conn);
-                echo "<script>alert('".$year.$degree."complete');window.location = 'index.php';</script>";
-
-			}
-			
-		} else {
-			echo "<script>alert('JPEG 또는 PNG 이미지만 업로드 가능합니다.')</script>";
-		}
-
-	}
-
-	if ($_FILES['upload']['error'] > 0) {
-	
-		switch ($_FILES['upload']['error']) {
-			case 1:
-				$error = 'php.ini 파일의 upload_max_filesize 설정값을 초과함(업로드 최대용량 초과)';
-				break;
-			case 2:
-				$error = 'Form에서 설정된 MAX_FILE_SIZE 설정값을 초과함(업로드 최대용량 초과)';
-				break;
-			case 3:
-				$error = '파일 일부만 업로드 됨';
-				break;
-			case 4:
-                if($gyear != -1)
-                    $ret = mysql_query("update `members` set STUDENT_NAME='$name', STUDENT_NUMBER='$number', ADMISSION_YEAR=$year, GRADUATE_YEAR=$gyear, DEGREE=$degree, PROFILE_PHOTO_URI='$filename', DESCP='$desc' where `STUDENT_ID` = $id",$conn);
-                else
-                    $ret = mysql_query("update `members` set STUDENT_NAME='$name', STUDENT_NUMBER='$number', ADMISSION_YEAR=$year, GRADUATE_YEAR=NULL, DEGREE=$degree, PROFILE_PHOTO_URI='$filename', DESCP='$desc' where `STUDENT_ID` = $id",$conn);                    
-                echo "<script>alert('".$year.$degree."complete');window.location = 'index.php';</script>";
-				break;
-			case 6:
-				$error = '사용가능한 임시폴더가 없음';
-				break;
-			case 7:
-				$error = '디스크에 저장할수 없음';
-				break;
-			case 8:
-				$error = '파일 업로드가 중지됨';
-				break;
-			default:
-				$error = '시스템 오류가 발생';
-				break;
-		}
-		echo "<script>alert('파일 업로드 실패 이유: ".$error."')</script>";
-				
-	}
-	
-	if (file_exists ($_FILES['upload']['tmp_name']) && is_file($_FILES['upload']['tmp_name']) ) {
-		unlink ($_FILES['upload']['tmp_name']);
-	}
-    
-}
-
-
 ?>
 
 <html>
@@ -165,6 +240,30 @@ if (isset($_POST['upload_check'])) {
         <label for="desc">자기소개</label>
         <textarea name="desc" id="desc" placeholder="DESCRIPTION"><?php echo $desc;?></textarea>
 
+    </p>
+    <p>
+        <label for="email">E-mail</label>
+        <input type="text" name="email" id="email" placeholder="E-mail url" value="<?php echo $email;?>">
+    </p>
+    <p>
+        <label for="linkedin">LinkedIn</label>
+        <input type="text" name="linkedin" id="linkedin" placeholder="LinkedIn url" value="<?php echo $linkedin;?>">
+    </p>
+    <p>
+        <label for="facebook">Facebook</label>
+        <input type="text" name="facebook" id="facebook" placeholder="Facebook url" value="<?php echo $fb;?>">
+    </p>
+    <p>
+        <label for="twit">Twitter</label>
+        <input type="text" name="twit" id="twit" placeholder="Twitter url" value="<?php echo $tw;?>">
+    </p>
+    <p>
+        <label for="insta">Instagram</label>
+        <input type="text" name="insta" id="insta" placeholder="Instagram url" value="<?php echo $insta;?>">
+    </p>
+    <p>
+        <label for="blog">Blog</label>
+        <input type="text" name="blog" id="blog" placeholder="Blog url" value="<?php echo $blog;?>">
     </p>
 
 	<div align="center"><input type="submit" name="upload_form" value="업로드" /></div>
