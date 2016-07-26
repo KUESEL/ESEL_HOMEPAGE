@@ -5,11 +5,11 @@
     if (array_key_exists("id", $_GET)) {
         $act = 1;
         $id = $_GET["id"];
-        $res = mysql_query("select * from photos where PHOTO_ID = $id", $conn);
+        $res = mysql_query("select * from researches where RESEARCH_ID = $id", $conn);
         $row = mysql_fetch_array($res);
-        $title = $row['PHOTO_TITLE'];
-        $location = $row['PHOTO_PLACE'];
-        $desc = $row['PHOTO_DESC'];
+        $name = $row['RESEARCH_TOPIC'];
+        $desc = $row['RESEARCH_DESC'];
+        $degree = $row['RESEARCH_CATEGORY'];
     }
 ?>
 
@@ -39,41 +39,43 @@
 	<!-- Document Title
 	============================================= -->
     <?php if($act == 0){?>
-	<title>Gallery Register</title>
+	<title>Research Register</title>
     <?php }else{ ?>
-	<title>Photo Edit</title>
+	<title>Research Edit</title>
     <?php }?>
 </head>
 
 <body class="stretched">
 <script>
+
 function validateForm() {
-    var title = document.getElementById('title').value;
-    var location = document.getElementById('location').value;
+    var name = document.getElementById('name').value;
+    var degree = document.getElementById('degree').value;
     var desc = document.getElementById('desc').value;
     <?php if($act != 1){ ?>
     var upload = document.getElementById('upload').value;
-    <?php }?>
     
-    if (title == null || title == "") {
-        alert("Title must be filled out");
-        return false;
-    }
-    if (location == null || location == "") {
-        alert("Location must be filled out");
-        return false;
-    }
-    if (desc == null || desc == "") {
-        alert("Description must be filled out");
+    
+    <?php }?>
+    if (name == null || name == "") {
+        alert("Name must be filled out");
         return false;
     }
     <?php if($act != 1){ ?>
     else if (!upload) {
-        alert("Picture must be uploaded");
+        alert("Profile must be selected");
         return false;
     }
+    
     <?php }?>
-
+    else if (degree == null || degree == "") {
+        alert("Degree must be filled out");
+        return false;
+    }
+    else if (desc == null || desc == "") {
+        alert("Description must be filled out");
+        return false;
+    }
     else{
         return true;
     }
@@ -93,7 +95,7 @@ function validateForm() {
 		<section id="page-title">
 
 			<div class="container clearfix">
-				<h1>Members</h1>
+				<h1>Researches</h1>
 			</div>
 
 		</section><!-- #page-title end -->
@@ -109,31 +111,42 @@ function validateForm() {
 					<div class="col_three_third col_last nobottommargin">
 
                     <?php if($act == 1){ ?>
-                        <h3>Edit Now.</h3>
+                        <h3>Modify Now.</h3>
                     <?php }else{ ?>
                         <h3>Register Now.</h3>
                     <?php } ?>    
 
-						<form enctype="multipart/form-data" id="register-form" name="register-form" class="nobottommargin" action="photos_insert.php" method="post" onsubmit="return validateForm()">
+						<form enctype="multipart/form-data" id="register-form" name="register-form" class="nobottommargin" action="researches_insert.php" method="post" onsubmit="return validateForm()">
                             <input type="hidden" name="MAX_FILE_SIZE" value="5242888">
-							<div class="col_full">
-                                <?php if($act != 1){ ?>
-								<label for="upload">사진:<?php if($act==1) echo $row['PROFILE_PHOTO_URI'];?></label>
-                                <input type="file" name="upload" id="upload" class="form-control"/>
-                                <?php }else{?>
-                                <img src="<?php echo $row['PHOTO_URI'];?>" alt="">
-                                <?php }?>
-							</div>
-							<div class="clear"></div>
 							<div class="col_half">
-								<label for="title">제목:</label>
-                                <input type="text" name="title" id="title" placeholder="Title" class="form-control" value="<?php if($act == 1) echo $title; ?>">
+								<label for="name">연구 토픽 | 프로젝트 명:</label>
+                                <input type="text" name="name" id="name" placeholder="Name" class="form-control" value="<?php if($act == 1) echo $name; ?>">
 							</div>
 							<div class="col_half col_last">
-								<label for="location">장소:</label>
-                                <input type="text" name="location" id="location" placeholder="Location" class="form-control" value="<?php if($act == 1) echo $location; ?>">
+								<label for="upload">사진:<?php if($act==1) echo $row['RESEARCH_PICT_URI'];?></label>
+                                <input type="file" name="upload" id="upload" class="form-control"/>
 							</div>
-	
+
+							<div class="clear"></div>
+
+                            <div class="col_full">
+                                <label for="degree">카테고리:</label>
+                                <select name="degree" id="degree" class="form-control">
+                                    <?php if($act == 1){?>
+                                    <option value="-1">선택해 주십시오.</option>
+                                    <option value='0' <?php if($degree == 0) echo "selected";?>>비활성화</option>
+                                    <option value='1' <?php if($degree == 1) echo "selected";?>>연구실 메인 토픽 | 프로젝트</option>
+                                    <option value='2' <?php if($degree == 2) echo "selected";?>>서브</option>
+                                    <?php }else{ ?>
+                                    
+                                    <option value="-1" selected disabled>선택해 주십시오.</option>
+                                    <option value='0'>비활성화</option>
+                                    <option value='1'>연구실 메인 토픽 | 프로젝트</option>
+                                    <option value='2'>서브</option>
+                                    <?php } ?>
+                                </select>
+							</div>
+
 							<div class="clear"></div>
 
                             

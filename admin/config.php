@@ -7,4 +7,5 @@ mysql_set_charset("utf8", $conn);
 mysql_select_db("tolskais", $conn);
 $thesis_storage = "./thesis/";
 $image_storage = "./profile/";
+$research_storage = "./research/";
 ?>
