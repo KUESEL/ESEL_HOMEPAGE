@@ -47,7 +47,7 @@ include('header.php');
 ?>
 		</header><!-- #header end -->
 
-        <section id="slider" class="slider-parallax swiper_wrapper full-screen clearfix">
+       		 <section id="slider" class="slider-parallax swiper_wrapper full-screen clearfix">
 			<div class="slider-parallax-inner">
 
 				<div class="swiper-container swiper-parent">
@@ -99,7 +99,7 @@ include('header.php');
 
 						</div>
 
-						<div class="col-lg-6 col-sm-12">
+						<div class="col-lg-6 col-sm-12 hidden-xs">
 							<div style="position: relative; margin-bottom: -100px;" class="ohidden" data-height-lg="500" data-height-md="720" data-height-sm="640" data-height-xs="450" data-height-xxs="350">
 								<img src="res/computer.png" style="position: absolute; top: 155px; left: 30; width: 300px" data-animate="fadeInUp" data-delay="50" alt="Computer">
 								<img src="res/chipset.png" style="position: absolute; top: 25px; left: 210px; width: 300px" data-animate="fadeInUp" data-delay="300" alt="Chipset">
@@ -151,7 +151,7 @@ include('header.php');
 							</div>
 						</div>
 						<div class="row notopmargin clearfix center" style="margin-bottom: 30px">
-							<a href="paper-list.php" class="button button-border button-dark button-rounded button-large noleftmargin ">Learn more</a>
+							<a href="researches.php" class="button button-border button-dark button-rounded button-large noleftmargin ">더 알아보기</a>
 						</div>
 					</div>
 				</div>
@@ -211,15 +211,8 @@ while ($member = mysql_fetch_array($res)) {
 
                             <div class="team">
                                 <div class="team-image">
-                                    <a href="portfolio-single.php?index=<?php
-        echo $member['STUDENT_ID'];
-?>">
-                                    	<!-- <div style="background: url(admin/<?php
-        echo $member['PHOTO_URI'];
-?>) no-repeat;height:300px;background-size:cover"> -->
-                                        <img  style="background: url(admin/<?php
-        echo $member['PROFILE_PHOTO_URI'];
-?>) no-repeat; height: 300px; background-size:cover">
+                                    <a href="members.php#<?php echo $member['STUDENT_NAME']; ?>">
+	                              <img  style="background: url(admin/<?php echo $member['PROFILE_PHOTO_URI'];?>) no-repeat; height: 300px; background-size:cover">
                                     </a>
                                 </div>
                                 <?php
@@ -252,14 +245,12 @@ while ($member = mysql_fetch_array($res)) {
         
 ?>
                                 <div class="team-desc team-desc-bg">
-                                    <div class="team-title"><h4><?php
-        echo $member['STUDENT_NAME'];
-?></h4><span><strong><?php
-        echo $degree;
-?></strong></span></div>
+                                    <div class="team-title">
+                                    	<h4><?php echo $member['STUDENT_NAME'];?></h4>
+                                    	<span><strong><?php echo $degree;?></strong></span>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
 
                         <?php

@@ -43,19 +43,43 @@
 
 		</header><!-- #header end -->
 
-        <!-- Page Title
-		============================================= -->
-		<section id="page-title" class="page-title-parallax page-title-dark page-title-right" style="padding: 250px 0; background-image: url('professor/professor_in_2.png'); background-size: cover; background-position: center center;" data-stellar-background-ratio="0.2">
+        
+	<!-- 
+		<section id="page-title" class="page-title-parallax page-title-dark page-title-right hidden-xs" style="padding: 250px 0; background-image: url('professor/professor_in_2.png'); background-size: cover; background-position: center center;" data-stellar-background-ratio="0.2">
 
 			<div class="container clearfix">
 				<h1>인호 (Hoh Peter In)</h1>
 				<span>Professor</span>
 				<span>@ College of Informatics, Korea University</span>
-				
 			</div>
 
-		</section><!-- #page-title end -->
+		</section> -->
+		 <section id="slider" class="slider-parallax swiper_wrapper full-screen clearfix">
+			<div class="slider-parallax-inner">
 
+				<div class="swiper-container swiper-parent">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide dark " style="background-image: url('res/professor/professor_in_2.png');">
+							<div class="container clearfix">
+								<div class="slider-caption slider-caption-right visible-lg visible-md">	
+									<h2 data-caption-animate="fadeInUp" style="color:rgb(255,255,255)">인 호</h2>
+									<h2 data-caption-animate="fadeInUp" style="color:rgb(255,255,255)">(hoh peter in)</h2>
+									<h1 data-caption-animate="fadeInUp" style="color:rgb(255,255,255)">Professor</h3>
+									<h3 data-caption-animate="fadeInUp" style="color:rgb(255,255,255)">@ College of Informatics, Korea University</h3>
+									<h3 data-caption-animate="fadeInUp" style="color:rgb(255,255,255)"><i class="icon-envelope2"></i> hoh_in@korea.ac.kr</h3>
+									<h3 data-caption-animate="fadeInUp" style="color:rgb(255,255,255)"><i class="icon-call"></i> 02-3290-3206</h3>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- <div id="slider-arrow-left"><i class="icon-angle-left"></i></div>
+					<div id="slider-arrow-right"><i class="icon-angle-right"></i></div> -->
+				</div>
+
+				<a href="#" data-scrollto="#content" data-offset="100" class="dark one-page-arrow"><i class="icon-angle-down infinite animated fadeInDown"></i></a>
+
+			</div>
+		</section>
 		<!-- Content
 		============================================= -->
 		<section id="content">
@@ -65,43 +89,146 @@
 				<div class="container clearfix">
 
 					<div class="row clearfix">
+						<div class="col-md-12  visible-xs">
+							<div class="heading-block center">
+								<h1>인호 <br>(Hoh Peter In)</h1>
+								<span>Professor</span>
+								<span>@College of Informatics,<br> Korea University, Seoul</span>
+								<span><i class="icon-envelope2"></i> hoh_in@korea.ac.kr</span>
+								<span><i class="icon-call"></i> 02-3290-3206</span>
+							</div>
+						</div>
 
 						<div class="col-md-12">
-
-							<h3>BIOGRAPHY</h3>
-							<div class="col-md-2">
-								<b>1988</b><br/>
-								<b>1988, 1989 </b><br/>
-								<b>1990 – 1992 </b><br/>
-								<b>1992 – 1993 </b><br/>
-								<b>1993 – 1994 </b><br/>
-								<b>1994 – 1998  </b><br/>
-								<b>1996  </b><br/>
+							<h3>BIOGRAPHY</h3>	
+							<hr style="margin-top:-20px">
+							<div class="col-md-2 col-xs-12">
+								<b>1990</b>
+							</div>
+							<div class="col-md-10 col-xs-12">
+								고려대학교 컴퓨터공학 학사
+							</div>
+							
+							<div class="col-md-2 col-xs-12">
+								<b>1992 </b>
+							</div>
+							<div class="col-md-10 col-xs-12">
+								 고려대학교 컴퓨터공학 석사<br/>
+							</div>
+							
+							<div class="col-md-2 col-xs-12">
+								<b>1992 – 1993</b>
+							</div>
+							<div class="col-md-10 col-xs-12">
+								USC 데이터베이스 연구실의 멀티미디어 객체 지향 데이터베이스 프로젝트 참여
+							</div>
+							
+							<div class="col-md-2 col-xs-12">
+								<b>1993 – 1994</b><br/>
+							</div>
+							<div class="col-md-10 col-xs-12">
+								USC Information Sciences Institution에서 정보 대행자(Information agent) 프로젝트 연구원<br/>
+							</div>
+							
+							<div class="col-md-2 col-xs-12">
+								<b>1994 – 1998</b><br/>
+							</div>
+							<div class="col-md-10 col-xs-12">
+								Barry W. Boehm 교수 지도 하에  WinWin 프로젝트 참여<br/>
+							</div>
+							
+							<div class="col-md-2 col-xs-12">
+								<b>1998  </b><br/>
+							</div>
+							<div class="col-md-10 col-xs-12">
+								USC(University of Southern California) 컴퓨터공학 박사<br/>
+							</div>
+							
+							<div class="col-md-2 col-xs-12">
 								<b>1999 – 2003 </b><br/>
-								<b>2000, 2001 </b><br/>
-								<b>2001 </b><br/>
-								<b>2002 </b><br/>
+							</div>
+							<div class="col-md-10 col-xs-12">
+								2003 SPIL Associate director<br/>
+							</div>
+							
+							<div class="col-md-2 col-xs-12">
 								<b>2004 </b><br/>
+							</div>
+							<div class="col-md-10 col-xs-12">
+								고려대학교 컴퓨터학과 부교수<br/>
+							</div>
+							
+							<div class="col-md-2 col-xs-12">
 								<b>2010 – 현재</b><br/>
 							</div>
-							<div class="col-md-10">
-								Korea Academic Promotion Foundation (Korea Research Foundation) 최고 논문 상 수상<br/>
-								Korea Information Science Society 최고 논문 상 수상<br/>
-								캘리포니아 주립 대학 (USC) 에서 석사, 박사 학위 취득<br/>
-								 USC 데이터베이스 연구실에서 멀티미디어 객체 지향 데이터베이스 프로젝트 참여<br/>
-								 USC Information Sciences Institution 연구원 활동.<br/>
-								Barry W. Boehm 교수 지도 하에 WinWin 프로젝트 참여<br/>
-								 IEEE International Conference on Requirements Engineering 최고 논문 상 수상<br/>
-								 SPIL Associate director, 고려대학교 컴퓨터학과 부교수<br/>
-								 IEEE COMPSAC (International Computer Software and Applications Conference) 프로그램 위원<br/>
-								 IEEE RTES (International Workshop on Real-Time Embedded Systems) 출판 의장<br/>
-								Software Engineering on the Internet at the 2002 SAINT (International Symposium on Applications and the Internet) 부의장<br/>
-								International workshop on Embedded and Ubiquitous Software Engineering (EUSE 2004) 의장<br/>
-								 고려대학교 컴퓨터학과 정교수<br/><br/><br/>
+							<div class="col-md-10 col-xs-12">
+								고려대학교 컴퓨터학과 정교수<br/><br/><br/>
 							</div>
-
 						</div>
 					</div>
+
+					<div class="row clearfix">
+						<div class="col-md-12">
+							<h3> AWARDS </h3>
+							<hr style="margin-top:-20px">
+							<div class="col-md-2 col-xs-12">
+								<b>1988</b><br/>
+							</div>
+							<div class="col-md-10 col-xs-12">
+								Korea Academic Promotion Foundation (Korea Research Foundation) 최고 논문 상 수상<br/>
+							</div>
+							<div class="col-md-2 col-xs-12">
+								<b>1988, 1989</b><br/>
+							</div>
+							<div class="col-md-10 col-xs-12">
+								Korea Information Science Society 최고 논문 상 수상<br/>
+							</div>
+							<div class="col-md-2 col-xs-12">
+								<b>1996</b><br/>
+							</div>
+							<div class="col-md-10 col-xs-12">
+								IEEE International Conference on Requirements Engineering 최고 논문 상 수상<br/><br><br>
+							</div>
+						</div>
+						
+					</div>
+
+
+
+					<div class="row clearfix">
+
+						<div class="col-md-12">
+							<h3>PROFESSIONAL ACTIVITIES</h3>
+							<hr style="margin-top:-20px">
+							<div class="col-md-2 col-xs-12">
+								<b>2000, 2001</b><br/>
+							</div>
+							<div class="col-md-10 col-xs-12">
+								2000, 2001 IEEE COMPSAC (International Computer Software and Applications Conference) Program Chair<br/>
+							</div>
+							<div class="col-md-2 col-xs-12">
+								<b>2001</b><br/>
+							</div>
+							<div class="col-md-10 col-xs-12">
+								2001 IEEE RTES (International Workshop on Real-Time Embedded Systems) Publication Chair<br/>
+							</div>
+							<div class="col-md-2 col-xs-12">
+								<b>2002</b><br/>
+							</div>
+							<div class="col-md-10 col-xs-12">
+								Software Engineering on the Internet at the 2002 SAINT (International Symposium on Applications and the Internet) Vice Chair<br/>
+							</div>
+							<div class="col-md-2 col-xs-12">
+								<b>2004</b><br/>
+							</div>
+							<div class="col-md-10 col-xs-12">
+								International workshop on Embedded and Ubiquitous Software Engineering (EUSE 2004) Program Chair<br/>
+							</div>
+							
+						</div>
+					</div>
+
+
 
 				</div>
 				
@@ -148,7 +275,7 @@
 						<div class="col-md-12">
 
 							<h3>Research Summary & Plan</h3>
-
+							<hr style="margin-top:-20px">
 							<p>
 								나의 주요 연구 분야는 비기능적 요구사항들에 대한 소프트웨어 보험 (software assurance of non-functional requirements) 이다. 
 								기술 기반 사회인 요즘에는 많은 치명적인 부분들이 소프트웨어에 의하여 관리되고 있다. 
