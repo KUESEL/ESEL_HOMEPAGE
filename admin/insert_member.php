@@ -20,6 +20,7 @@ if(isset($_POST['name'])&&isset($_POST['number'])&&isset($_POST['year'])&&isset(
     $tw = $_POST['twit'];
     $insta = $_POST['insta'];
     $blog = $_POST['blog'];
+    
     if (isset($_POST['upload_check'])) {
 
         if (isset($_FILES['upload']) && !$_FILES['upload']['error']) {
