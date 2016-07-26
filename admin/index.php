@@ -16,7 +16,6 @@ if(isset($_POST['title'])){
     $title = $_POST['title'];
     $desc = $_POST['desc'];
     $loc = $_POST['location'];
-}
 if (isset($_POST['upload_check'])) {
 
     if (isset($_FILES['upload']) && !$_FILES['upload']['error']) {
@@ -81,6 +80,8 @@ if (isset($_POST['upload_check'])) {
     }
 
 }
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang='ko'>

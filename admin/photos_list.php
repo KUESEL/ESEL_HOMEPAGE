@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
     include("config.php");
-    $res = mysql_query("select * from members", $conn);
+    $res = mysql_query("select *, YEAR(CREATED_AT) as YEAR from photos", $conn);
 ?>
 <html>
 <head>
@@ -27,7 +27,7 @@
 
 	<!-- Document Title
 	============================================= -->
-	<title>Members</title>
+	<title>Gallery</title>
 
 </head>
 
@@ -45,8 +45,8 @@
 		<section id="page-title">
 
 			<div class="container clearfix">
-				<h1>Members</h1>
-				<span>ESEL Members</span>
+				<h1>Gallery</h1>
+				<span>ESEL Photos</span>
 			</div>
 
 		</section><!-- #page-title end -->
@@ -62,19 +62,20 @@
 					<!-- Portfolio Filter
 					============================================= -->
 					<ul id="portfolio-filter" class="portfolio-filter clearfix" data-container="#portfolio">
-
+                        
 						<li class="activeFilter"><a href="#" data-filter="*">Show All</a></li>
-						<li><a href="#" data-filter=".pf-0">연구교수</a></li>
-						<li><a href="#" data-filter=".pf-1">박사</a></li>
-						<li><a href="#" data-filter=".pf-3">석사</a></li>
-						<li><a href="#" data-filter=".pf-5">학부연구생 | 인턴</a></li>
-						<li><a href="#" data-filter=".pf-6">석박 통합과정</a></li>
-						<li><a href="#" data-filter=".pf-24">졸업생</a></li>
-
+                        <?php
+                            $ret = mysql_query("SELECT YEAR(CREATED_AT) as YEAR FROM photos WHERE 1 GROUP BY YEAR(CREATED_AT);", $conn);
+                            while($y = mysql_fetch_array($ret)){
+                        ?>
+						<li><a href="#" data-filter=".pf-<?php echo $y['YEAR'];?>"><?php echo $y['YEAR'];?></a></li>
+                        <?php
+                            }
+                        ?>
 					</ul><!-- #portfolio-filter end -->
 
 					<div id="portfolio-shuffle" class="portfolio-shuffle">
-						<a href="members_form.php"><i class="icon-plus"></i></a>
+						<a href="photos_form.php"><i class="icon-plus"></i></a>
 					</div>
 
 					<div class="clear"></div>
@@ -84,29 +85,21 @@
 					<div id="portfolio" class="portfolio grid-container portfolio-6 clearfix">
                         <?php
                         while($row = mysql_fetch_array($res)){
-                            switch($row['DEGREE']){
-                                case 0: $degree = "연구교수"; break;
-                                case 1: $degree = "박사 과정 재학"; break;
-                                case 2: $degree = "박사 졸업"; break;
-                                case 3: $degree = "석사 과정 재학"; break;
-                                case 4: $degree = "석사 졸업"; break;
-                                case 5: $degree = "석박통합과정 재학"; break;
-                                case 6: $degree = "인턴 | 학부연구생"; break;
-                            }
                         ?>
-						<article class="portfolio-item pf-media pf-<?php if ($row['DEGREE']==2 || $row['DEGREE']==4) echo "24"; else echo $row['DEGREE'];?>">
+						<article class="portfolio-item pf-media pf-<?php echo $row['YEAR'];?>">
 							<div class="portfolio-image">
 								<a href="portfolio-single.html">
-									<img src="<?php echo $row['PROFILE_PHOTO_URI'];?>" alt="Open Imagination">
+									<img src="<?php echo $row['PHOTO_URI'];?>" alt="Open Imagination">
 								</a>
 								<div class="portfolio-overlay">
-									<a href="members_form.php?id=<?php echo $row['STUDENT_ID'];?>" class="left-icon"><i class="icon-edit-sign"></i></a>
-									<a href="#" onclick="if(confirm('<?php echo $row['STUDENT_NAME'];?>에 대한 모든 정보를 삭제하시겠습니까?  ')==true) {location.href='members_delete.php?id=<?php echo $row['STUDENT_ID'];?>'}" class="right-icon"><i class="icon-line-cross"></i></a>
+									<a href="photos_form.php?id=<?php echo $row['PHOTO_ID'];?>" class="left-icon"><i class="icon-edit-sign"></i></a>
+									<a href="#" onclick="if(confirm('<?php echo $row['PHOTO_TITLE'];?>에 대한 모든 정보를 삭제하시겠습니까?  ')==true) {location.href='photos_delete.php?id=<?php echo $row['PHOTO_ID'];?>'}" class="right-icon"><i class="icon-line-cross"></i></a>
 								</div>
 							</div>
 							<div class="portfolio-desc">
-								<h3><a href="members_detail.php?id=<?php echo $row['STUDENT_ID'];?>"><?php echo $row['STUDENT_NAME'];?></a></h3>
-								<span><?php echo $row['STUDENT_NUMBER'];?>, <?php echo $degree;?></span>
+								<h3><?php echo $row['PHOTO_TITLE'];?></h3>
+								<span><?php echo $row['PHOTO_PLACE'];?>, <?php echo $row['CREATED_AT'];?></span>
+								<span><?php echo $row['PHOTO_DESC'];?></span>
 							</div>
 						</article>
                         

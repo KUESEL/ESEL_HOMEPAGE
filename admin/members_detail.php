@@ -35,7 +35,7 @@
 
 	<!-- Document Title
 	============================================= -->
-	<title>Member_detail</title>
+	<title>Member Details</title>
 
 </head>
 

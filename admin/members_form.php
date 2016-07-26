@@ -54,8 +54,11 @@
 
 	<!-- Document Title
 	============================================= -->
-	<title>Members</title>
-
+    <?php if($act == 0){?>
+	<title>Member Register</title>
+    <?php }else{ ?>
+	<title>Member Edit</title>
+    <?php }?>
 </head>
 
 <body class="stretched">
