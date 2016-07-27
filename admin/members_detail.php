@@ -55,6 +55,11 @@
 
 			<div class="container clearfix">
 				<h1><?php echo $p['STUDENT_NAME'];?></h1>
+                <?php if($p['STUDENT_NAME_ENG']!=NULL){ ?>
+            
+                <small><?php echo $p['STUDENT_NAME_ENG'];?></small>
+            
+                <?php } ?>
 				<span><?php echo $p['STUDENT_NUMBER'];?></span>
 				<div id="portfolio-navigation">
                     <?php if ($minus !=NULL){ ?>

@@ -8,6 +8,7 @@
         $res = mysql_query("select * from members where STUDENT_ID = $id", $conn);
         $row = mysql_fetch_array($res);
         $name = $row['STUDENT_NAME'];
+        $name2 = $row['STUDENT_NAME_ENG'];
         $year = $row['ADMISSION_YEAR'];
         $degree = $row['DEGREE'];
         $gyear = $row['GRADUATE_YEAR'];
@@ -225,7 +226,8 @@ function validateForm() {
                             <input type="hidden" name="MAX_FILE_SIZE" value="5242888">
 							<div class="col_half">
 								<label for="name">이름:</label>
-                                <input type="text" name="name" id="name" placeholder="Name" class="form-control" value="<?php if($act == 1) echo $name; ?>">
+                                <input type="text" name="name" id="name" placeholder="Korean" class="form-control" value="<?php if($act == 1) echo $name; ?>">
+                                <input type="text" name="name2" id="name2" placeholder="English" class="form-control" value="<?php if($act == 1) echo $name2; ?>">
 							</div>
 							<div class="col_half col_last">
 								<label for="upload">프로필 사진:<?php if($act==1) echo $row['PROFILE_PHOTO_URI'];?></label>

@@ -99,7 +99,7 @@
 						<article class="portfolio-item pf-media pf-<?php  echo $row['DEGREE'];?>">
 							<div class="portfolio-image">
 								<a href="portfolio-single.html">
-									<div style="background: url(<?php echo $row['PROFILE_PHOTO_URI'];?>) no-repeat ;height:200px;background-size:cover;">
+                                    <div style="background: url(<?php echo $row['PROFILE_PHOTO_URI'];?>) no-repeat ;height:200px;background-size:cover;"></div>
 								</a>
 								<div class="portfolio-overlay">
 									<a href="members_form.php?id=<?php echo $row['STUDENT_ID'];?>" class="left-icon"><i class="icon-edit-sign"></i></a>
@@ -107,7 +107,15 @@
 								</div>
 							</div>
 							<div class="portfolio-desc">
-								<h3><a href="members_detail.php?id=<?php echo $row['STUDENT_ID'];?>"><?php echo $row['STUDENT_NAME'];?></a></h3>
+								<h3><a href="members_detail.php?id=<?php echo $row['STUDENT_ID'];?>"><?php echo $row['STUDENT_NAME'];?>
+                                    <?php
+                                        if($row['STUDENT_NAME_ENG']!=NULL){
+                                    ?>
+                                        <br/><small><?php echo $row['STUDENT_NAME_ENG'];?></small>
+                                    <?php
+                                        }
+                                    ?>
+                                    </a></h3>
 								<span><?php echo $row['STUDENT_NUMBER'];?>, <?php echo $degree;?></span>
 							</div>
 						</article>

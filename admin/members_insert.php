@@ -27,6 +27,7 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
     }
     if(isset($_POST['name'])&&isset($_POST['number'])&&isset($_POST['year'])&&isset($_POST['degree'])&&isset($_POST['desc'])&&($_POST['email']!=NULL)){
         $name = $_POST['name'];
+        $name2 = $_POST['name2'];
         $year = $_POST['year'];
         $degree = $_POST['degree'];
         $desc = $_POST['desc'];
@@ -38,7 +39,7 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
         $tw = $_POST['twit'];
         $insta = $_POST['insta'];
         $blog = $_POST['blog'];
-
+        
        if (isset($_POST['upload_check'])) {
             if (isset($_FILES['upload']) && !$_FILES['upload']['error']) {
 
@@ -78,7 +79,11 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
                                 $query = $query.", BLOG_URL='$blog'";
                             else
                                 $query = $query.", BLOG_URL=NULL";
-
+                            if($name2 != NULL)
+                                $query = $query.", STUDENT_NAME_ENG='$name2'";
+                            else
+                                $query = $query.", STUDENT_NAME_ENG=NULL";
+                                
 
 
                             $query = $query." where `STUDENT_ID` = $id";
@@ -114,6 +119,10 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
                             if($blog != NULL){
                                 $q = $q.", BLOG_URL";
                                 $v = $v.", '$blog'";                                                
+                            }
+                            if($name2 != NULL){
+                                $q = $q.", STUDENT_NAME_ENG";
+                                $v = $v.", '$name2'";                                                                                
                             }
 
                             $query = $q.$v.")";
@@ -181,6 +190,10 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
                             $query = $query.", BLOG_URL='$blog'";
                         else
                             $query = $query.", BLOG_URL=NULL";
+                        if($name2 != NULL)
+                            $query = $query.", STUDENT_NAME_ENG='$name2'";
+                        else
+                            $query = $query.", STUDENT_NAME_ENG=NULL";
 
 
 
