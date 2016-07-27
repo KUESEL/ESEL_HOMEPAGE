@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <?php
     include("config.php");
-    $res = mysql_query("select * from researches", $conn);
+    $res = mysql_query("select * from papers order by PAPER_PUBLISHED_AT desc", $conn);
 ?>
-<html>
+<html dir="ltr" lang="en-US">
 <head>
 
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -27,7 +27,7 @@
 
 	<!-- Document Title
 	============================================= -->
-	<title>Gallery</title>
+	<title>Papers</title>
 
 </head>
 
@@ -36,6 +36,7 @@
 	<!-- Document Wrapper
 	============================================= -->
 	<div id="wrapper" class="clearfix">
+
 		<!-- Top Bar
 		============================================= -->
         <?php include("top.html");?>
@@ -45,8 +46,11 @@
 		<section id="page-title">
 
 			<div class="container clearfix">
-				<h1>RESEARCH</h1>
-				<span>ESEL 연구주제 관리 페이지</span>
+				<h1>Papers</h1>
+				<span>ESEL papers</span>
+				<div id="portfolio-navigation">
+					<a href="papers_form.php"><i class="icon-plus"></i></a>
+				</div>
 			</div>
 
 		</section><!-- #page-title end -->
@@ -59,56 +63,46 @@
 
 				<div class="container clearfix">
 
-					<!-- Portfolio Filter
-					============================================= -->
-					<ul id="portfolio-filter" class="portfolio-filter clearfix" data-container="#portfolio">
-                        
-						<li class="activeFilter"><a href="#" data-filter="*">Show All</a></li>
-						<li><a href="#" data-filter=".pf-0">비활성화</a></li>
-						<li><a href="#" data-filter=".pf-1">연구실 메인 토픽 | 프로젝트</a></li>
-						<li><a href="#" data-filter=".pf-2">서브</a></li>
-					</ul><!-- #portfolio-filter end -->
-					<a href="researches_form.php">
-						<div id="portfolio-shuffle" class="portfolio-shuffle">
-							<i class="icon-plus"></i>
-						</div>
-					</a>
-					<div class="clear"></div>
+					<h3>Papers!</h3>
 
-					<!-- Portfolio Items
-					============================================= -->
-					<div id="portfolio" class="portfolio grid-container portfolio-6 clearfix">
+					<p>papers published by ESEL members.</p>
+
+					<div class="divider"><i class="icon-circle"></i></div>
+
+					<div class="col_full">
                         <?php
-                        while($row = mysql_fetch_array($res)){
-                            switch($row['RESEARCH_CATEGORY']){
-                                case 0: $cate = "비활성화"; break;
-                                case 1: $cate = "연구실 메인 토픽 | 프로젝트"; break;
-                                case 2: $cate = "서브"; break;
+                        while($p = mysql_fetch_array($res)){
+                            switch($p['PAPER_CATEGORY']){
+                                case 0: $cate = "국제 학술지"; break;
+                                case 1: $cate = "국내 학술지"; break;
+                                case 2: $cate = "국제 컨퍼런스"; break;
+                                case 3: $cate = "국내 컨퍼런스"; break;
+                                case 4: $cate = "특허"; break;
+                                    
                             }
+                            $s = mysql_fetch_array(mysql_query("select * from members where STUDENT_ID={$p['STUDENT_ID']}",$conn));
                         ?>
-						<article class="portfolio-item pf-media pf-<?php echo $row['RESEARCH_CATEGORY'];?>">
-							<div class="portfolio-image">
-								<a href="portfolio-single.html">
-									<img src="<?php echo $row['RESEARCH_PICT_URI'];?>" alt="Open Imagination">
-								</a>
-								<div class="portfolio-overlay">
-									<a href="researches_form.php?id=<?php echo $row['RESEARCH_ID'];?>" class="left-icon"><i class="icon-edit-sign"></i></a>
-									<a href="#" onclick="if(confirm('<?php echo $row['RESEARCH_TOPIC'];?>에 대한 모든 정보를 삭제하시겠습니까?  ')==true) {location.href='researches_delete.php?id=<?php echo $row['RESEARCH_ID'];?>'}" class="right-icon"><i class="icon-line-cross"></i></a>
-								</div>
-							</div>
-							<div class="portfolio-desc">
-								<h3><?php echo $row['RESEARCH_TOPIC'];?></h3>
-								<span><?php echo $cate;?></span>
-								<span><?php echo $row['RESEARCH_DESC'];?></span>
-							</div>
-						</article>
-                        
-                        <?php
-                        } 
-                        ?>
-						
+						<h4><?php echo $p['PAPER_TITLE'];?><small>(<?php echo $p['PAPER_PUBLISHED_AT'];?>)</small></h4>
+                        저자: <a href="members_detail.php?id=<?php echo $s['STUDENT_ID'];?>"><?php echo $s['STUDENT_NAME'];?></a><br/>
+                        공동저자: <?php echo $p['PAPER_AUTHORS'];?><br/>
+                        <?php echo $cate;?>, <?php echo $p['PAPER_BELONGS_TO'];?><br/><br/><br/>
+						<div class="accordion accordion-border clearfix" data-state="closed">
 
-					</div><!-- #portfolio end -->
+							<div class="acctitle"><i class="acc-clos ed icon-book2"></i>Abstract</div>
+							<div class="acc_content clearfix"><?php echo $p['PAPER_ABSTRACTION'];?></div>
+
+							<div class="acctitle"><a href="<?php echo $p['PAPER_FULL_TEXT_LINK'];?>"><i class="acc-closed icon-link"></i><i class="acc-open icon-link"></i>Full Text Link</a></div>
+                            
+						</div>
+                        <a href="papers_form.php?id=<?php echo $p['PAPER_ID'];?>">Edit</a>&nbsp;/
+                        <a href="#" onclick="if(confirm('<?php echo $p['PAPER_TITLE'];?>에 대한 모든 정보를 삭제하시겠습니까?  ')==true) {location.href='papers_delete.php?id=<?php echo $p['PAPER_ID'];?>'}">Delete</a>
+                        <div class="divider">&nbsp;</div>
+                        <?php
+                        }
+                        ?>
+
+					</div>
+
 
 				</div>
 
@@ -118,8 +112,8 @@
 
 		<!-- Footer
 		============================================= -->
-		<?php include('../footer.html');?>
-            
+        <?php include('../footer.html');?>
+
 	</div><!-- #wrapper end -->
 
 	<!-- Go To Top
