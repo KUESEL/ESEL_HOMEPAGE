@@ -40,7 +40,7 @@
 
 		<!-- Header
 		============================================= -->
-		<header id="header" class="transparent-header full-header" data-sticky-class="not-dark">
+		<header id="header" class="transparent-header full-header dark" data-sticky-class="not-dark">
 
         <?php include('header.php'); ?>
 
@@ -51,7 +51,7 @@
 
 			<div class="container clearfix">
 				<h1>GALLERY</h1>
-				<!-- <span>오늘도 불철주야 연구밖에 모르는 바보.. 넌 바보야!</span> -->
+				<span>하루하루 쌓여가는 ESEL 사진첩입니다.</span>
                 			
 
 			</div>

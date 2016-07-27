@@ -1,4 +1,4 @@
-g<div id="header-wrap">
+<div id="header-wrap">
 
 	<div class="container clearfix">
 
@@ -7,8 +7,8 @@ g<div id="header-wrap">
 		<!-- Logo
 		============================================= -->
 		<div id="logo">
-			<a href="index.php" class="standard-logo" data-dark-logo="images/ESEL_LOGO_WHITE.png"><img src="images/ESEL_LOGO_RED.png" alt="Canvas Logo"  style="padding:8px;"></a>
-<!--						<a href="index.html" class="retina-logo" data-dark-logo="images/logo-dark@2x.png"><img src="images/logo@2x.png" alt="Canvas Logo"></a>-->
+			<a href="index.php" class="standard-logo" style="opacity:0.8"><img src="images/ESEL_LOGO_RED.png" alt="ESEL Logo"  style="padding:8px"></a>
+			<a href="index.php" class="retina-logo"><img src="images/ESEL_LOGO_WHITE.png" alt="ESEL Logo" style="padding:15px; "></a>
 		</div><!-- #logo end -->
 
 		<!-- Primary Navigation

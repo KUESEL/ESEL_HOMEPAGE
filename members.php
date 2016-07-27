@@ -1,5 +1,5 @@
 <?php
-    include "config.php";
+include "config.php";
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
@@ -27,7 +27,7 @@
 
 	<!-- Document Title
 	============================================= -->
-	<title> ESEL HOMEPAGE - 연구실을 만들어가는 사람들</title>
+	<title> ESEL - Members</title>
 
 </head>
 
@@ -41,7 +41,9 @@
 		============================================= -->
 		<header id="header" class="transparent-header full-header dark" data-sticky-class="not-dark">
 
-        <?php include('header.php'); ?>
+        <?php
+include('header.php');
+?>
 
 
 		</header><!-- #header end -->
@@ -51,8 +53,8 @@
 		<section id="page-title" class="page-title-parallax page-title-dark" style="padding: 250px 0; background-image: url('members/background2.jpg'); background-size: cover; background-position: center center;" data-stellar-background-ratio="0.4">
 
 			<div class="container clearfix">
-				<h1>ESEL을 만들어가는 사람들</h1>
-				<!-- <span>오늘도 불철주야 연구밖에 모르는 바보.. 넌 바보야!</span> -->
+				<h1>MEMBERS</h1>
+				<span>어제, 오늘 그리고 내일의 ESEL을 만들어가는 연구원들입니다.</span>
                 			
 
 			</div>
@@ -112,71 +114,105 @@
 					<div class="clear"></div>
 
 					<div class="heading-block center">
-                        <br/>
-                        <br/>
-                        <br/>
+						<br/><br/><br/>
 						<h4>재학생</h4>
 					</div>
 				</div>
 
                 <?php
-                    $query = "select * from members order by STUDENT_NUMBER";
-                            $res = mysql_query($query, $conn);
-                            if (!$res) {
-                                die('Query Error : ' . mysql_error());
-                            }
-                    $index= 0;
-                    while($row = mysql_fetch_array($res)){
-                        if($row['DEGREE'] != 2 && $row['DEGREE'] != 4 ){
-                                    switch($row['DEGREE']){
-                                        case 0 : $degree = "연구 교수"; break;
-                                        case 1 : $degree = "박사 과정"; break;
-                                        case 2 : $degree = "박사 졸업"; break;
-                                        case 3 : $degree = "석사 과정"; break;
-                                        case 4 : $degree = "석사 졸업"; break;
-                                        case 5 : $degree = "인턴 | 학부연구생"; break;
-                                        case 6 : $degree = "석박통합과정"; break;
-                                        default : $degree = ""; break;
-                                    }
-                        if($index%2 == 0){
-                ?>
+$query = "select * from members order by STUDENT_NUMBER";
+$res   = mysql_query($query, $conn);
+if (!$res) {
+    die('Query Error : ' . mysql_error());
+}
+$index = 0;
+while ($row = mysql_fetch_array($res)) {
+    if ($row['DEGREE'] != 2 && $row['DEGREE'] != 4) {
+        switch ($row['DEGREE']) {
+            case 0:
+                $degree = "연구 교수";
+                break;
+            case 1:
+                $degree = "박사 과정";
+                break;
+            case 2:
+                $degree = "박사 졸업";
+                break;
+            case 3:
+                $degree = "석사 과정";
+                break;
+            case 4:
+                $degree = "석사 졸업";
+                break;
+            case 5:
+                $degree = "인턴 | 학부연구생";
+                break;
+            case 6:
+                $degree = "석박통합과정";
+                break;
+            default:
+                $degree = "";
+                break;
+        }
+        if ($index % 2 == 0) {
+?>
                 
-				<div class="row common-height clearfix">
+				<div id ="<?php echo $row['STUDENT_NAME'];?>"class="row common-height clearfix">
 
-					<div class="col-sm-5 col-padding" style="background: url('admin/<?php echo $row['PROFILE_PHOTO_URI'];?>') center center no-repeat; background-size: cover;"></div>
+					<div class="col-sm-5 col-padding" style="background: url('admin/<?php echo $row['PROFILE_PHOTO_URI']; ?>') center center no-repeat; background-size: cover;"></div>
 
 					<div class="col-sm-7 col-padding">
 						<div>
 							<div class="heading-block">
 								<span class="before-heading color"><strong><?php echo $degree;?></strong></span>
 								<h3><?php echo $row['STUDENT_NAME'];?></h3>
-                                <!-- <?php echo $row['STUDENT_NUMBER'];?> -->
 							</div>
-
 							<div class="row clearfix">
-
 								<div class="col-md-6">
 									<p><?php echo $row['DESCP'];?></p>
+									<a href="#" class="social-icon inline-block si-small si-light si-rounded si-facebook">
+										<i class="icon-facebook"></i>
+										<i class="icon-facebook"></i>
+									</a>
+									<a href="#" class="social-icon inline-block si-small si-light si-rounded si-twitter">
+										<i class="icon-twitter"></i>
+										<i class="icon-twitter"></i>
+									</a>
+									<a href="#" class="social-icon inline-block si-small si-light si-rounded si-linkedin">
+										<i class="icon-linkedin"></i>
+										<i class="icon-linkedin"></i>
+									</a>
+									<a href="#" class="social-icon inline-block si-small si-light si-rounded si-instagram">
+										<i class="icon-instagram"></i>
+										<i class="icon-instagram"></i>
+									</a>
+									<a href="#" class="social-icon inline-block si-small si-light si-rounded si-twitter">
+										<i class="icon-home2"></i>
+										<i class="icon-home2"></i>
+									</a>
 
 								</div>
 
 								<div class="col-md-6">
 									<ul class="skills">
-                                        <?php 
-                                            $r = mysql_query("select * from skills where STUDENT_ID='{$row['STUDENT_ID']}'");
-                                            while($skill = mysql_fetch_array($r)){
-                                        
-                                        ?>
+                                        <?php
+            $r = mysql_query("select * from skills where STUDENT_ID='{$row['STUDENT_ID']}'");
+            while ($skill = mysql_fetch_array($r)) {
+?>
 										<li data-percent="<?php echo $skill['SKILL_SCORE'];?>">
 											<span><?php echo $skill['SKILL_NAME'];?></span>
 											<div class="progress">
-												<div class="progress-percent"><div class="counter counter-inherit counter-instant"><span data-from="0" data-to="<?php echo $skill['SKILL_SCORE'];?>" data-refresh-interval="30" data-speed="1100"></span>%</div></div>
+												<div class="progress-percent">
+													<div class="counter counter-inherit counter-instant">
+														<span data-from="0" data-to="<?php echo $skill['SKILL_SCORE'];?>" data-refresh-interval="30" data-speed="1100"></span>
+													</div>
+												</div>
 											</div>
 										</li>
                                         
                                         <?php
-                                            }
-                                        ?>
+            }
+?>
 									</ul>
 								</div>
 
@@ -187,43 +223,65 @@
 
 				</div>
                 <?php
-                        }
-                        else{
-                ?>
-				<div class="row common-height clearfix">
-
+        } else {
+?>
+				<div id="<?php echo $row['STUDENT_NAME'];?>"class="row common-height clearfix">
+					<div class="col-sm-5 col-padding visible-xs" style="background: url('admin/<?php echo $row['PROFILE_PHOTO_URI'];?>') center center no-repeat; background-size: cover;"></div>
 					<div class="col-sm-7 col-padding" style="background-color: #F5F5F5;">
 						<div>
 							<div class="heading-block">
-								<span class="before-heading color"><strong><?php echo $degree; ?></strong></span>
+								<span class="before-heading color"><strong><?php echo $degree;?></strong></span>
 								<h3><?php echo $row['STUDENT_NAME'];?></h3>
-                                <!-- <?php echo $row['STUDENT_NUMBER'];?> -->
 							</div>
 
 							<div class="row clearfix">
 
 								<div class="col-md-6">
 									<p><?php echo $row['DESCP'];?></p>
+									<a href="#" class="social-icon inline-block si-small si-light si-rounded si-facebook">
+										<i class="icon-facebook"></i>
+										<i class="icon-facebook"></i>
+									</a>
+									<a href="#" class="social-icon inline-block si-small si-light si-rounded si-twitter">
+										<i class="icon-twitter"></i>
+										<i class="icon-twitter"></i>
+									</a>
+									<a href="#" class="social-icon inline-block si-small si-light si-rounded si-linkedin">
+										<i class="icon-linkedin"></i>
+										<i class="icon-linkedin"></i>
+									</a>
+									<a href="#" class="social-icon inline-block si-small si-light si-rounded si-instagram">
+										<i class="icon-instagram"></i>
+										<i class="icon-instagram"></i>
+									</a>
+									<a href="#" class="social-icon inline-block si-small si-light si-rounded si-twitter">
+										<i class="icon-home2"></i>
+										<i class="icon-home2"></i>
+									</a>
 
 								</div>
 
 								<div class="col-md-6">
 									<ul class="skills">
-                                        <?php 
-                                            $r = mysql_query("select * from skills where STUDENT_ID='{$row['STUDENT_ID']}'");
-                                            while($skill = mysql_fetch_array($r)){
-                                        
-                                        ?>
-										<li data-percent="<?php echo $skill['SKILL_SCORE'];?>">
+                                        <?php
+            $r = mysql_query("select * from skills where STUDENT_ID='{$row['STUDENT_ID']}'");
+            while ($skill = mysql_fetch_array($r)) {
+                
+?>
+										<li data-percent="<?php    echo $skill['SKILL_SCORE']; ?>">
 											<span><?php echo $skill['SKILL_NAME'];?></span>
 											<div class="progress">
-												<div class="progress-percent"><div class="counter counter-inherit counter-instant"><span data-from="0" data-to="<?php echo $skill['SKILL_SCORE'];?>" data-refresh-interval="30" data-speed="1100"></span>%</div></div>
+												<div class="progress-percent">
+													<div class="counter counter-inherit counter-instant">
+														<span data-from="0" data-to="<?php echo $skill['SKILL_SCORE'];?>" data-refresh-interval="30" data-speed="1100"></span>
+													</div>
+												</div>
 											</div>
 										</li>
                                         
                                         <?php
-                                            }
-                                        ?>
+            }
+?>
                                     </ul>
 								</div>
 
@@ -232,55 +290,95 @@
 						</div>
 					</div>
 
-					<div class="col-sm-5 col-padding" style="background: url('admin/<?php echo $row['PROFILE_PHOTO_URI'];?>') center center no-repeat; background-size: cover;"></div>
+					<div class="col-sm-5 col-padding visible-lg visible-md" style="background: url('admin/<?php echo $row['PROFILE_PHOTO_URI'];?>') center center no-repeat; background-size: cover;"></div>
 
 				</div>
                 <?php
-                        }
-                            
-                    $index++;
-                        }
-                    }
-                ?>
+        }
+        
+        $index++;
+    }
+}
+?>
+				<div class="section notopmargin nobottommargin nobottomborder">
+					<div class="container clearfix">
+						<div class="heading-block center">
+							<h4>박사 졸업생</h4>
+						</div>
+
+
+					<?php
+$query = "select * from members order by GRADUATE_YEAR";
+$res   = mysql_query($query, $conn);
+if (!$res) {
+    die('Query Error : ' . mysql_error());
+}
+$index = 0;
+while ($row = mysql_fetch_array($res)) {
+    if ($row['DEGREE'] == 2) {
+?>
+
+	                <div class="col-md-3 col-sm-6 bottommargin">
+
+	                    <div class="team">
+	                        <div class="team-image">
+	                            <a href="portfolio-single.php?index=<?php echo $row['STUDENT_ID'];?>">
+	                            	
+	                                <img  style="background: url(admin/<?php echo $row['PROFILE_PHOTO_URI'];?>) no-repeat; height: 300px; background-size:cover">
+	                            </a>
+	                        </div>
+	                        <div class="team-desc team-desc-bg">
+	                                    <div class="team-title">
+	                                    	<h4><?php echo $row['STUDENT_NAME'];?></h4>
+	                                    </div>
+	                        </div>
+	                    </div>
+	                </div>
+
+
+                    <?php
+        $index++;
+    }
+}
+?>
+
+
+					</div>
+				</div>
+
 				<div class="container clearfix">
 
 					<div class="clear"></div>
 
-					<div class="heading-block center">
-                        <br/>
-                        <br/>
-                        <br/>
-						<h4>졸업생</h4>
+					<div class="heading-block center"><br/><br/><br/>
+						<h4>석사 졸업생</h4>
 					</div>
 
 
 					<?php
-                    $query = "select * from members order by GRADUATE_YEAR DESC";
-                            $res = mysql_query($query, $conn);
-                            if (!$res) {
-                                die('Query Error : ' . mysql_error());
-                            }
-                    $index= 0;
-                    while($row = mysql_fetch_array($res)){
-                        if($row['DEGREE'] == 2 || $row['DEGREE'] == 4 ){
-                                    switch($row['DEGREE']){
-                                        case 2 : $degree = "박사 졸업"; break;
-                                        case 4 : $degree = "석사 졸업"; break;
-                                        default : $degree = ""; break;
-                                    }
-                ?>
+$query = "select * from members order by GRADUATE_YEAR";
+$res   = mysql_query($query, $conn);
+if (!$res) {
+    die('Query Error : ' . mysql_error());
+}
+$index = 0;
+while ($row = mysql_fetch_array($res)) {
+    if ($row['DEGREE'] == 4) {
+?>
 
                 <div class="col-md-3 col-sm-6 bottommargin">
 
                     <div class="team">
                         <div class="team-image">
                             <a href="portfolio-single.php?index=<?php echo $row['STUDENT_ID'];?>">
-                            	<!-- <div style="background: url(admin/<?php echo $member['PHOTO_URI']?>) no-repeat;height:300px;background-size:cover"> -->
-                                <img  style="background: url(admin/<?php echo $row['PROFILE_PHOTO_URI']?>) no-repeat; height: 300px; background-size:cover">
+                            	
+                                <img  style="background: url(admin/<?php echo $row['PROFILE_PHOTO_URI'];?>) no-repeat; height: 300px; background-size:cover">
                             </a>
                         </div>
                         <div class="team-desc team-desc-bg">
-                                    <div class="team-title"><h4><?php echo $row['STUDENT_NAME'];?></h4><span><strong><?php echo $degree;?></strong></span></div>
+                                    <div class="team-title"
+                                    <h4><?php echo $row['STUDENT_NAME'];?></h4>
+                                </div>
                         </div>
                     </div>
 
@@ -288,10 +386,10 @@
 
 
                     <?php
-                        $index++;
-                            }
-                        }
-                    ?>
+        $index++;
+    }
+}
+?>
 
 
 				</div>
@@ -302,7 +400,9 @@
 
 		<!-- Footer
 		============================================= -->
-        <?php include('footer.html'); ?>
+        <?php
+include('footer.html');
+?>
 
 	</div><!-- #wrapper end -->
 

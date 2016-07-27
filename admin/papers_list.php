@@ -88,7 +88,7 @@
                         <?php echo $cate;?>, <?php echo $p['PAPER_BELONGS_TO'];?><br/><br/><br/>
 						<div class="accordion accordion-border clearfix" data-state="closed">
 
-							<div class="acctitle"><i class="acc-clos ed icon-book2"></i>Abstract</div>
+							<div class="acctitle"><i class="acc-closed icon-book2"></i>Abstract</div>
 							<div class="acc_content clearfix"><?php echo $p['PAPER_ABSTRACTION'];?></div>
 
 							<div class="acctitle"><a href="<?php echo $p['PAPER_FULL_TEXT_LINK'];?>"><i class="acc-closed icon-link"></i><i class="acc-open icon-link"></i>Full Text Link</a></div>

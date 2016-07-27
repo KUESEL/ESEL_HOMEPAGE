@@ -27,7 +27,7 @@
 
 	<!-- Document Title
 	============================================= -->
-	<title>Gallery</title>
+	<title>RESEARCH</title>
 
 </head>
 

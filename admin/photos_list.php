@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
     include("config.php");
-    $res = mysql_query("select *, YEAR(CREATED_AT) as YEAR from photos", $conn);
+    $res = mysql_query("select *, YEAR(CREATED_AT) as YEAR from photos order by CREATED_AT DESC", $conn);
 ?>
 <html>
 <head>
@@ -83,14 +83,15 @@
 
 					<!-- Portfolio Items
 					============================================= -->
-					<div id="portfolio" class="portfolio grid-container portfolio-6 clearfix">
+					<div id="portfolio" class="portfolio grid-container portfolio-4 clearfix">
                         <?php
                         while($row = mysql_fetch_array($res)){
                         ?>
 						<article class="portfolio-item pf-media pf-<?php echo $row['YEAR'];?>">
 							<div class="portfolio-image">
 								<a href="portfolio-single.html">
-									<img src="<?php echo $row['PHOTO_URI'];?>" alt="Open Imagination">
+									<div style="background: url(<?php echo $row['PHOTO_URI'];?>) no-repeat ;height:200px;background-size:cover;">
+									
 								</a>
 								<div class="portfolio-overlay">
 									<a href="photos_form.php?id=<?php echo $row['PHOTO_ID'];?>" class="left-icon"><i class="icon-edit-sign"></i></a>
