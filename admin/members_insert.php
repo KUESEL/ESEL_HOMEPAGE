@@ -52,7 +52,7 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
                         $URI = $image_storage.$name.$year.".".$type;
                         
                         if($act == 1){
-                            $query = "update `members` set STUDENT_NAME='$name', STUDENT_NUMBER='$number', ADMISSION_YEAR=$year, DEGREE=$degree, PROFILE_PHOTO_URI='$URI', DESCP='$desc'";
+                            $query = "update `members` set STUDENT_NAME='$name', STUDENT_NUMBER='$number', ADMISSION_YEAR=$year, DEGREE=$degree, PROFILE_PHOTO_URI='$URI', DESCP='$desc', EMAIL='$email'";
 
                             if($gyear != -1)
                                 $query = $query.", GRADUATE_YEAR=$gyear";
@@ -163,7 +163,7 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
                         break;
                     case 4:
                         if($act == 1){
-                        $query = "update `members` set STUDENT_NAME='$name', STUDENT_NUMBER='$number', ADMISSION_YEAR=$year, DEGREE=$degree, PROFILE_PHOTO_URI='$filename', DESCP='$desc'";
+                        $query = "update `members` set STUDENT_NAME='$name', STUDENT_NUMBER='$number', ADMISSION_YEAR=$year, DEGREE=$degree, PROFILE_PHOTO_URI='$filename', DESCP='$desc', EMAIL='$email'";
 
                         if($gyear != -1)
                             $query = $query.", GRADUATE_YEAR=$gyear";
