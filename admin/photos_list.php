@@ -45,8 +45,8 @@
 		<section id="page-title">
 
 			<div class="container clearfix">
-				<h1>Gallery</h1>
-				<span>ESEL Photos</span>
+				<h1>GALLERY</h1>
+				<span>ESEL 사진첩 관리 페이지</span>
 			</div>
 
 		</section><!-- #page-title end -->
@@ -73,10 +73,11 @@
                             }
                         ?>
 					</ul><!-- #portfolio-filter end -->
-
-					<div id="portfolio-shuffle" class="portfolio-shuffle">
-						<a href="photos_form.php"><i class="icon-plus"></i></a>
-					</div>
+					<a href="photos_form.php">
+						<div id="portfolio-shuffle" class="portfolio-shuffle">
+							<i class="icon-plus"></i>
+						</div>
+					</a>
 
 					<div class="clear"></div>
 

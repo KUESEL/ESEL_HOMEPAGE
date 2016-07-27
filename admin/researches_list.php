@@ -45,8 +45,8 @@
 		<section id="page-title">
 
 			<div class="container clearfix">
-				<h1>Gallery</h1>
-				<span>ESEL Photos</span>
+				<h1>RESEARCH</h1>
+				<span>ESEL 연구주제 관리 페이지</span>
 			</div>
 
 		</section><!-- #page-title end -->
@@ -68,11 +68,11 @@
 						<li><a href="#" data-filter=".pf-1">연구실 메인 토픽 | 프로젝트</a></li>
 						<li><a href="#" data-filter=".pf-2">서브</a></li>
 					</ul><!-- #portfolio-filter end -->
-
-					<div id="portfolio-shuffle" class="portfolio-shuffle">
-						<a href="photos_form.php"><i class="icon-plus"></i></a>
-					</div>
-
+					<a href="researches_form.php">
+						<div id="portfolio-shuffle" class="portfolio-shuffle">
+							<i class="icon-plus"></i>
+						</div>
+					</a>
 					<div class="clear"></div>
 
 					<!-- Portfolio Items

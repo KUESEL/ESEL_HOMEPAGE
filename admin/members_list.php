@@ -46,7 +46,7 @@
 
 			<div class="container clearfix">
 				<h1>Members</h1>
-				<span>ESEL Members</span>
+				<span>ESEL 연구원 관리 페이지</span>
 			</div>
 
 		</section><!-- #page-title end -->
@@ -72,10 +72,11 @@
 						<li><a href="#" data-filter=".pf-24">졸업생</a></li>
 
 					</ul><!-- #portfolio-filter end -->
-
-					<div id="portfolio-shuffle" class="portfolio-shuffle">
-						<a href="members_form.php"><i class="icon-plus"></i></a>
-					</div>
+					<a href="members_form.php">
+						<div id="portfolio-shuffle" class="portfolio-shuffle">
+							<i class="icon-plus"></i>
+						</div>
+					</a>
 
 					<div class="clear"></div>
 
