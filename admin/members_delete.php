@@ -15,7 +15,7 @@
             }
             else{
                 unlink($filename);
-                echo "<script>alert('삭제되었습니다.'); window.location = 'index.php';</script>";
+                echo "<script>alert('삭제되었습니다.'); window.location = 'members_list.php';</script>";
             }
         }
     }
