@@ -10,6 +10,8 @@
         $name = $row['RESEARCH_TOPIC'];
         $desc = $row['RESEARCH_DESC'];
         $degree = $row['RESEARCH_CATEGORY'];
+        $sponser = $row['RESEARCH_SPONSER'];
+        $term = $row['RESEARCH_TERM'];
     }
 ?>
 
@@ -52,6 +54,8 @@ function validateForm() {
     var name = document.getElementById('name').value;
     var degree = document.getElementById('degree').value;
     var desc = document.getElementById('desc').value;
+    var sponser = document.getElementById('sponser').value;
+    var term = document.getElementById('term').value;
     <?php if($act != 1){ ?>
     var upload = document.getElementById('upload').value;
     
@@ -70,6 +74,14 @@ function validateForm() {
     <?php }?>
     else if (degree == null || degree == "") {
         alert("Degree must be filled out");
+        return false;
+    }
+    else if (sponser == null || sponser == "") {
+        alert("Sponser must be filled out");
+        return false;
+    }
+    else if (term == null || term == "") {
+        alert("Term must be filled out");
         return false;
     }
     else if (desc == null || desc == "") {
@@ -148,8 +160,20 @@ function validateForm() {
 							</div>
 
 							<div class="clear"></div>
+                            
+							<div class="col_half">
+								<label for="sponser">후원 및 관리기관:</label>
+                                <input type="text" name="sponser" id="sponser" placeholder="Sponser" class="form-control" value="<?php if($act == 1) echo $sponser; ?>">
+							</div>
+							<div class="col_half col_last">
+								<label for="term">연구 수행 기간:</label>
+                                <input type="text" name="term" id="term" placeholder="ex) 2013.6 ~ 2014.8" class="form-control" value="<?php if($act == 1) echo $term; ?>">
+							</div>
+
 
                             
+							<div class="clear"></div>
+
                             <div class="col_full">
                                 <label for="desc">설명:</label>
                                 <textarea rows="8" name="desc" id="desc" placeholder="Description" class="form-control"><?php if($act == 1) echo $desc;?></textarea>

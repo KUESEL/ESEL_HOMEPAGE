@@ -13,7 +13,9 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
         $name = $_POST['name'];
         $degree = $_POST['degree'];
         $desc = $_POST['desc'];
-
+        $sponser = $_POST['sponser'];
+        $term = $_POST['term'];
+        
        if (isset($_POST['upload_check'])) {
             if (isset($_FILES['upload']) && !$_FILES['upload']['error']) {
 
@@ -26,15 +28,15 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
                         $URI = $research_storage.$name.$name.".".$type;
                         
                         if($act == 1){
-                            $query = "update `researches` set RESEARCH_TOPIC='$name', RESEARCH_CATEGORY=$degree, RESEARCH_PICT_URI='$URI', RESEARCH_DESC='$desc' where `RESEARCH_ID` = $id";
+                            $query = "update `researches` set RESEARCH_TOPIC='$name', RESEARCH_CATEGORY=$degree, RESEARCH_PICT_URI='$URI', RESEARCH_DESC='$desc', RESEARCH_SPONSER='$sponser', RESEARCH_TERM='$term' where `RESEARCH_ID` = $id";
                             $ret = mysql_query($query,$conn);
                             if($ret){
                                 echo "<script>alert('".$name.$degree."complete');window.location = 'researches_list.php';</script>";
                             }
                         }
                         else{
-                            $q = "insert into `researches` (RESEARCH_TOPIC, RESEARCH_CATEGORY, RESEARCH_PICT_URI, RESEARCH_DESC";
-                            $v = ") values('$name', $degree, '$URI', '$desc'";
+                            $q = "insert into `researches` (RESEARCH_TOPIC, RESEARCH_CATEGORY, RESEARCH_PICT_URI, RESEARCH_DESC, RESEARCH_SPONSER, RESEARCH_TERM";
+                            $v = ") values('$name', $degree, '$URI', '$desc', '$sponser', '$term'";
                             $query = $q.$v.")";
                             $ret = mysql_query($query, $conn);
                             if($ret){
@@ -67,7 +69,7 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
                         break;
                     case 4:
                         if($act == 1){
-                        $query = "update `researches` set RESEARCH_TOPIC='$name', RESEARCH_CATEGORY=$degree, RESEARCH_PICT_URI='$filename', RESEARCH_DESC='$desc' where `RESEARCH_ID` = $id";
+                        $query = "update `researches` set RESEARCH_TOPIC='$name', RESEARCH_CATEGORY=$degree, RESEARCH_PICT_URI='$URI', RESEARCH_DESC='$desc', RESEARCH_SPONSER='$sponser', RESEARCH_TERM='$term' where `RESEARCH_ID` = $id";
 
                         $ret = mysql_query($query,$conn);
                         if($ret)

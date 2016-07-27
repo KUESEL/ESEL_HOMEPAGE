@@ -99,6 +99,8 @@
 							<div class="portfolio-desc">
 								<h3><?php echo $row['RESEARCH_TOPIC'];?></h3>
 								<span><?php echo $cate;?></span>
+                                <span><?php echo $row['RESEARCH_TERM'];?></span>
+                                <span>후원: <?php echo $row['RESEARCH_SPONSER'];?></span>
 								<span><?php echo $row['RESEARCH_DESC'];?></span>
 							</div>
 						</article>
