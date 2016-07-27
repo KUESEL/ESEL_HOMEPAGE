@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
     include("config.php");
-    $res = mysql_query("select * from members", $conn);
+    $res = mysql_query("select * from members order by STUDENT_ID", $conn);
 ?>
 <html>
 <head>
@@ -65,11 +65,12 @@
 
 						<li class="activeFilter"><a href="#" data-filter="*">Show All</a></li>
 						<li><a href="#" data-filter=".pf-0">연구교수</a></li>
-						<li><a href="#" data-filter=".pf-1">박사</a></li>
-						<li><a href="#" data-filter=".pf-3">석사</a></li>
+						<li><a href="#" data-filter=".pf-1">박사 재학생</a></li>
+						<li><a href="#" data-filter=".pf-3">석사 재학생</a></li>
 						<li><a href="#" data-filter=".pf-5">학부연구생 | 인턴</a></li>
-						<li><a href="#" data-filter=".pf-6">석박 통합과정</a></li>
-						<li><a href="#" data-filter=".pf-24">졸업생</a></li>
+						<li><a href="#" data-filter=".pf-6">석박 통합과정생</a></li>
+						<li><a href="#" data-filter=".pf-2">박사 졸업생</a></li>
+						<li><a href="#" data-filter=".pf-4">석사 졸업생</a></li>
 
 					</ul><!-- #portfolio-filter end -->
 					<a href="members_form.php">
@@ -95,10 +96,10 @@
                                 case 6: $degree = "인턴 | 학부연구생"; break;
                             }
                         ?>
-						<article class="portfolio-item pf-media pf-<?php if ($row['DEGREE']==2 || $row['DEGREE']==4) echo "24"; else echo $row['DEGREE'];?>">
+						<article class="portfolio-item pf-media pf-<?php  echo $row['DEGREE'];?>">
 							<div class="portfolio-image">
 								<a href="portfolio-single.html">
-									<img src="<?php echo $row['PROFILE_PHOTO_URI'];?>" alt="Open Imagination">
+									<div style="background: url(<?php echo $row['PROFILE_PHOTO_URI'];?>) no-repeat ;height:200px;background-size:cover;">
 								</a>
 								<div class="portfolio-overlay">
 									<a href="members_form.php?id=<?php echo $row['STUDENT_ID'];?>" class="left-icon"><i class="icon-edit-sign"></i></a>
