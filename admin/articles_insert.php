@@ -6,15 +6,16 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
     $act = $_POST['act'];
     if ($act == 1){
         $id = $_POST['id'];
-        $row = mysql_fetch_array(mysql_query("select RESEARCH_PICT_URI from researches where RESEARCH_ID = $id",$conn));
-        $filename = $row['RESEARCH_PICT_URI'];
+        $row = mysql_fetch_array(mysql_query("select ARTICLE_THUMBNAIL_URI from articles where ARTICLE_ID = $id",$conn));
+        $filename = $row['ARTICLE_THUMBNAIL_URI'];
     }
-    if(isset($_POST['name'])&&isset($_POST['desc'])&&isset($_POST['degree'])){
-        $name = $_POST['name'];
-        $degree = $_POST['degree'];
-        $desc = $_POST['desc'];
-        $sponser = $_POST['sponser'];
-        $term = $_POST['term'];
+    
+    $title = $_POST['title'];
+    $link = $_POST['link'];
+    $desc = $_POST['desc'];
+    $year = $_POST['year'];
+    $month = $_POST['month'];
+    $day = $_POST['day'];
         
        if (isset($_POST['upload_check'])) {
             if (isset($_FILES['upload']) && !$_FILES['upload']['error']) {
@@ -23,24 +24,25 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
 
                 if (in_array($_FILES['upload']['type'], $imageKind)) {
                     $type = explode(".", $_FILES['upload']['name'])[1];
-                    if (move_uploaded_file ($_FILES['upload']['tmp_name'], $research_storage.$name.$name.".".$type)) {
-        //                unlink($research_storage.$filename);
-                        $URI = $research_storage.$name.$name.".".$type;
+                    if (move_uploaded_file ($_FILES['upload']['tmp_name'], $article_storage.$title.$year.".".$type)) {
+        //                unlink($article_storage.$filename);
+                        $URI = $article_storage.$title.$year.".".$type;
                         
                         if($act == 1){
-                            $query = "update `researches` set RESEARCH_TOPIC='$name', RESEARCH_CATEGORY=$degree, RESEARCH_PICT_URI='$URI', RESEARCH_DESC='$desc', RESEARCH_SPONSER='$sponser', RESEARCH_TERM='$term' where `RESEARCH_ID` = $id";
+                            $query = "update `articles` set ARTICLE_TITLE='$title', ARTICLE_URL='$link', ARTICLE_PUBLISHED_YEAR=$year, ARTICLE_PUBLISHED_MONTH=$month, ARTICLE_PUBLISHED_DAY=$day, ARTICLE_THUMBNAIL_URI='$URI', ARTICLE_SUMMARY='$desc'";
+                            $query = $query." where `ARTICLE_ID` = $id";
                             $ret = mysql_query($query,$conn);
                             if($ret){
-                                echo "<script>alert('".$name.$degree."complete');window.location = 'researches_list.php';</script>";
+                                echo "<script>alert('".$title." complete');window.location = 'articles_list.php';</script>";
                             }
                         }
                         else{
-                            $q = "insert into `researches` (RESEARCH_TOPIC, RESEARCH_CATEGORY, RESEARCH_PICT_URI, RESEARCH_DESC, RESEARCH_SPONSER, RESEARCH_TERM";
-                            $v = ") values('$name', $degree, '$URI', '$desc', '$sponser', '$term'";
+                            $q = "insert into `articles` (ARTICLE_TITLE, ARTICLE_URL, ARTICLE_PUBLISHED_YEAR, ARTICLE_PUBLISHED_MONTH, ARTICLE_PUBLISHED_DAY, ARTICLE_THUMBNAIL_URI, ARTICLE_SUMMARY";
+                            $v = ") values('$title', '$link', $year, $month, $day, '$URI', '$desc'";
                             $query = $q.$v.")";
                             $ret = mysql_query($query, $conn);
                             if($ret){
-                                echo "<script>alert('".$name.$degree."complete');window.location = 'researches_list.php';</script>";
+                                echo "<script>alert('".$title." complete');window.location = 'articles_list.php';</script>";
                             }
                             else{
                                 echo $conn;
@@ -69,11 +71,13 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
                         break;
                     case 4:
                         if($act == 1){
-                        $query = "update `researches` set RESEARCH_TOPIC='$name', RESEARCH_CATEGORY=$degree, RESEARCH_PICT_URI='$URI', RESEARCH_DESC='$desc', RESEARCH_SPONSER='$sponser', RESEARCH_TERM='$term' where `RESEARCH_ID` = $id";
+                            $query = "update `articles` set ARTICLE_TITLE='$title', ARTICLE_URL='$link', ARTICLE_PUBLISHED_YEAR=$year, ARTICLE_PUBLISHED_MONTH=$month, ARTICLE_PUBLISHED_DAY=$day, ARTICLE_THUMBNAIL_URI='$filename', ARTICLE_SUMMARY='$desc'";
 
-                        $ret = mysql_query($query,$conn);
-                        if($ret)
-                            echo "<script>alert('".$name.$degree."complete');window.location = 'researches_list.php';</script>";
+                            $query = $query." where `ARTICLE_ID` = $id";
+                            $ret = mysql_query($query,$conn);
+                            if($ret){
+                                echo "<script>alert('".$title." complete');window.location = 'articles_list.php';</script>";
+                            }
                         }
                         else{
                             $error = '업로드된 파일이 없음';
@@ -101,10 +105,6 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
             }
 
         }
-    }
-    else{
-        echo "<script>alert('양식을 정확히 입력')</script>";
 
-    }
 }
 ?>
