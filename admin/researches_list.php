@@ -77,7 +77,7 @@
 
 					<!-- Portfolio Items
 					============================================= -->
-					<div id="portfolio" class="portfolio grid-container portfolio-6 clearfix">
+					<div id="portfolio" class="portfolio grid-container portfolio-3 clearfix">
                         <?php
                         while($row = mysql_fetch_array($res)){
                             switch($row['RESEARCH_CATEGORY']){
@@ -99,9 +99,8 @@
 							<div class="portfolio-desc">
 								<h3><?php echo $row['RESEARCH_TOPIC'];?></h3>
 								<span><?php echo $cate;?></span>
-                                <span><?php echo $row['RESEARCH_TERM'];?></span>
-                                <span>후원: <?php echo $row['RESEARCH_SPONSER'];?></span>
-								<span><?php echo $row['RESEARCH_DESC'];?></span>
+						                                <span><?php echo $row['RESEARCH_TERM'];?></span>
+						                                <span>후원: <?php echo $row['RESEARCH_SPONSER'];?></span>
 							</div>
 						</article>
                         

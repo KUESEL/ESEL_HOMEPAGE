@@ -23,9 +23,8 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
 
                 if (in_array($_FILES['upload']['type'], $imageKind)) {
                     $type = explode(".", $_FILES['upload']['name'])[1];
-                    if (move_uploaded_file ($_FILES['upload']['tmp_name'], $research_storage.$name.$name.".".$type)) {
-        //                unlink($research_storage.$filename);
-                        $URI = $research_storage.$name.$name.".".$type;
+                    if (move_uploaded_file ($_FILES['upload']['tmp_name'], $research_storage.md5($name).".".$type)) {
+                        $URI = $research_storage.md5($name).".".$type;
                         
                         if($act == 1){
                             $query = "update `researches` set RESEARCH_TOPIC='$name', RESEARCH_CATEGORY=$degree, RESEARCH_PICT_URI='$URI', RESEARCH_DESC='$desc', RESEARCH_SPONSER='$sponser', RESEARCH_TERM='$term' where `RESEARCH_ID` = $id";
