@@ -1,18 +1,19 @@
 <?php
     include "config.php";
-    $query = "select * from thesis";
+    $query = "select * from papers";
+    $num_rec_per_page = 5;
     if (array_key_exists("search_keyword", $_POST)) {
         $search_keyword = $_POST["search_keyword"];
         $query =  $query . " where title like '%$search_keyword%' or lead_author like '%$search_keyword%' or year like '%$search_keyword%'";
     }
     if (array_key_exists("page", $_GET)){
         $page = $_GET['page'];
-        $offset = ($page - 1)*5; 
+        $offset = ($page - 1)*$num_rec_per_page; 
     }
     else{
         $offset = 0;
     }
-    $query = $query . " order by year desc limit " . $offset ." , 5";
+    $query = $query . " order by paper_published_at desc limit " . $offset ." , ".$num_rec_per_page;
     $res = mysql_query($query, $conn);
     if (!$res) {
         die('Query Error : ' . mysql_error());
@@ -99,21 +100,39 @@
                                 $count = mysql_fetch_array($ret);
                                 $ret = mysql_query("select * from journal where `index` = {$id}", $conn);
                                 $size = mysql_num_rows($ret);
+                                $student = mysql_fetch_array(mysql_query("select * from members where STUDENT_ID={$data['STUDENT_ID']}",$conn));
+                                switch($data['PAPER_CATEGORY']){
+                                case 0: $cate = "국제 학술지"; break;
+                                case 1: $cate = "국내 학술지"; break;
+                                case 2: $cate = "국내 컨퍼런스"; break;
+                                case 3: $cate = "국제 컨퍼런스"; break;
+                                case 4: $cate = "특허"; break; 
+                            }
                             ?>
                             
 							<div class="entry clearfix">
 								<div class="entry-title">
-									<h2><a href="blog-single.html"><?php echo $data['title'];?></a></h2>
+									<h2><a href="blog-single.html"><?php echo $data['PAPER_TITLE'];?></a></h2>
 								</div>
 								<ul class="entry-meta clearfix">
-									<li><i class="icon-calendar3"></i> <?php echo $data['year'];?></li>
-									<li><a href="#"><i class="icon-user"></i> <?php echo $data['lead_author'];?></a></li>
-									<li><i class="icon-folder-open"></i> <?php for($i=0;$i<$size;$i++){$journal = mysql_fetch_array($ret); if($i != 0) echo ", " . $journal['name']; else echo $journal['name'];}?></li>
-									<li><a href="blog-single.html#comments"><i class="icon-comments"></i> <?php echo $count[0]; ?> Co-authors</a></li>
+									<li><i class="icon-calendar3"></i> <?php echo $data['PAPER_PUBLISHED_AT'];?></li>
+									<li><a href="#"><i class="icon-user"></i> <?php echo $student['STUDENT_NAME'];?></a></li>
+									<li><i class="icon-users"></i> <?php echo $data['PAPER_AUTHORS'];?> </li>
+									<li><i class="icon-tag"></i> <?php echo $cate;?> </li>
+									<li><i class="icon-bookmark"></i><?php echo $data['PAPER_BELONGS_TO'];?></li>
+
+									
 								</ul>
+
+
 								<div class="entry-content">
-									<p><?php echo $data['abstract'];?></p>
-									<a href="blog-single.html"class="more-link">Read More</a>
+									<div class="toggle">
+										<div class="togglet"><i class="toggle-closed icon-ok-circle"></i><i class="toggle-open icon-remove-circle"></i>Abstract</div>
+										<div class="togglec"><?php echo $data['PAPER_ABSTRACTION'];?></div>
+									</div>
+									<br>
+									<a href="<?php echo $data['PAPER_FULL_TEXT_LINK'];?>"><i class="icon-link"></i> Full Text Link</a>
+									<!-- <a href="<?php echo $data['PAPER_FULL_TEXT_LINK'];?>"class="more-link">Read More..</a> -->
 								</div>
 							</div>
 
@@ -124,12 +143,27 @@
 
 						</div><!-- #posts end -->
 
-						<!-- Pagination
-						============================================= -->
-						<ul class="pager nomargin">
-							<li class="previous"><a href="#">&larr; Older</a></li>
-							<li class="next"><a href="#">Newer &rarr;</a></li>
-						</ul><!-- .pager end -->
+						<ul class="pagination">
+							<li><a href="paper-list.php?page=1">◀</a></li>
+						<?php 
+							$query = "select * from papers";
+							$res = mysql_query($query, $conn);
+							$total_records = mysql_num_rows($res);  //count number of records
+							$total_pages = ceil($total_records / $num_rec_per_page); 
+							for($i=1;$i<=$total_pages;$i++){
+								if( $_GET['page']==$i){
+						?>
+							<li class="active"><a href="paper-list.php?page=<?php echo $i ?>"><?php echo $i ?> <span class="sr-only">(current)</span></a></li>
+							<?php } else{ ?>
+						  	<li><a href="paper-list.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+						  	<?php 
+						  		} 
+					 		}
+					 		?>
+					 		<li><a href="paper-list.php?page=<?php echo $total_pages ?>">▶</a></li>
+						   </ul>
+
+
 
 					</div><!-- .postcontent end -->
 

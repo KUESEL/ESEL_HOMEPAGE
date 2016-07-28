@@ -166,31 +166,43 @@ while ($row = mysql_fetch_array($res)) {
 							<div class="heading-block">
 								<span class="before-heading color"><strong><?php echo $degree;?></strong></span>
 								<h3><?php echo $row['STUDENT_NAME'];?></h3>
+
 							</div>
 							<div class="row clearfix">
 								<div class="col-md-6">
-									<p><?php echo $row['DESCP'];?></p>
-									<a href="#" class="social-icon inline-block si-small si-light si-rounded si-facebook">
-										<i class="icon-facebook"></i>
-										<i class="icon-facebook"></i>
-									</a>
-									<a href="#" class="social-icon inline-block si-small si-light si-rounded si-twitter">
-										<i class="icon-twitter"></i>
-										<i class="icon-twitter"></i>
-									</a>
-									<a href="#" class="social-icon inline-block si-small si-light si-rounded si-linkedin">
-										<i class="icon-linkedin"></i>
-										<i class="icon-linkedin"></i>
-									</a>
-									<a href="#" class="social-icon inline-block si-small si-light si-rounded si-instagram">
-										<i class="icon-instagram"></i>
-										<i class="icon-instagram"></i>
-									</a>
-									<a href="#" class="social-icon inline-block si-small si-light si-rounded si-twitter">
-										<i class="icon-home2"></i>
-										<i class="icon-home2"></i>
-									</a>
 
+									<p><?php echo $row['DESCP'];?></p>
+									<?php if($row['FACEBOOK_URL'] != ""){?>
+									<a href="http://<?php echo $row['FACEBOOK_URL'] ?>" class="social-icon inline-block si-small si-light si-rounded si-facebook">
+										<i class="icon-facebook"></i>
+										<i class="icon-facebook"></i>
+									</a>
+									<?php }
+									if($row['TWITTER_URL'] != ""){?>
+									<a href="http://<?php echo $row['TWITTER_URL'] ?>" class="social-icon inline-block si-small si-light si-rounded si-twitter">
+										<i class="icon-twitter"></i>
+										<i class="icon-twitter"></i>
+									</a>
+									<?php }
+									if($row['LINKED_IN_URL'] != ""){?>
+									<a href="http://<?php echo $row['LINKED_IN_URL'] ?>" class="social-icon inline-block si-small si-light si-rounded si-linkedin">
+										<i class="icon-linkedin"></i>
+										<i class="icon-linkedin"></i>
+									</a>
+									<?php }
+									if($row['INSTAGRAM_URL'] != ""){?>
+									<a href="http://<?php echo $row['INSTAGRAM_URL'] ?>" class="social-icon inline-block si-small si-light si-rounded si-instagram">
+										<i class="icon-instagram"></i>
+										<i class="icon-instagram"></i>
+									</a>
+									<?php }
+									if($row['BLOG_URL'] != ""){?>
+									<a href="http://<?php echo $row['BLOG_URL'] ?>" class="social-icon inline-block si-small si-light si-rounded si-twitter">
+										<i class="icon-home2"></i>
+										<i class="icon-home2"></i>
+									</a>
+									<br><br>
+									<?php }?>
 								</div>
 
 								<div class="col-md-6">
@@ -238,26 +250,37 @@ while ($row = mysql_fetch_array($res)) {
 
 								<div class="col-md-6">
 									<p><?php echo $row['DESCP'];?></p>
-									<a href="#" class="social-icon inline-block si-small si-light si-rounded si-facebook">
+									<?php if($row['FACEBOOK_URL'] != ""){?>
+									<a href="http://<?php echo $row['FACEBOOK_URL'] ?>" class="social-icon inline-block si-small si-light si-rounded si-facebook">
 										<i class="icon-facebook"></i>
 										<i class="icon-facebook"></i>
 									</a>
-									<a href="#" class="social-icon inline-block si-small si-light si-rounded si-twitter">
+									<?php }
+									if($row['TWITTER_URL'] != ""){?>
+									<a href="http://<?php echo $row['TWITTER_URL'] ?>" class="social-icon inline-block si-small si-light si-rounded si-twitter">
 										<i class="icon-twitter"></i>
 										<i class="icon-twitter"></i>
 									</a>
-									<a href="#" class="social-icon inline-block si-small si-light si-rounded si-linkedin">
+									<?php }
+									if($row['LINKED_IN_URL'] != ""){?>
+									<a href="http://<?php echo $row['LINKED_IN_URL'] ?>" class="social-icon inline-block si-small si-light si-rounded si-linkedin">
 										<i class="icon-linkedin"></i>
 										<i class="icon-linkedin"></i>
 									</a>
-									<a href="#" class="social-icon inline-block si-small si-light si-rounded si-instagram">
+									<?php }
+									if($row['INSTAGRAM_URL'] != ""){?>
+									<a href="http://<?php echo $row['INSTAGRAM_URL'] ?>" class="social-icon inline-block si-small si-light si-rounded si-instagram">
 										<i class="icon-instagram"></i>
 										<i class="icon-instagram"></i>
 									</a>
-									<a href="#" class="social-icon inline-block si-small si-light si-rounded si-twitter">
+									<?php }
+									if($row['BLOG_URL'] != ""){?>
+									<a href="http://<?php echo $row['BLOG_URL'] ?>" class="social-icon inline-block si-small si-light si-rounded si-twitter">
 										<i class="icon-home2"></i>
 										<i class="icon-home2"></i>
 									</a>
+									<br><br>
+									<?php }?>
 
 								</div>
 
@@ -322,10 +345,7 @@ while ($row = mysql_fetch_array($res)) {
 
 	                    <div class="team">
 	                        <div class="team-image">
-	                            <a href="portfolio-single.php?index=<?php echo $row['STUDENT_ID'];?>">
-	                            	
 	                                <img  style="background: url(admin/<?php echo $row['PROFILE_PHOTO_URI'];?>) no-repeat; height: 300px; background-size:cover">
-	                            </a>
 	                        </div>
 	                        <div class="team-desc team-desc-bg">
 	                                    <div class="team-title">
@@ -369,11 +389,8 @@ while ($row = mysql_fetch_array($res)) {
                 <div class="col-md-3 col-sm-6 bottommargin">
 
                     <div class="team">
-                        <div class="team-image">
-                            <a href="portfolio-single.php?index=<?php echo $row['STUDENT_ID'];?>">
-                            	
+                        <div class="team-image">	
                                 <img  style="background: url(admin/<?php echo $row['PROFILE_PHOTO_URI'];?>) no-repeat; height: 300px; background-size:cover">
-                            </a>
                         </div>
                         <div class="team-desc team-desc-bg">
                                     <div class="team-title"

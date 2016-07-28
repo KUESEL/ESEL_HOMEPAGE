@@ -3,20 +3,20 @@
 
 if($_SERVER['REQUEST_METHOD']=='POST') {
 
-    $act = $_POST['act'];
+    $act = mysql_real_escape_string($_POST['act']);
     
-    $name = $_POST['name'];
-    $degree = $_POST['degree'];
-    $lead_author = $_POST['lead_author'];
-    $co_author = $_POST['co_author'];
-    $year = $_POST['year'];
-    $loc = $_POST['loc'];
-    $desc = $_POST['desc'];
-    $abs = $_POST['abs'];
+    $name = mysql_real_escape_string($_POST['name']);
+    $degree = mysql_real_escape_string($_POST['degree']);
+    $lead_author = mysql_real_escape_string($_POST['lead_author']);
+    $co_author = mysql_real_escape_string($_POST['co_author']);
+    $year = mysql_real_escape_string($_POST['year']);
+    $loc = mysql_real_escape_string($_POST['loc']);
+    $desc = mysql_real_escape_string($_POST['desc']);
+    $abs = mysql_real_escape_string($_POST['abs']);
 
     if ($act == 1){
         $id = $_POST['id'];
-        $query = "update `papers` set PAPER_TITLE='$name', PAPER_CATEGORY=$degree, STUDENT_ID=$lead_author, PAPER_AUTHORS='$co_author', PAPER_BELONGS_TO='$loc', PAPER_PUBLISHED_AT=$year, PAPER_FULL_TEXT_LINK='$desc', PAPER_ABSTRACTION='$abs' where `PAPER_ID` = $id";
+        $query ="update `papers` set PAPER_TITLE='$name', PAPER_CATEGORY=$degree, STUDENT_ID=$lead_author, PAPER_AUTHORS='$co_author', PAPER_BELONGS_TO='$loc',PAPER_PUBLISHED_AT=$year, PAPER_FULL_TEXT_LINK='$desc', PAPER_ABSTRACTION='$abs' where `PAPER_ID` = $id";
         $ret = mysql_query($query,$conn);
                             
     }

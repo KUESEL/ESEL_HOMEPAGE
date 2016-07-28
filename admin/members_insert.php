@@ -47,9 +47,9 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
 
                 if (in_array($_FILES['upload']['type'], $imageKind)) {
                     $type = explode(".", $_FILES['upload']['name'])[1];
-                    if (move_uploaded_file ($_FILES['upload']['tmp_name'], $image_storage.$name.$year.".".$type)) {
+                    if (move_uploaded_file ($_FILES['upload']['tmp_name'], $image_storage.md5($name.$year).".".$type)) {
         //                unlink($image_storage.$filename);
-                        $URI = $image_storage.$name.$year.".".$type;
+                        $URI = $image_storage.md5($name.$year).".".$type;
                         
                         if($act == 1){
                             $query = "update `members` set STUDENT_NAME='$name', STUDENT_NUMBER='$number', ADMISSION_YEAR=$year, DEGREE=$degree, PROFILE_PHOTO_URI='$URI', DESCP='$desc', EMAIL='$email'";

@@ -75,28 +75,28 @@
                             switch($p['PAPER_CATEGORY']){
                                 case 0: $cate = "국제 학술지"; break;
                                 case 1: $cate = "국내 학술지"; break;
-                                case 2: $cate = "국제 컨퍼런스"; break;
-                                case 3: $cate = "국내 컨퍼런스"; break;
+                                case 2: $cate = "국내 컨퍼런스"; break;
+                                case 3: $cate = "국제 컨퍼런스"; break;
                                 case 4: $cate = "특허"; break;
                                     
                             }
                             $s = mysql_fetch_array(mysql_query("select * from members where STUDENT_ID={$p['STUDENT_ID']}",$conn));
                         ?>
 						<h4><?php echo $p['PAPER_TITLE'];?><small>(<?php echo $p['PAPER_PUBLISHED_AT'];?>)</small></h4>
-                        저자: <a href="members_detail.php?id=<?php echo $s['STUDENT_ID'];?>"><?php echo $s['STUDENT_NAME'];?></a><br/>
-                        공동저자: <?php echo $p['PAPER_AUTHORS'];?><br/>
-                        <?php echo $cate;?>, <?php echo $p['PAPER_BELONGS_TO'];?><br/><br/><br/>
-						<div class="accordion accordion-border clearfix" data-state="closed">
+						저자: <a href="members_detail.php?id=<?php echo $s['STUDENT_ID'];?>"><?php echo $s['STUDENT_NAME'];?></a><br/>
+						공동저자: <?php echo $p['PAPER_AUTHORS'];?><br/>
+						<?php echo $cate;?>, <?php echo $p['PAPER_BELONGS_TO'];?><br/>
+						<a href="<?php echo $p['PAPER_FULL_TEXT_LINK'];?>" class="button button-mini"><div>Full Text Link</div></a>
+						<br/><br/>
+				                             <div class="toggle toggle-border">
+							<div class="togglet"><i class="toggle-closed icon-ok-circle"></i><i class="toggle-open icon-remove-circle"></i>Abstract </div>
+							<div class="togglec"><?php echo $p['PAPER_ABSTRACTION'];?></div>
 
-							<div class="acctitle"><i class="acc-closed icon-book2"></i>Abstract</div>
-							<div class="acc_content clearfix"><?php echo $p['PAPER_ABSTRACTION'];?></div>
-
-							<div class="acctitle"><a href="<?php echo $p['PAPER_FULL_TEXT_LINK'];?>"><i class="acc-closed icon-link"></i><i class="acc-open icon-link"></i>Full Text Link</a></div>
-                            
 						</div>
-                        <a href="papers_form.php?id=<?php echo $p['PAPER_ID'];?>">Edit</a>&nbsp;/
-                        <a href="#" onclick="if(confirm('<?php echo $p['PAPER_TITLE'];?>에 대한 모든 정보를 삭제하시겠습니까?  ')==true) {location.href='papers_delete.php?id=<?php echo $p['PAPER_ID'];?>'}">Delete</a>
-                        <div class="divider">&nbsp;</div>
+					  
+						<a href="papers_form.php?id=<?php echo $p['PAPER_ID'];?>">Edit</a>&nbsp;/
+						<a href="#" onclick="if(confirm('<?php echo $p['PAPER_TITLE'];?>에 대한 모든 정보를 삭제하시겠습니까?  ')==true) {location.href='papers_delete.php?id=<?php echo $p['PAPER_ID'];?>'}">Delete</a>
+						<div class="divider">&nbsp;</div>
                         <?php
                         }
                         ?>
