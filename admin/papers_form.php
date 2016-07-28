@@ -161,8 +161,8 @@ function getReturnValue(returnValue) {
                                     <option value='0' <?php if($degree == 0) echo "selected";?>>국제 학술지</option>
                                     <option value='1' <?php if($degree == 1) echo "selected";?>>국내 학술지</option>
                                     <option value='2' <?php if($degree == 2) echo "selected";?>>국내 컨퍼런스</option>
-                                    <option value='3' <?php if($degree == 2) echo "selected";?>>국제 컨퍼런스</option>
-                                    <option value='4' <?php if($degree == 2) echo "selected";?>>특허</option>
+                                    <option value='3' <?php if($degree == 3) echo "selected";?>>국제 컨퍼런스</option>
+                                    <option value='4' <?php if($degree == 4) echo "selected";?>>특허</option>
                                     <?php }else{ ?>
                                     
                                     <option value="-1" selected disabled>선택해 주십시오.</option>
