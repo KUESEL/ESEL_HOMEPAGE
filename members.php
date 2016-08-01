@@ -50,7 +50,7 @@ include('header.php');
             
             
         
-		<section id="page-title" class="page-title-parallax page-title-dark" style="padding: 250px 0; background-image: url('members/background2.jpg'); background-size: cover; background-position: center center;" data-stellar-background-ratio="0.4">
+		<section id="page-title" class="page-title-parallax page-title-dark" style="padding: 250px 0; background-image: url('res/members/background2.jpg'); background-size: cover; background-position: center center;" data-stellar-background-ratio="0.4">
 
 			<div class="container clearfix">
 				<h1>MEMBERS</h1>

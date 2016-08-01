@@ -1,7 +1,7 @@
 <?php
     include("config.php");
     $query = "select *, YEAR(CREATED_AT) as YEAR from photos ORDER BY CREATED_AT DESC";
-    $num_rec_per_page = 3;
+    $num_rec_per_page = 6;
     if (array_key_exists("page", $_GET)){
         $page = $_GET['page'];
         $offset = ($page - 1)*$num_rec_per_page; 

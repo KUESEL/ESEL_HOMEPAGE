@@ -24,9 +24,8 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
 
                 if (in_array($_FILES['upload']['type'], $imageKind)) {
                     $type = explode(".", $_FILES['upload']['name'])[1];
-                    if (move_uploaded_file ($_FILES['upload']['tmp_name'], $article_storage.$title.$year.".".$type)) {
-        //                unlink($article_storage.$filename);
-                        $URI = $article_storage.$title.$year.".".$type;
+                    if (move_uploaded_file ($_FILES['upload']['tmp_name'], $article_storage.md5($title.$year).".".$type)) {
+                        $URI = $article_storage.md5($title.$year).".".$type;
                         
                         if($act == 1){
                             $query = "update `articles` set ARTICLE_TITLE='$title', ARTICLE_URL='$link', ARTICLE_PUBLISHED_YEAR=$year, ARTICLE_PUBLISHED_MONTH=$month, ARTICLE_PUBLISHED_DAY=$day, ARTICLE_THUMBNAIL_URI='$URI', ARTICLE_SUMMARY='$desc'";

@@ -85,7 +85,7 @@ function validateForm() {
     }
     <?php if($act != 1){ ?>
     else if (!upload) {
-        alert("Profile must be selected");
+        alert("Picture must be selected");
         return false;
     }
     

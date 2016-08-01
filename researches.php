@@ -61,9 +61,10 @@
 				<h4>수행 과제</h4>
 			</div>
 			<?php 
+			$index =1;
 			 while($row = mysql_fetch_array($res)){
 		                           if($row['RESEARCH_CATEGORY'] == 1){
-		                           	if($row['RESEARCH_ID']%2 == 1){
+		                           	if($index%2 == 1){
 			?>
 			<div class="row common-height clearfix">
 				
@@ -116,7 +117,8 @@
 			<?php } ?>
 			<?php 
 				} 
-			}?>
+				$index++;
+			} ?>
 
 
 		</section><!-- #content end -->

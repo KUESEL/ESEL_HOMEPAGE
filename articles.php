@@ -106,9 +106,7 @@
 								<h2><a href="blog-single.html"><?php echo $article['ARTICLE_TITLE'];?></a></h2>
 							</div>
 							<ul class="entry-meta clearfix">
-								<li><i class="icon-calendar3"></i> <?php echo $article['ARTICLE_PUBLISHED_YEAR']." ".$article['ARTICLE_PUBLISHED_MONTH']." ".$article['ARTICLE_PUBLISHED_DAY'];?></li>
-								<li><a href="blog-single.html#comments"><i class="icon-comments"></i> 13</a></li>
-								<li><a href="#"><i class="icon-camera-retro"></i></a></li>
+								<li><i class="icon-calendar3"></i> <?php echo $article['ARTICLE_PUBLISHED_YEAR']."-".$article['ARTICLE_PUBLISHED_MONTH']."-".$article['ARTICLE_PUBLISHED_DAY'];?></li>
 							</ul>
 							<div class="entry-content">
 								<p><?php echo $article['ARTICLE_SUMMARY'];?></p>
