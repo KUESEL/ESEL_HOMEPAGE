@@ -1,19 +1,24 @@
 <?php
     include "config.php";
     $query = "select * from papers";
-    $num_rec_per_page = 5;
-    if (array_key_exists("search_keyword", $_POST)) {
-        $search_keyword = $_POST["search_keyword"];
-        $query =  $query . " where title like '%$search_keyword%' or lead_author like '%$search_keyword%' or year like '%$search_keyword%'";
-    }
-    if (array_key_exists("page", $_GET)){
-        $page = $_GET['page'];
+    if (array_key_exists("category", $_GET)){
+        $category = $_GET['category'];
         $offset = ($page - 1)*$num_rec_per_page; 
+        $query = $query." where paper_category=".$category;
+	    if (array_key_exists("search_keyword", $_GET)) {
+	        $search_keyword = $_GET["search_keyword"];
+	        $query =  $query . " and (paper_title like '%$search_keyword%' or paper_authors like '%$search_keyword%' or paper_published_at like '%$search_keyword%' or paper_belongs_to like '%$search_keyword%' or paper_abstraction like '%$search_keyword%')";
+	    }
+    }else if(array_key_exists("search_keyword", $_GET)){
+	
+              $search_keyword = $_GET["search_keyword"];
+        	$query =  $query . " where paper_title like '%$search_keyword%' or paper_authors like '%$search_keyword%' or paper_published_at like '%$search_keyword%' or paper_belongs_to like '%$search_keyword%' or paper_abstraction like '%$search_keyword%'";
+
     }
-    else{
-        $offset = 0;
-    }
-    $query = $query . " order by paper_published_at desc limit " . $offset ." , ".$num_rec_per_page;
+
+
+    $query = $query." order by paper_published_at desc";
+
     $res = mysql_query($query, $conn);
     if (!$res) {
         die('Query Error : ' . mysql_error());
@@ -87,7 +92,7 @@
 
 					<!-- Post Content
 					============================================= -->
-					<div class="nobottommargin clearfix">
+					<div class="papers-container postcontent nobottommargin clearfix col_last">
 
 						<!-- Posts
 						============================================= -->
@@ -110,9 +115,9 @@
                             }
                             ?>
                             
-							<div class="entry clearfix">
+							<div class="entry clearfix <?php echo "category-".$data['PAPER_CATEGORY']?>" data-year="<?php echo $data['PAPER_PUBLISHED_AT']?>">
 								<div class="entry-title">
-									<h2><a href="blog-single.html"><?php echo $data['PAPER_TITLE'];?></a></h2>
+									<h2><a href="#"><?php echo $data['PAPER_TITLE'];?></a></h2>
 								</div>
 								<ul class="entry-meta clearfix">
 									<li><i class="icon-calendar3"></i> <?php echo $data['PAPER_PUBLISHED_AT'];?></li>
@@ -132,7 +137,6 @@
 									</div>
 									<br>
 									<a href="<?php echo $data['PAPER_FULL_TEXT_LINK'];?>"><i class="icon-link"></i> Full Text Link</a>
-									<!-- <a href="<?php echo $data['PAPER_FULL_TEXT_LINK'];?>"class="more-link">Read More..</a> -->
 								</div>
 							</div>
 
@@ -143,31 +147,46 @@
 
 						</div><!-- #posts end -->
 
-						<ul class="pagination">
-							<li><a href="paper-list.php?page=1">◀</a></li>
-						<?php 
-							$query = "select * from papers";
-							$res = mysql_query($query, $conn);
-							$total_records = mysql_num_rows($res);  //count number of records
-							$total_pages = ceil($total_records / $num_rec_per_page); 
-							for($i=1;$i<=$total_pages;$i++){
-								if( $_GET['page']==$i){
-						?>
-							<li class="active"><a href="paper-list.php?page=<?php echo $i ?>"><?php echo $i ?> <span class="sr-only">(current)</span></a></li>
-							<?php } else{ ?>
-						  	<li><a href="paper-list.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
-						  	<?php 
-						  		} 
-					 		}
-					 		?>
-					 		<li><a href="paper-list.php?page=<?php echo $total_pages ?>">▶</a></li>
-						   </ul>
+						<div class="pagination-container topmargin nobottommargin">
 
+							<ul class="pagination nomargin"></ul>
 
+						</div>
 
 					</div><!-- .postcontent end -->
 
 					
+					<!-- Sidebar
+					============================================= -->
+					<div class="sidebar nobottommargin">
+						<div class="sidebar-widgets-wrap">
+
+							<div class="widget clearfix">
+								<h4>Search</h4>
+									
+								<input id="search_input"type="text" value="" class="sm-form-control" placeholder="검색어를 입력하세요." onKeyDown="onKeyDown();"/>
+								<br>
+								<a href="javascript: search();" class="button button-3d button-red nomargin">검색</a>
+							
+
+
+							</div>
+							<div class="widget clearfix">
+								<h4>Category</h4>
+								
+								<a href="paper-list.php" class="button button-rounded button-reveal button-large <? if(!array_key_exists("category", $_GET)){echo 'button_red';}else{ echo 'button-white button-light';}?>  tright"><i class="icon-line-arrow-right"></i><span>SHOW ALL</span></a>
+								<a href="paper-list.php?category=0" class="button button-rounded button-reveal button-large <? if(array_key_exists("category", $_GET) && $category == 0){echo 'button_red';}else{ echo 'button-white button-light';}?> tright"><i class="icon-line-arrow-right"></i><span>국제 학술지</span></a>
+								<a href="paper-list.php?category=1" class="button button-rounded button-reveal button-large <? if(array_key_exists("category", $_GET) && $category == 1){echo 'button_red';}else{ echo 'button-white button-light';}?> tright"><i class="icon-line-arrow-right"></i><span>국내 학술지</span></a>
+								<a href="paper-list.php?category=3" class="button button-rounded button-reveal button-large <? if(array_key_exists("category", $_GET) && $category == 3){echo 'button_red';}else{ echo 'button-white button-light';}?> tright"><i class="icon-line-arrow-right"></i><span>국제 컨퍼런스</span></a>
+								<a href="paper-list.php?category=2" class="button button-rounded button-reveal button-large <? if(array_key_exists("category", $_GET) && $category == 2){echo 'button_red';}else{ echo 'button-white button-light';}?> tright"><i class="icon-line-arrow-right"></i><span>국내 컨퍼런스</span></a>
+								<a href="paper-list.php?category=4" class="button button-rounded button-reveal button-large <? if(array_key_exists("category", $_GET) && $category == 4){echo 'button_red';}else{ echo 'button-white button-light';}?> tright"><i class="icon-line-arrow-right"></i><span>특허</span></a>																																								
+
+							</div>
+
+						</div>
+					</div><!-- .sidebar end -->
+
+
 
 				</div>
 
@@ -189,10 +208,44 @@
 	============================================= -->
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/plugins.js"></script>
-
+	<script src="http://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js"></script>
 	<!-- Footer Scripts
 	============================================= -->
 	<script type="text/javascript" src="js/functions.js"></script>
+
+	<script type="text/javascript">
+
+		jQuery(document).ready(function($){
+		
+			$('.papers-container').pajinate({
+				items_per_page : 4,
+				num_page_links_to_display: 10,
+				item_container_id : '#posts',
+				nav_panel_id : '.pagination-container ul',
+				show_first_last: true
+			});
+
+	
+		});
+
+		var onKeyDown = function(){
+			if(event.keyCode == 13){
+				search();
+			}
+		}
+
+		var search = function() {
+			var search_keyword = $('#search_input').val();
+			location_url = "paper-list.php?search_keyword=" + search_keyword
+			<?php if(array_key_exists("category", $_GET)){?>
+				location_url = location_url + "&category=<?php echo $category ?>"
+			<?php } ?>
+			location.href = location_url;
+		}
+
+
+
+	</script>
 
 
 </body>

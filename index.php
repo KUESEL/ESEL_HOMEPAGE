@@ -52,24 +52,19 @@ include('header.php');
 
 				<div class="swiper-container swiper-parent">
 					<div class="swiper-wrapper">
-						<div class="swiper-slide dark" style="background-image: url('images/slider/swiper/2.jpg');">
+						<div class="swiper-slide dark" style="background-image: url('res/embedded_background_2.jpg');">
+							<div class="container clearfix">
+								<div class="slider-caption slider-caption-left">
+								</div>
+							</div>
+						</div>
+						<div class="swiper-slide dark" style="background-image: url('res/mainphoto1.jpg');">
 							<div class="container clearfix">
 								<div class="slider-caption slider-caption-center">
 								</div>
 							</div>
 						</div>
-						<div class="swiper-slide dark" style="background-image: url('images/slider/swiper/3.jpg'); background-position: center top;">
-							<div class="container clearfix">
-								<div class="slider-caption">
-								</div>
-							</div>
-						</div>
-						<div class="swiper-slide dark" style="background-image: url('images/slider/swiper/1.jpg'); background-position: center top;">
-							<div class="container clearfix">
-								<div class="slider-caption">
-								</div>
-							</div>
-						</div>
+
 					</div>
 					<div id="slider-arrow-left"><i class="icon-angle-left"></i></div>
 					<div id="slider-arrow-right"><i class="icon-angle-right"></i></div>
@@ -312,77 +307,26 @@ while ($photo = mysql_fetch_array($res)) {
 						<div class="heading-block center">
 							<h3>Articles</h3>
 						</div>	
+						<?php 
+							$query = "select * from articles ORDER BY ARTICLE_PUBLISHED_YEAR DESC, ARTICLE_PUBLISHED_MONTH DESC, ARTICLE_PUBLISHED_DAY DESC limit 4;";
+							$ret = mysql_query($query, $conn);
+							while($article = mysql_fetch_array($ret)){
+						?>
 						<div class="col-md-3 col-sm-6 bottommargin">
 							<div class="ipost clearfix">
 								<div class="entry-image">
-									<a href="#"><img class="image_fade" src="images/magazine/thumb/1.jpg" alt="Image"></a>
+									<a href="http://<?php echo $article['ARTICLE_URL'];?>"><img class="image_fade" src="admin/<?php echo $article['ARTICLE_THUMBNAIL_URI'];?>" alt="Image"></a>
 								</div>
 								<div class="entry-title">
-									<h3><a href="blog-single.html">Bloomberg smart cities; change-makers economic security</a></h3>
+									<h3><a href="http://<?php echo $article['ARTICLE_URL'];?>"><?php echo $article['ARTICLE_TITLE'];?></a></h3>
 								</div>
 								<ul class="entry-meta clearfix">
-									<li><i class="icon-calendar3"></i> 13th Jun 2014</li>
-									<li><a href="blog-single.html#comments"><i class="icon-comments"></i> 53</a></li>
+									<li><i class="icon-calendar3"></i> <?php echo $article['ARTICLE_PUBLISHED_YEAR']."년 ".$article['ARTICLE_PUBLISHED_MONTH']."월 ".$article['ARTICLE_PUBLISHED_DAY']."일";?></li>
 								</ul>
-								<div class="entry-content">
-									<p>Prevention effect, advocate dialogue rural development lifting people up community civil society. Catalyst, grantees leverage.</p>
-								</div>
 							</div>
 						</div>
-
-						<div class="col-md-3 col-sm-6 bottommargin">
-							<div class="ipost clearfix">
-								<div class="entry-image">
-									<a href="#"><img class="image_fade" src="images/magazine/thumb/2.jpg" alt="Image"></a>
-								</div>
-								<div class="entry-title">
-									<h3><a href="blog-single.html">Medicine new approaches communities, outcomes partnership</a></h3>
-								</div>
-								<ul class="entry-meta clearfix">
-									<li><i class="icon-calendar3"></i> 24th Feb 2014</li>
-									<li><a href="blog-single.html#comments"><i class="icon-comments"></i> 17</a></li>
-								</ul>
-								<div class="entry-content">
-									<p>Cross-agency coordination clean water rural, promising development turmoil inclusive education transformative community.</p>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-md-3 col-sm-6 bottommargin">
-							<div class="ipost clearfix">
-								<div class="entry-image">
-									<a href="#"><img class="image_fade" src="images/magazine/thumb/3.jpg" alt="Image"></a>
-								</div>
-								<div class="entry-title">
-									<h3><a href="blog-single.html">Significant altruism planned giving insurmountable challenges liberal</a></h3>
-								</div>
-								<ul class="entry-meta clearfix">
-									<li><i class="icon-calendar3"></i> 30th Dec 2014</li>
-									<li><a href="blog-single.html#comments"><i class="icon-comments"></i> 13</a></li>
-								</ul>
-								<div class="entry-content">
-									<p>Micro-finance; vaccines peaceful contribution citizens of change generosity. Measures design thinking accelerate progress medical initiative.</p>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-md-3 col-sm-6 bottommargin">
-							<div class="ipost clearfix">
-								<div class="entry-image">
-									<a href="#"><img class="image_fade" src="images/magazine/thumb/4.jpg" alt="Image"></a>
-								</div>
-								<div class="entry-title">
-									<h3><a href="blog-single.html">Compassion conflict resolution, progressive; tackle</a></h3>
-								</div>
-								<ul class="entry-meta clearfix">
-									<li><i class="icon-calendar3"></i> 15th Jan 2014</li>
-									<li><a href="blog-single.html#comments"><i class="icon-comments"></i> 54</a></li>
-								</ul>
-								<div class="entry-content">
-									<p>Community health workers best practices, effectiveness meaningful work The Elders fairness. Our ambitions local solutions globalization.</p>
-								</div>
-							</div>
-						</div>
+						<?php } ?>
+						
 
 					</div>
 				</div>

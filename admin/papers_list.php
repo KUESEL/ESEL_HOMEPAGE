@@ -77,8 +77,7 @@
                                 case 1: $cate = "국내 학술지"; break;
                                 case 2: $cate = "국내 컨퍼런스"; break;
                                 case 3: $cate = "국제 컨퍼런스"; break;
-                                case 4: $cate = "특허"; break;
-                                    
+                                case 4: $cate = "특허"; break; 
                             }
                             $s = mysql_fetch_array(mysql_query("select * from members where STUDENT_ID={$p['STUDENT_ID']}",$conn));
                         ?>
