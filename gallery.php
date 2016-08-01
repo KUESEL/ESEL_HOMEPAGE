@@ -1,6 +1,17 @@
 <?php
     include("config.php");
-    $ret = mysql_query("select * from photos ORDER BY CREATED_AT DESC", $conn);
+    $query = "select *, YEAR(CREATED_AT) as YEAR from photos ORDER BY CREATED_AT DESC";
+    $num_rec_per_page = 3;
+    if (array_key_exists("page", $_GET)){
+        $page = $_GET['page'];
+        $offset = ($page - 1)*$num_rec_per_page; 
+    }
+    else{
+        $offset = 0;
+    }
+    $query = $query . " limit " . $offset ." , ".$num_rec_per_page;
+
+    $ret = mysql_query($query, $conn);
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
@@ -67,22 +78,43 @@
 				<div class="container clearfix">
 
 					<!-- Portfolio Filter
-					============================================= --><!-- 
+					============================================= -->
 					<ul id="portfolio-filter" class="portfolio-filter clearfix" data-container="#portfolio">
-
+                        
 						<li class="activeFilter"><a href="#" data-filter="*">Show All</a></li>
-						<li><a href="#" data-filter=".pf-icons">Icons</a></li>
-						<li><a href="#" data-filter=".pf-illustrations">Illustrations</a></li>
-						<li><a href="#" data-filter=".pf-uielements">UI Elements</a></li>
-						<li><a href="#" data-filter=".pf-media">Media</a></li>
-						<li><a href="#" data-filter=".pf-graphics">Graphics</a></li>
+                        <?php
+                            $res = mysql_query("SELECT YEAR(CREATED_AT) as YEAR FROM photos WHERE 1 GROUP BY YEAR(CREATED_AT);", $conn);
+                            while($y = mysql_fetch_array($res)){
+                        ?>
+						<li><a href="#" data-filter=".pf-<?php echo $y['YEAR'];?>"><?php echo $y['YEAR'];?></a></li>
+                        <?php
+                            }
+                        ?>
+					</ul>
+                    <!-- #portfolio-filter end -->
 
-					</ul> -->
-					<!-- #portfolio-filter end -->
-
-					<div id="portfolio-shuffle" class="portfolio-shuffle" data-container="#portfolio">
-						<i class="icon-random"></i>
-					</div>
+						<ul class="pagination" style="float:right;">
+							<li><a href="gallery.php?page=1">◀</a></li>
+						<?php 
+                            if ($page==null)
+                                $page = 1;
+                            
+							$query = "select * from photos";
+							$res = mysql_query($query, $conn);
+							$total_records = mysql_num_rows($res);  //count number of records
+							$total_pages = ceil($total_records / $num_rec_per_page); 
+							for($i=1;$i<=$total_pages;$i++){
+								if( $page==$i){
+						?>
+							<li class="active"><a href="gallery.php?page=<?php echo $i ?>"><?php echo $i ?><span class="sr-only">(current)</span></a></li>
+							<?php } else{ ?>
+						  	<li><a href="gallery.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+						  	<?php 
+						  		} 
+					 		}
+					 		?>
+					 		<li><a href="gallery.php?page=<?php echo $total_pages ?>">▶</a></li>
+						   </ul>
 
 					<div class="clear"></div>
 					<br/>
@@ -91,10 +123,10 @@
 					<div id="portfolio" class="portfolio grid-container portfolio-3 clearfix">
                         <?php
                             while($photo = mysql_fetch_array($ret)){?>
-						<article class="portfolio-item pf-media pf-icons">
+						<article class="portfolio-item pf-media pf-<?php echo $photo['YEAR'];?>">
 							<div class="portfolio-image">
 								<a href="portfolio-single.php?index=<?php echo $photo['PHOTO_ID'];?>">
-									<div style="background: url(admin/<?php echo $photo['PHOTO_URI']?>);height:300px;background-size:cover">
+                                    <div style="background: url(admin/<?php echo $photo['PHOTO_URI']?>);height:300px;background-size:cover"></div>
 								</a>
 								<!-- <a href="portfolio-single.html">
 									<img src="admin/<?php echo $photo['PHOTO_URI'];?>" alt="Open Imagination">
