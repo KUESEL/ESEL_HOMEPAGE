@@ -288,7 +288,7 @@ while ($photo = mysql_fetch_array($res)) {
 							</div>
 						</div>
 						<div class="portfolio-desc">
-							<h3><a href="portfolio-single.php?index=<?php echo $photo['PHOTO_ID'];?>"><?php echo $photo['PHOTO_TITLE'];?></a></h3>
+							<h3><a href="gallery.php"><?php echo $photo['PHOTO_TITLE'];?></a></h3>
 							<span><i class="icon-calendar3"></i> <?php echo substr($photo['CREATED_AT'],0,10);?> @<?php echo $photo['PHOTO_PLACE'];?> </span>
 						</div>
 					</article>

@@ -117,7 +117,7 @@
                             
 							<div class="entry clearfix <?php echo "category-".$data['PAPER_CATEGORY']?>" data-year="<?php echo $data['PAPER_PUBLISHED_AT']?>">
 								<div class="entry-title">
-									<h2><a href="#"><?php echo $data['PAPER_TITLE'];?></a></h2>
+									<h4 style="color:black"><?php echo $data['PAPER_TITLE'];?></h3>
 								</div>
 								<ul class="entry-meta clearfix">
 									<li><i class="icon-calendar3"></i> <?php echo $data['PAPER_PUBLISHED_AT'];?></li>
@@ -218,8 +218,8 @@
 		jQuery(document).ready(function($){
 		
 			$('.papers-container').pajinate({
-				items_per_page : 4,
-				num_page_links_to_display: 10,
+				items_per_page : 5,
+				num_page_links_to_display: 5,
 				item_container_id : '#posts',
 				nav_panel_id : '.pagination-container ul',
 				show_first_last: true
