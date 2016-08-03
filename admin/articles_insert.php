@@ -3,19 +3,19 @@
 
 if($_SERVER['REQUEST_METHOD']=='POST') {
 
-    $act = $_POST['act'];
+    $act = mysql_real_escape_string($_POST['act']);
     if ($act == 1){
         $id = $_POST['id'];
         $row = mysql_fetch_array(mysql_query("select ARTICLE_THUMBNAIL_URI from articles where ARTICLE_ID = $id",$conn));
         $filename = $row['ARTICLE_THUMBNAIL_URI'];
     }
     
-    $title = $_POST['title'];
-    $link = $_POST['link'];
-    $desc = $_POST['desc'];
-    $year = $_POST['year'];
-    $month = $_POST['month'];
-    $day = $_POST['day'];
+    $title = mysql_real_escape_string($_POST['title']);
+    $link = mysql_real_escape_string($_POST['link']);
+    $desc = mysql_real_escape_string($_POST['desc']);
+    $year = mysql_real_escape_string($_POST['year']);
+    $month = mysql_real_escape_string($_POST['month']);
+    $day = mysql_real_escape_string($_POST['day']);
         
        if (isset($_POST['upload_check'])) {
             if (isset($_FILES['upload']) && !$_FILES['upload']['error']) {
@@ -79,7 +79,16 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
                             }
                         }
                         else{
-                            $error = '업로드된 파일이 없음';
+                            $q = "insert into `articles` (ARTICLE_TITLE, ARTICLE_URL, ARTICLE_PUBLISHED_YEAR, ARTICLE_PUBLISHED_MONTH, ARTICLE_PUBLISHED_DAY, ARTICLE_THUMBNAIL_URI, ARTICLE_SUMMARY";
+                            $v = ") values('$title', '$link', $year, $month, $day, '/res/article_default.jpg', '$desc'";
+                            $query = $q.$v.")";
+                            $ret = mysql_query($query, $conn);
+                            if($ret){
+                                echo "<script>alert('".$title." complete');window.location = 'articles_list.php';</script>";
+                            }
+                            else{
+                                echo $conn;
+                            }
                         }
                         break;
                     case 6:

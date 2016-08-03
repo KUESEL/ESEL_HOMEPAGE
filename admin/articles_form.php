@@ -11,7 +11,7 @@
         $link = $row['ARTICLE_URL'];
         $year = $row['ARTICLE_PUBLISHED_YEAR'];
         $month = $row['ARTICLE_PUBLISHED_MONTH'];
-        $day = $row['ARTICLE_PUBLISHED_MONTH'];
+        $day = $row['ARTICLE_PUBLISHED_DAY'];
         $desc = $row['ARTICLE_SUMMARY'];
     }
 ?>
@@ -58,11 +58,6 @@ function validateForm() {
     var year = document.getElementById('year').value;
     var month = document.getElementById('month').value;
     var day = document.getElementById('day').value;
-    <?php if($act != 1){ ?>
-    var upload = document.getElementById('upload').value;
-    
-    
-    <?php }?>
     if (title == null || title == "") {
         alert("Title must be filled out");
         return false;
@@ -83,13 +78,6 @@ function validateForm() {
         alert("Date must be selected");
         return false;
     }
-    <?php if($act != 1){ ?>
-    else if (!upload) {
-        alert("Picture must be selected");
-        return false;
-    }
-    
-    <?php }?>
     else if (desc == null || desc == "") {
         alert("Summary must be filled out");
         return false;

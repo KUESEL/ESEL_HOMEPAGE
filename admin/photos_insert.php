@@ -3,12 +3,12 @@
 
 if($_SERVER['REQUEST_METHOD']=='POST') {
 
-    $act = $_POST['act'];
-    $title = $_POST['title'];
-    $desc = $_POST['desc'];
-    $loc = $_POST['location'];
+    $act = mysql_real_escape_string($_POST['act']);
+    $title = mysql_real_escape_string($_POST['title']);
+    $desc = mysql_real_escape_string($_POST['desc']);
+    $loc = mysql_real_escape_string($_POST['location']);
     if ($act == 1){
-        $id = $_POST['id'];
+        $id = mysql_real_escape_string($_POST['id']);
         $ret = mysql_query("update `photos` set PHOTO_TITLE='$title', PHOTO_DESC='$desc', PHOTO_PLACE='$loc' where `PHOTO_ID` = $id",$conn);
         echo "<script>alert('Complete');window.location = 'photos_list.php';</script>";
     }
