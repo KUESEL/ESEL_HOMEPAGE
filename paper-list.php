@@ -93,7 +93,14 @@
 					<!-- Post Content
 					============================================= -->
 					<div class="papers-container postcontent nobottommargin clearfix col_last">
+						
+						<div class="pagination-container topmargin nobottommargin center">
 
+							<ul class="pagination nomargin"></ul>
+
+						</div>
+
+						<hr/>
 						<!-- Posts
 						============================================= -->
 						<div id="posts">
@@ -132,11 +139,13 @@
 
 								<div class="entry-content">
 									<div class="toggle">
-										<div class="togglet"><i class="toggle-closed icon-ok-circle"></i><i class="toggle-open icon-remove-circle"></i>Abstract</div>
+										<div class="togglet"><i class="toggle-open icon-remove-circle"></i><i class="toggle-closed icon-ok-circle"></i>Abstract</div>
 										<div class="togglec"><?php echo $data['PAPER_ABSTRACTION'];?></div>
 									</div>
 									<br>
+									<?php if(strlen($data['PAPER_FULL_TEXT_LINK']) > 2 ){ ?>
 									<a href="<?php echo $data['PAPER_FULL_TEXT_LINK'];?>"><i class="icon-link"></i> Full Text Link</a>
+									<?php } ?>
 								</div>
 							</div>
 
@@ -147,11 +156,6 @@
 
 						</div><!-- #posts end -->
 
-						<div class="pagination-container topmargin nobottommargin">
-
-							<ul class="pagination nomargin"></ul>
-
-						</div>
 
 					</div><!-- .postcontent end -->
 
