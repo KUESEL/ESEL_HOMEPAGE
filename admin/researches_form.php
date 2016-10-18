@@ -58,8 +58,8 @@ function validateForm() {
     var term = document.getElementById('term').value;
     <?php if($act != 1){ ?>
     var upload = document.getElementById('upload').value;
-    
-    
+
+
     <?php }?>
     if (name == null || name == "") {
         alert("Name must be filled out");
@@ -70,7 +70,7 @@ function validateForm() {
         alert("Profile must be selected");
         return false;
     }
-    
+
     <?php }?>
     else if (degree == null || degree == "") {
         alert("Degree must be filled out");
@@ -126,10 +126,10 @@ function validateForm() {
                         <h3>Modify Now.</h3>
                     <?php }else{ ?>
                         <h3>Register Now.</h3>
-                    <?php } ?>    
+                    <?php } ?>
 
 						<form enctype="multipart/form-data" id="register-form" name="register-form" class="nobottommargin" action="researches_insert.php" method="post" onsubmit="return validateForm()">
-                            <input type="hidden" name="MAX_FILE_SIZE" value="5242888">
+                            <input type="hidden" name="MAX_FILE_SIZE" value="512000">
 							<div class="col_half">
 								<label for="name">연구 토픽 | 프로젝트 명:</label>
                                 <input type="text" name="name" id="name" placeholder="Name" class="form-control" value="<?php if($act == 1) echo $name; ?>">
@@ -150,7 +150,7 @@ function validateForm() {
                                     <option value='1' <?php if($degree == 1) echo "selected";?>>연구실 메인 토픽 | 프로젝트</option>
                                     <option value='2' <?php if($degree == 2) echo "selected";?>>서브</option>
                                     <?php }else{ ?>
-                                    
+
                                     <option value="-1" selected disabled>선택해 주십시오.</option>
                                     <option value='0'>비활성화</option>
                                     <option value='1'>연구실 메인 토픽 | 프로젝트</option>
@@ -160,7 +160,7 @@ function validateForm() {
 							</div>
 
 							<div class="clear"></div>
-                            
+
 							<div class="col_half">
 								<label for="sponser">후원 및 관리기관:</label>
                                 <input type="text" name="sponser" id="sponser" placeholder="Sponser" class="form-control" value="<?php if($act == 1) echo $sponser; ?>">
@@ -171,7 +171,7 @@ function validateForm() {
 							</div>
 
 
-                            
+
 							<div class="clear"></div>
 
                             <div class="col_full">

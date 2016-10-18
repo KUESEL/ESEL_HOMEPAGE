@@ -54,7 +54,7 @@ function validateForm() {
     <?php if($act != 1){ ?>
     var upload = document.getElementById('upload').value;
     <?php }?>
-    
+
     if (title == null || title == "") {
         alert("Title must be filled out");
         return false;
@@ -112,10 +112,10 @@ function validateForm() {
                         <h3>Edit Now.</h3>
                     <?php }else{ ?>
                         <h3>Register Now.</h3>
-                    <?php } ?>    
+                    <?php } ?>
 
 						<form enctype="multipart/form-data" id="register-form" name="register-form" class="nobottommargin" action="photos_insert.php" method="post" onsubmit="return validateForm()">
-                            <input type="hidden" name="MAX_FILE_SIZE" value="5242888">
+                            <input type="hidden" name="MAX_FILE_SIZE" value="512000">
 							<div class="col_full">
                                 <?php if($act != 1){ ?>
 								<label for="upload">사진:<?php if($act==1) echo $row['PROFILE_PHOTO_URI'];?></label>
@@ -133,10 +133,10 @@ function validateForm() {
 								<label for="location">장소:</label>
                                 <input type="text" name="location" id="location" placeholder="Location" class="form-control" value="<?php if($act == 1) echo $location; ?>">
 							</div>
-	
+
 							<div class="clear"></div>
 
-                            
+
                             <div class="col_full">
                                 <label for="desc">설명:</label>
                                 <textarea rows="8" name="desc" id="desc" placeholder="Description" class="form-control"><?php if($act == 1) echo $desc;?></textarea>

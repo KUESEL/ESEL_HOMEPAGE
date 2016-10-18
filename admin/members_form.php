@@ -88,7 +88,7 @@ $(document).ready(function(){
         var percentage = $(this).val();
         document.getElementById("skill4_val").value = percentage;
     });
-    
+
     var $v1 = $('#skill1_val');
     $v1.on('change', function(){
         var percentage = $(this).val();
@@ -98,7 +98,7 @@ $(document).ready(function(){
         }
         document.getElementById("progressController1").value = percentage;
     });
-    
+
     var $v2 = $('#skill2_val');
     $v2.on('change', function(){
         var percentage = $(this).val();
@@ -108,7 +108,7 @@ $(document).ready(function(){
         }
         document.getElementById("progressController2").value = percentage;
     });
-    
+
     var $v3 = $('#skill3_val');
     $v3.on('change', function(){
         var percentage = $(this).val();
@@ -118,7 +118,7 @@ $(document).ready(function(){
         }
         document.getElementById("progressController3").value = percentage;
     });
-    
+
     var $v4 = $('#skill4_val');
     $v4.on('change', function(){
         var percentage = $(this).val();
@@ -128,9 +128,9 @@ $(document).ready(function(){
         }
         document.getElementById("progressController4").value = percentage;
     });
-    
-    
-});        
+
+
+});
 function validateForm() {
     var name = document.getElementById('name').value;
     var number = document.getElementById('number').value;
@@ -144,8 +144,8 @@ function validateForm() {
     var skill4 = document.getElementById('skill4_name').value;
     <?php if($act != 1){ ?>
     var upload = document.getElementById('upload').value;
-    
-    
+
+
     <?php }?>
     if (name == null || name == "") {
         alert("Name must be filled out");
@@ -156,7 +156,7 @@ function validateForm() {
         alert("Profile must be selected");
         return false;
     }
-    
+
     <?php }?>
     else if (number == null || number == "") {
         alert("Student ID must be filled out");
@@ -176,7 +176,7 @@ function validateForm() {
     }
     else if (!skill1 || !skill2 || !skill3 || !skill4){
         alert("Skill address must be filled out");
-        return false;        
+        return false;
     }
     else if (desc == null || desc == "") {
         alert("Description must be filled out");
@@ -220,10 +220,10 @@ function validateForm() {
                         <h3>Modify Now.</h3>
                     <?php }else{ ?>
                         <h3>Register Now.</h3>
-                    <?php } ?>    
+                    <?php } ?>
 
 						<form enctype="multipart/form-data" id="register-form" name="register-form" class="nobottommargin" action="members_insert.php" method="post" onsubmit="return validateForm()">
-                            <input type="hidden" name="MAX_FILE_SIZE" value="5242888">
+                            <input type="hidden" name="MAX_FILE_SIZE" value="512000">
 							<div class="col_half">
 								<label for="name">이름:</label>
                                 <input type="text" name="name" id="name" placeholder="Korean" class="form-control" value="<?php if($act == 1) echo $name; ?>">
@@ -253,7 +253,7 @@ function validateForm() {
                                     <option value='6' <?php if($degree == 6) echo "selected";?>>석박통합과정 재학</option>
                                     <option value='5' <?php if($degree == 5) echo "selected";?>>인턴 | 학부연구생</option>
                                     <?php }else{ ?>
-                                    
+
                                     <option value="-1" selected disabled>선택해 주십시오.</option>
                                     <option value='0'>연구교수</option>
                                     <option value='1'>박사 재학</option>
@@ -284,7 +284,7 @@ function validateForm() {
                                                 else
                                                     echo "<option value='{$i}' selected>{$i}</option>";
                                             }
-                                        
+
                                     ?>
                                 </select>
 							</div>
@@ -316,7 +316,7 @@ function validateForm() {
                                 <label for="email"><i class="icon-envelope-alt"></i>&nbsp;E-Mail:</label>
                                 <input type="text" name="email" id="email" placeholder="E-mail address" class="form-control" value="<?php if($act == 1) echo $email;?>">
 							</div>
-                            
+
 							<div class="col_half col_last">
                                 <label for="linkedin"><i class="icon-linkedin"></i>&nbsp;LinkedIn:</label>
                                 <input type="text" name="linkedin" id="linkedin" placeholder="LinkedIn URL" class="form-control" value="<?php if($act == 1) echo $linkedin;?>">
@@ -328,10 +328,10 @@ function validateForm() {
                                 <label for="facebook"><i class="icon-facebook"></i>&nbsp;Facebook:</label>
                                 <input type="text" name="facebook" id="facebook" placeholder="Facebook URL" class="form-control" value="<?php if($act == 1) echo $fb;?>">
 							</div>
-                            
+
 							<div class="col_half col_last">
                                 <label for="twit"><i class="icon-twitter"></i>&nbsp;Twitter:</label>
-                                <input type="text" name="twit" id="twit" placeholder="Twitter URL" class="form-control" value="<?php if($act == 1) echo $tw;?>">						
+                                <input type="text" name="twit" id="twit" placeholder="Twitter URL" class="form-control" value="<?php if($act == 1) echo $tw;?>">
                             </div>
 
                             <div class="clear"></div>
@@ -340,7 +340,7 @@ function validateForm() {
                                 <label for="insta"><i class="icon-instagram"></i>&nbsp;Instagram:</label>
                                 <input type="text" name="insta" id="insta" placeholder="Instagram URL" class="form-control" value="<?php if($act == 1) echo $insta;?>">
 							</div>
-                            
+
 							<div class="col_half col_last">
                                 <label for="blog"><i class="icon-blogger"></i>&nbsp;Blog:</label>
                                 <input type="text" name="blog" id="blog" placeholder="Blog URL" class="form-control" value="<?php if($act == 1) echo $blog;?>">
@@ -354,7 +354,7 @@ function validateForm() {
                                 <input type="range" id="progressController1" min="0" max="100" value="<?php if($act == 1) echo $skill[0]['SKILL_SCORE']; else echo '0';?>"  class="sm-form-control"/>
                                 <input type="text" name="skill1_val" id="skill1_val" class="sm-form-control" value="<?php if($act == 1) echo $skill[0]['SKILL_SCORE']; else echo '0';?>"/>
 							</div>
-                            
+
 							<div class="col_one_fourth">
                                 <label for="skill2_name">스킬 2:</label>
                                 <input type="text" id="skill2_name" name="skill2_name" class="form-control" placeholder="Skill Name" value="<?php if($act == 1) echo $skill[1]['SKILL_NAME'];?>"/>
@@ -377,7 +377,7 @@ function validateForm() {
 							</div>
 
                             <div class="clear"></div>
-                            
+
                             <div class="col_full">
                                 <label for="desc">자기소개:</label>
                                 <textarea rows="8" name="desc" id="desc" placeholder="Description" class="form-control"><?php if($act == 1) echo $desc;?></textarea>

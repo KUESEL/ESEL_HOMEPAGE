@@ -60,8 +60,8 @@ function validateForm() {
     var day = document.getElementById('day').value;
     <?php if($act != 1){ ?>
     var upload = document.getElementById('upload').value;
-    
-    
+
+
     <?php }?>
     if (title == null || title == "") {
         alert("Title must be filled out");
@@ -88,7 +88,7 @@ function validateForm() {
         alert("Picture must be selected");
         return false;
     }
-    
+
     <?php }?>
     else if (desc == null || desc == "") {
         alert("Summary must be filled out");
@@ -132,10 +132,10 @@ function validateForm() {
                         <h3>Modify Now.</h3>
                     <?php }else{ ?>
                         <h3>Register Now.</h3>
-                    <?php } ?>    
+                    <?php } ?>
 
 						<form enctype="multipart/form-data" id="register-form" name="register-form" class="nobottommargin" action="articles_insert.php" method="post" onsubmit="return validateForm()">
-                            <input type="hidden" name="MAX_FILE_SIZE" value="5242888">
+                            <input type="hidden" name="MAX_FILE_SIZE" value="512000">
 							<div class="col_half">
 								<label for="title">기사 제목:</label>
                                 <input type="text" name="title" id="title" placeholder="Title" class="form-control" value="<?php if($act == 1) echo $title; ?>">
@@ -163,7 +163,7 @@ function validateForm() {
                                                 else
                                                     echo "<option value='{$i}' selected>{$i}</option>";
                                             }
-                                        
+
                                     ?>
                                 </select>
 							</div>
@@ -183,7 +183,7 @@ function validateForm() {
                                                 else
                                                     echo "<option value='{$i}' selected>{$i}월</option>";
                                             }
-                                        
+
                                     ?>
                                 </select>
 							</div>
@@ -203,20 +203,20 @@ function validateForm() {
                                                 else
                                                     echo "<option value='{$i}' selected>{$i}일</option>";
                                             }
-                                        
+
                                     ?>
                                 </select>
 							</div>
 
 							<div class="clear"></div>
-                            
+
 							<div class="col_full">
 								<label for="upload">사진:<?php if($act==1) echo $row['ARTICLE_THUMBNAIL_URI'];?></label>
                                 <input type="file" name="upload" id="upload" class="form-control"/>
 							</div>
 
 
-                            
+
 							<div class="clear"></div>
 
                             <div class="col_full">

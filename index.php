@@ -103,7 +103,7 @@ include('header.php');
 
 							</div>
 						</div>
-						
+
 					</div>
 				</div>
 
@@ -151,7 +151,7 @@ include('header.php');
 					</div>
 				</div>
 
-				<div class="section parallax dark notopmargin nobottommargin" style="background-image: url('members/background.jpg'); background-size: cover; " data-stellar-background-ratio="0.2">
+				<div class="section parallax dark notopmargin nobottommargin" style="background-image: url('res/members/background.jpg'); background-size: cover; " data-stellar-background-ratio="0.2">
 				</br></br></br></br></br></br></br>
 				<h1 class="center nomargin"> ESEL의 연구원들은 자유로운 환경에서 <b style="color:#fcffb7">노력</b>을 <b style="color:#adf7e9">혁신</b>으로 만듭니다. </h1>
 				</br></br></br></br></br></br></br>
@@ -171,20 +171,20 @@ include('header.php');
 							</div>
 							<div class="center nobottommargin topmargin-sm">
 								<a href="https://www.youtube.com/watch?v=wyJUncPNT5M" data-lightbox="iframe" style="position: relative;">
-									<img src="professor/arirang_interview.PNG" alt="Video" style="width:50%">
+									<img src="res/professor/arirang_interview.jpg" alt="Video" style="width:50%">
 									<span class="i-overlay nobg"><img src="images/icons/video-play.png" alt="Play"></span>
 								</a>
 							</div>
 							<div class="row  clearfix center" style="margin-top:22px">
 								<a href="professor.php" class="button button-border button-dark button-rounded button-large noleftmargin "> 교수님 소개 바로가기</a>
-							</div>							
+							</div>
 							<!-- <a href="about-me.php" class="lead nobottommargin" style="position: absolute; right: 80px">교수님 소개 바로가기</a> -->
 						</div>
 					</div>
 
 				</div>
 
-                
+
                 <div class="container clearfix nobottommargin">
 
                     <div class="row topmargin-sm">
@@ -237,7 +237,7 @@ while ($member = mysql_fetch_array($res)) {
                 $degree = "";
                 break;
         }
-        
+
 ?>
                                 <div class="team-desc team-desc-bg">
                                     <div class="team-title">
@@ -256,10 +256,10 @@ while ($member = mysql_fetch_array($res)) {
                     </div>
 
                 </div>
-                
 
 
-				
+
+
 
 				<div class="section notopmargin nobottommargin nobottomborder">
 					<div class="container clearfix">
@@ -306,8 +306,8 @@ while ($photo = mysql_fetch_array($res)) {
 					<div class="row topmargin-lg">
 						<div class="heading-block center">
 							<h3>Articles</h3>
-						</div>	
-						<?php 
+						</div>
+						<?php
 							$query = "select * from articles ORDER BY ARTICLE_PUBLISHED_YEAR DESC, ARTICLE_PUBLISHED_MONTH DESC, ARTICLE_PUBLISHED_DAY DESC limit 4;";
 							$ret = mysql_query($query, $conn);
 							while($article = mysql_fetch_array($ret)){
@@ -326,7 +326,7 @@ while ($photo = mysql_fetch_array($res)) {
 							</div>
 						</div>
 						<?php } ?>
-						
+
 
 					</div>
 				</div>
