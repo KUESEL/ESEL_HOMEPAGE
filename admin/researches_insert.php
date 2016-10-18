@@ -3,18 +3,18 @@
 
 if($_SERVER['REQUEST_METHOD']=='POST') {
 
-    $act = $_POST['act'];
+    $act = mysql_real_escape_string($_POST['act']);
     if ($act == 1){
-        $id = $_POST['id'];
+        $id = mysql_real_escape_string($_POST['id']);
         $row = mysql_fetch_array(mysql_query("select RESEARCH_PICT_URI from researches where RESEARCH_ID = $id",$conn));
         $filename = $row['RESEARCH_PICT_URI'];
     }
     if(isset($_POST['name'])&&isset($_POST['desc'])&&isset($_POST['degree'])){
-        $name = $_POST['name'];
-        $degree = $_POST['degree'];
-        $desc = $_POST['desc'];
-        $sponser = $_POST['sponser'];
-        $term = $_POST['term'];
+        $name = mysql_real_escape_string($_POST['name']);
+        $degree = mysql_real_escape_string($_POST['degree']);
+        $desc = mysql_real_escape_string($_POST['desc']);
+        $sponser = mysql_real_escape_string($_POST['sponser']);
+        $term = mysql_real_escape_string($_POST['term']);
         
        if (isset($_POST['upload_check'])) {
             if (isset($_FILES['upload']) && !$_FILES['upload']['error']) {

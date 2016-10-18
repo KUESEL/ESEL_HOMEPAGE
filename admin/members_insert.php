@@ -3,17 +3,17 @@
 
 if($_SERVER['REQUEST_METHOD']=='POST') {
 
-    $act = $_POST['act'];
-    $skill1 = $_POST['skill1_name'];
-    $value1 = $_POST['skill1_val'];
-    $skill2 = $_POST['skill2_name'];
-    $value2 = $_POST['skill2_val'];
-    $skill3 = $_POST['skill3_name'];
-    $value3 = $_POST['skill3_val'];
-    $skill4 = $_POST['skill4_name'];
-    $value4 = $_POST['skill4_val'];
+    $act = mysql_real_escape_string($_POST['act']);
+    $skill1 = mysql_real_escape_string($_POST['skill1_name']);
+    $value1 = mysql_real_escape_string($_POST['skill1_val']);
+    $skill2 = mysql_real_escape_string($_POST['skill2_name']);
+    $value2 = mysql_real_escape_string($_POST['skill2_val']);
+    $skill3 = mysql_real_escape_string($_POST['skill3_name']);
+    $value3 = mysql_real_escape_string($_POST['skill3_val']);
+    $skill4 = mysql_real_escape_string($_POST['skill4_name']);
+    $value4 = mysql_real_escape_string($_POST['skill4_val']);
     if ($act == 1){
-        $id = $_POST['id'];
+        $id = mysql_real_escape_string($_POST['id']);
         $row = mysql_fetch_array(mysql_query("select PROFILE_PHOTO_URI from members where STUDENT_ID = $id",$conn));
         $filename = $row['PROFILE_PHOTO_URI'];
         if (mysql_num_rows(mysql_query("select * from skills where STUDENT_ID = $id"))!=0){
@@ -26,19 +26,19 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
         }
     }
     if(isset($_POST['name'])&&isset($_POST['number'])&&isset($_POST['year'])&&isset($_POST['degree'])&&isset($_POST['desc'])&&($_POST['email']!=NULL)){
-        $name = $_POST['name'];
-        $name2 = $_POST['name2'];
-        $year = $_POST['year'];
-        $degree = $_POST['degree'];
-        $desc = $_POST['desc'];
-        $gyear = $_POST['gyear'];
-        $number = $_POST['number'];
-        $email = $_POST['email'];
-        $linkedin = $_POST['linkedin'];
-        $fb = $_POST['facebook'];
-        $tw = $_POST['twit'];
-        $insta = $_POST['insta'];
-        $blog = $_POST['blog'];
+        $name = mysql_real_escape_string($_POST['name']);
+        $name2 = mysql_real_escape_string($_POST['name2']);
+        $year = mysql_real_escape_string($_POST['year']);
+        $degree = mysql_real_escape_string($_POST['degree']);
+        $desc = mysql_real_escape_string($_POST['desc']);
+        $gyear = mysql_real_escape_string($_POST['gyear']);
+        $number = mysql_real_escape_string($_POST['number']);
+        $email = mysql_real_escape_string($_POST['email']);
+        $linkedin = mysql_real_escape_string($_POST['linkedin']);
+        $fb = mysql_real_escape_string($_POST['facebook']);
+        $tw = mysql_real_escape_string($_POST['twit']);
+        $insta = mysql_real_escape_string($_POST['insta']);
+        $blog = mysql_real_escape_string($_POST['blog']);
         
        if (isset($_POST['upload_check'])) {
             if (isset($_FILES['upload']) && !$_FILES['upload']['error']) {

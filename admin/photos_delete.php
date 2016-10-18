@@ -1,7 +1,7 @@
 <?php
     include("config.php");
     if (array_key_exists("id", $_GET)) {
-        $id = $_GET["id"];
+        $id = mysql_real_escape_string($_GET["id"]);
         $res = mysql_query("select * from photos where `PHOTO_ID` = $id", $conn);
         if($res){
             $row = mysql_fetch_array($res);

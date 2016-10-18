@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <?php
     include("config.php");
-    $res = mysql_query("select *, YEAR(CREATED_AT) as YEAR from photos order by CREATED_AT DESC", $conn);
+    $query = "select *, YEAR(CREATED_AT) as YEAR from photos order by CREATED_AT DESC";
+    $num_rec_per_page = 4;
+    if (array_key_exists("page", $_GET)){
+        $page = $_GET['page'];
+        $offset = ($page - 1)*$num_rec_per_page; 
+    }
+    else{
+        $offset = 0;
+    }
+    $query = $query . " limit " . $offset ." , ".$num_rec_per_page;
+
+    $res = mysql_query($query, $conn);
 ?>
 <html>
 <head>
@@ -80,6 +91,30 @@
 					</a>
 
 					<div class="clear"></div>
+						<ul class="pagination" style="float:right;">
+							<li><a href="photos_list.php?page=1">◀</a></li>
+						<?php 
+                            if (!isset($page))
+                                $page = 1;
+                            
+							$query = "select * from photos";
+							$ret = mysql_query($query, $conn);
+							$total_records = mysql_num_rows($ret);  //count number of records
+							$total_pages = ceil($total_records / $num_rec_per_page); 
+							for($i=1;$i<=$total_pages;$i++){
+								if( $page==$i){
+						?>
+							<li class="active"><a href="photos_list.php?page=<?php echo $i ?>"><?php echo $i ?><span class="sr-only">(current)</span></a></li>
+							<?php } else{ ?>
+						  	<li><a href="photos_list.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+						  	<?php 
+						  		} 
+					 		}
+					 		?>
+					 		<li><a href="photos_list.php?page=<?php echo $total_pages ?>">▶</a></li>
+						   </ul>
+
+					<div class="clear"></div>
 
 					<!-- Portfolio Items
 					============================================= -->
@@ -90,7 +125,7 @@
 						<article class="portfolio-item pf-media pf-<?php echo $row['YEAR'];?>">
 							<div class="portfolio-image">
 								<a href="portfolio-single.html">
-									<div style="background: url(<?php echo $row['PHOTO_URI'];?>) no-repeat ;height:200px;background-size:cover;">
+                                    <div style="background: url(<?php echo $row['PHOTO_URI'];?>) no-repeat ;height:200px;background-size:cover;"></div>
 									
 								</a>
 								<div class="portfolio-overlay">

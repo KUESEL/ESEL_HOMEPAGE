@@ -2,7 +2,7 @@
 <?php
     include "config.php";
     if (array_key_exists("id", $_GET)) {
-        $id = $_GET['id'];
+        $id = mysql_real_escape_string($_GET['id']);
         $ret = mysql_query("select * from members where STUDENT_ID = $id", $conn);
     
         $p = mysql_fetch_array($ret);

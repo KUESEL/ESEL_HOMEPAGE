@@ -27,7 +27,7 @@ if (array_key_exists("name", $_POST)) {
 
 <?php
     
-    $search_keyword = $_POST["name"];
+    $search_keyword = mysql_real_escape_string($_POST["name"]);
     $query = "select * from members";
     $query =  $query . " where STUDENT_NAME like '%$search_keyword%'";
     $res = mysql_query($query, $conn);
