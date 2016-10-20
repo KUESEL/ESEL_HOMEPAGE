@@ -252,6 +252,7 @@ function validateForm() {
                                     <option value='4' <?php if($degree == 4) echo "selected";?>>석사 졸업</option>
                                     <option value='6' <?php if($degree == 6) echo "selected";?>>석박통합과정 재학</option>
                                     <option value='5' <?php if($degree == 5) echo "selected";?>>인턴 | 학부연구생</option>
+
                                     <?php }else{ ?>
 
                                     <option value="-1" selected disabled>선택해 주십시오.</option>
@@ -314,7 +315,7 @@ function validateForm() {
 
 							<div class="col_half">
                                 <label for="email"><i class="icon-envelope-alt"></i>&nbsp;E-Mail:</label>
-                                <input type="text" name="email" id="email" placeholder="E-mail address" class="form-control" value="<?php if($act == 1) echo $email;?>">
+                                <input type="text" name="email" id="email" placeholder="E-mail address" class="form-control" value="<?php if($act == 1 && $email!=null) echo $email; elseif($email==null) echo '-';?>">
 							</div>
 
 							<div class="col_half col_last">
@@ -350,28 +351,28 @@ function validateForm() {
 
 							<div class="col_one_fourth">
                                 <label for="skill1_name">스킬 1:</label>
-                                <input type="text" id="skill1_name" name="skill1_name" class="form-control" placeholder="Skill Name" value="<?php if($act == 1) echo $skill[0]['SKILL_NAME'];?>"/>
+                                <input type="text" id="skill1_name" name="skill1_name" class="form-control" placeholder="Skill Name" value="<?php if($act == 1 && $skill[0]['SKILL_NAME'] != null) echo $skill[0]['SKILL_NAME']; elseif($skill[0]['SKILL_NAME']==null) echo '-'; ?>" />
                                 <input type="range" id="progressController1" min="0" max="100" value="<?php if($act == 1) echo $skill[0]['SKILL_SCORE']; else echo '0';?>"  class="sm-form-control"/>
                                 <input type="text" name="skill1_val" id="skill1_val" class="sm-form-control" value="<?php if($act == 1) echo $skill[0]['SKILL_SCORE']; else echo '0';?>"/>
 							</div>
 
 							<div class="col_one_fourth">
                                 <label for="skill2_name">스킬 2:</label>
-                                <input type="text" id="skill2_name" name="skill2_name" class="form-control" placeholder="Skill Name" value="<?php if($act == 1) echo $skill[1]['SKILL_NAME'];?>"/>
+                                <input type="text" id="skill2_name" name="skill2_name" class="form-control" placeholder="Skill Name" value="<?php if($act == 1 && $skill[1]['SKILL_NAME'] != null) echo $skill[1]['SKILL_NAME']; elseif($skill[1]['SKILL_NAME']==null) echo '-';?>"/>
                                 <input type="range" id="progressController2" min="0" max="100" value="<?php if($act == 1) echo $skill[1]['SKILL_SCORE']; else echo '0';?>" class="sm-form-control" />
                                 <input type="text" name="skill2_val" id="skill2_val" class="sm-form-control" value="<?php if($act == 1) echo $skill[1]['SKILL_SCORE']; else echo '0';?>"/>
 							</div>
 
                             <div class="col_one_fourth">
                                 <label for="skill3_name">스킬 3:</label>
-                                <input type="text" id="skill3_name" name="skill3_name" class="form-control" placeholder="Skill Name" value="<?php if($act == 1) echo $skill[2]['SKILL_NAME'];?>"/>
+                                <input type="text" id="skill3_name" name="skill3_name" class="form-control" placeholder="Skill Name" value="<?php if($act == 1 && $skill[2]['SKILL_NAME'] != null) echo $skill[2]['SKILL_NAME']; elseif($skill[2]['SKILL_NAME']==null) echo '-'; ?>"/>
                                 <input type="range" id="progressController3" min="0" max="100" value="<?php if($act == 1) echo $skill[2]['SKILL_SCORE']; else echo '0';?>" class="sm-form-control" />
                                 <input type="text" name="skill3_val" id="skill3_val" class="sm-form-control" value="<?php if($act == 1) echo $skill[2]['SKILL_SCORE']; else echo '0';?>"/>
 							</div>
 
                             <div class="col_one_fourth col_last">
                                 <label for="skill4_name">스킬 4:</label>
-                                <input type="text" id="skill4_name" name="skill4_name" class="form-control" placeholder="Skill Name" value="<?php if($act == 1) echo $skill[3]['SKILL_NAME'];?>"/>
+                                <input type="text" id="skill4_name" name="skill4_name" class="form-control" placeholder="Skill Name" value="<?php if($act == 1 && $skill[3]['SKILL_NAME'] != null) echo $skill[3]['SKILL_NAME']; elseif($skill[3]['SKILL_NAME']==null) echo '-'; ?>"/>
                                 <input type="range" id="progressController4" min="0" max="100" value="<?php if($act == 1) echo $skill[3]['SKILL_SCORE']; else echo '0';?>" class="sm-form-control" />
                                 <input type="text" name="skill4_val" id="skill4_val" class="sm-form-control" value="<?php if($act == 1) echo $skill[3]['SKILL_SCORE']; else echo '0';?>"/>
 							</div>

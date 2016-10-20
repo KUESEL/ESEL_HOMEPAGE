@@ -47,15 +47,15 @@ include('header.php');
 
 
 		</header><!-- #header end -->
-            
-            
-        
+
+
+
 		<section id="page-title" class="page-title-parallax page-title-dark" style="padding: 250px 0; background-image: url('res/members/background2.jpg'); background-size: cover; background-position: center center;" data-stellar-background-ratio="0.4">
 
 			<div class="container clearfix">
 				<h1>MEMBERS</h1>
 				<span>어제, 오늘 그리고 내일의 ESEL을 만들어가는 연구원들입니다.</span>
-                			
+
 
 			</div>
 
@@ -104,7 +104,7 @@ include('header.php');
 							<b>노력(Effort)</b><br/>
 							<b>혁신(Innovation)</b><br/>
 						</p>
-						
+
 
 					</div>
 
@@ -156,7 +156,7 @@ while ($row = mysql_fetch_array($res)) {
         }
         if ($index % 2 == 0) {
 ?>
-                
+
 				<div id ="<?php echo $row['STUDENT_NAME'];?>"class="row common-height clearfix">
 
 					<div class="col-sm-5 col-padding" style="background: url('admin/<?php echo $row['PROFILE_PHOTO_URI']; ?>') center center no-repeat; background-size: cover;"></div>
@@ -221,7 +221,7 @@ while ($row = mysql_fetch_array($res)) {
 												</div>
 											</div>
 										</li>
-                                        
+
                                         <?php
             }
 ?>
@@ -289,7 +289,7 @@ while ($row = mysql_fetch_array($res)) {
                                         <?php
             $r = mysql_query("select * from skills where STUDENT_ID='{$row['STUDENT_ID']}'");
             while ($skill = mysql_fetch_array($r)) {
-                
+
 ?>
 										<li data-percent="<?php    echo $skill['SKILL_SCORE']; ?>">
 											<span><?php echo $skill['SKILL_NAME'];?></span>
@@ -301,7 +301,7 @@ while ($row = mysql_fetch_array($res)) {
 												</div>
 											</div>
 										</li>
-                                        
+
                                         <?php
             }
 ?>
@@ -318,7 +318,7 @@ while ($row = mysql_fetch_array($res)) {
 				</div>
                 <?php
         }
-        
+
         $index++;
     }
 }
@@ -350,6 +350,7 @@ while ($row = mysql_fetch_array($res)) {
 	                        <div class="team-desc team-desc-bg">
 	                                    <div class="team-title">
 	                                    	<h4><?php echo $row['STUDENT_NAME'];?></h4>
+																				<span><strong><?php echo $row['DESCP'];?></strong></span>
 	                                    </div>
 	                        </div>
 	                    </div>
@@ -389,12 +390,13 @@ while ($row = mysql_fetch_array($res)) {
                 <div class="col-md-3 col-sm-6 bottommargin">
 
                     <div class="team">
-                        <div class="team-image">	
+                        <div class="team-image">
                                 <img  style="background: url(admin/<?php echo $row['PROFILE_PHOTO_URI'];?>) no-repeat; height: 300px; background-size:cover">
                         </div>
                         <div class="team-desc team-desc-bg">
-                                    <div class="team-title"
+                                    <div class="team-title">
                                     <h4><?php echo $row['STUDENT_NAME'];?></h4>
+																		<span><strong><?php echo $row['DESCP'];?></strong></span>
                                 </div>
                         </div>
                     </div>

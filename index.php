@@ -190,7 +190,7 @@ include('header.php');
                     <div class="row topmargin-sm">
 
                         <div class="heading-block center">
-                            <h3>Our Members</h3>
+                            <h3>Members</h3>
                         </div>
                         <?php
 $query = "select * from members order by STUDENT_NUMBER";
@@ -203,7 +203,6 @@ while ($member = mysql_fetch_array($res)) {
 ?>
 
                         <div class="col-md-3 col-sm-6 bottommargin">
-
                             <div class="team">
                                 <div class="team-image">
                                     <a href="members.php#<?php echo $member['STUDENT_NAME']; ?>">
@@ -315,7 +314,9 @@ while ($photo = mysql_fetch_array($res)) {
 						<div class="col-md-3 col-sm-6 bottommargin">
 							<div class="ipost clearfix">
 								<div class="entry-image">
-									<a href="http://<?php echo $article['ARTICLE_URL'];?>"><img class="image_fade" src="admin/<?php echo $article['ARTICLE_THUMBNAIL_URI'];?>" alt="Image"></a>
+									<a href="http://<?php echo $article['ARTICLE_URL'];?>">
+										<div style="background: url(admin/<?php echo $article['ARTICLE_THUMBNAIL_URI'];?>) no-repeat ;height:300px;background-size:cover;"></div>
+									</a>
 								</div>
 								<div class="entry-title">
 									<h3><a href="http://<?php echo $article['ARTICLE_URL'];?>"><?php echo $article['ARTICLE_TITLE'];?></a></h3>
