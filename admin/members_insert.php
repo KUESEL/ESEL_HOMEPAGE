@@ -39,7 +39,7 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
         $tw = mysql_real_escape_string($_POST['twit']);
         $insta = mysql_real_escape_string($_POST['insta']);
         $blog = mysql_real_escape_string($_POST['blog']);
-        
+
        if (isset($_POST['upload_check'])) {
             if (isset($_FILES['upload']) && !$_FILES['upload']['error']) {
 
@@ -50,7 +50,7 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
                     if (move_uploaded_file ($_FILES['upload']['tmp_name'], $image_storage.md5($name.$year).".".$type)) {
         //                unlink($image_storage.$filename);
                         $URI = $image_storage.md5($name.$year).".".$type;
-                        
+
                         if($act == 1){
                             $query = "update `members` set STUDENT_NAME='$name', STUDENT_NUMBER='$number', ADMISSION_YEAR=$year, DEGREE=$degree, PROFILE_PHOTO_URI='$URI', DESCP='$desc', EMAIL='$email'";
 
@@ -83,7 +83,7 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
                                 $query = $query.", STUDENT_NAME_ENG='$name2'";
                             else
                                 $query = $query.", STUDENT_NAME_ENG=NULL";
-                                
+
 
 
                             $query = $query." where `STUDENT_ID` = $id";
@@ -102,27 +102,27 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
                             }
                             if($linkedin != NULL){
                                 $q = $q.", LINKED_IN_URL";
-                                $v = $v.", '$linkedin'";                        
+                                $v = $v.", '$linkedin'";
                             }
                             if($fb != NULL){
                                 $q = $q.", FACEBOOK_URL";
-                                $v = $v.", '$fb'";                                                
+                                $v = $v.", '$fb'";
                             }
                             if($tw != NULL){
                                 $q = $q.", TWITTER_URL";
-                                $v = $v.", '$tw'";                                                
+                                $v = $v.", '$tw'";
                             }
                             if($insta != NULL){
                                 $q = $q.", INSTAGRAM_URL";
-                                $v = $v.", '$insta'";                                                
+                                $v = $v.", '$insta'";
                             }
                             if($blog != NULL){
                                 $q = $q.", BLOG_URL";
-                                $v = $v.", '$blog'";                                                
+                                $v = $v.", '$blog'";
                             }
                             if($name2 != NULL){
                                 $q = $q.", STUDENT_NAME_ENG";
-                                $v = $v.", '$name2'";                                                                                
+                                $v = $v.", '$name2'";
                             }
 
                             $query = $q.$v.")";

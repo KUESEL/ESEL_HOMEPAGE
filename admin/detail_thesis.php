@@ -1,3 +1,4 @@
+<?php include("session.php") ?>
 <?php
     include("config.php");
     if (array_key_exists("id", $_GET)) {
@@ -30,7 +31,7 @@
                 $journal = $journal.", ".$row[1];
             $i++;
         }
-        
+
     }
 ?>
 
@@ -43,9 +44,9 @@
 
     <body>
         <fieldset><legend>논문 상세보기</legend>
-	
-	
-	
+
+
+
             <p>
                 <strong><?php echo $title;?></strong>
                 <?php if($upload==1){?>

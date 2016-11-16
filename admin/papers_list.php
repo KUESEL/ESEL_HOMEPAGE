@@ -1,3 +1,4 @@
+<?php include("session.php") ?>
 <!DOCTYPE html>
 <?php
     include("config.php");
@@ -5,7 +6,7 @@
     $num_rec_per_page = 6;
     if (array_key_exists("page", $_GET)){
         $page = $_GET['page'];
-        $offset = ($page - 1)*$num_rec_per_page; 
+        $offset = ($page - 1)*$num_rec_per_page;
     }
     else{
         $offset = 0;
@@ -80,22 +81,22 @@
 					<div class="divider"><i class="icon-circle"></i></div>
                             <ul class="pagination" style="float:right;">
 							<li><a href="papers_list.php?page=1">◀</a></li>
-						<?php 
+						<?php
                             if (!isset($page))
                                 $page = 1;
-                            
+
 							$query = "select * from papers";
 							$ret = mysql_query($query, $conn);
 							$total_records = mysql_num_rows($ret);  //count number of records
-							$total_pages = ceil($total_records / $num_rec_per_page); 
+							$total_pages = ceil($total_records / $num_rec_per_page);
 							for($i=1;$i<=$total_pages;$i++){
 								if( $page==$i){
 						?>
 							<li class="active"><a href="papers_list.php?page=<?php echo $i ?>"><?php echo $i ?><span class="sr-only">(current)</span></a></li>
 							<?php } else{ ?>
 						  	<li><a href="papers_list.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
-						  	<?php 
-						  		} 
+						  	<?php
+						  		}
 					 		}
 					 		?>
 					 		<li><a href="papers_list.php?page=<?php echo $total_pages ?>">▶</a></li>
@@ -111,7 +112,7 @@
                                 case 1: $cate = "국내 학술지"; break;
                                 case 2: $cate = "국내 컨퍼런스"; break;
                                 case 3: $cate = "국제 컨퍼런스"; break;
-                                case 4: $cate = "특허"; break; 
+                                case 4: $cate = "특허"; break;
                             }
                             $s = mysql_fetch_array(mysql_query("select * from members where STUDENT_ID={$p['STUDENT_ID']}",$conn));
                         ?>
@@ -126,7 +127,7 @@
 							<div class="togglec"><?php echo $p['PAPER_ABSTRACTION'];?></div>
 
 						</div>
-					  
+
 						<a href="papers_form.php?id=<?php echo $p['PAPER_ID'];?>">Edit</a>&nbsp;/
 						<a href="#" onclick="if(confirm('<?php echo $p['PAPER_TITLE'];?>에 대한 모든 정보를 삭제하시겠습니까?  ')==true) {location.href='papers_delete.php?id=<?php echo $p['PAPER_ID'];?>'}">Delete</a>
 						<div class="divider">&nbsp;</div>

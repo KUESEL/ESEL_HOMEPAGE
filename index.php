@@ -111,7 +111,9 @@ include('header.php');
 					<div class="container clear-bottommargin clearfix">
 						<div class="row notopmargin clearfix">
 							<div class="col-md-3 bottommargin center">
-								<i class="i-plain color i-large icon-medical-i-mental-health inline-block" style="margin-bottom: 15px;"></i>
+								<a href="researches.php" >
+									<i class="i-plain color i-large icon-medical-i-mental-health inline-block" style="margin-bottom: 15px;"></i>
+								</a>
 								<div class="heading-block nobottomborder" style="margin-bottom: 15px;">
 									<span class="before-heading">Self-Adaptive <br>Software Engineering</span>
 									<h4>자가적응형<br/> 소프트웨어 공학</h4>
@@ -120,7 +122,9 @@ include('header.php');
 							</div>
 
 							<div class="col-md-3 bottommargin center">
-								<i class="i-plain color i-large icon-bitcoin2 inline-block" style="margin-bottom: 15px;"></i>
+								<a href="researches.php" >
+									<i class="i-plain color i-large icon-bitcoin2 inline-block" style="margin-bottom: 15px;"></i>
+								</a>
 								<div class="heading-block nobottomborder" style="margin-bottom: 15px;">
 									<span class="before-heading">FinTech Software Engineering <br> based on Blockchain</span>
 									<h4>블록체인 기반 <br/>핀테크 소프트웨어 공학</h4>
@@ -129,7 +133,9 @@ include('header.php');
 							</div>
 
 							<div class="col-md-3 bottommargin center">
-								<i class="i-plain color i-large icon-medical-cardiology inline-block" style="margin-bottom: 15px;"></i>
+								<a href="researches.php" >
+									<i class="i-plain color i-large icon-medical-cardiology inline-block" style="margin-bottom: 15px;"></i>
+								</a>
 								<div class="heading-block nobottomborder" style="margin-bottom: 15px;">
 									<span class="before-heading">Smart Health System <br> using Bio Signal</span>
 									<h4>생체 신호 기반 <br/> 스마트 헬스케어 시스템</h4>
@@ -137,7 +143,9 @@ include('header.php');
 								<!-- <p>Democracy inspire breakthroughs, Rosa Parks; inspiration raise awareness natural resources. Governance impact; transformative donation philanthropy, respect reproductive.</p> -->
 							</div>
 							<div class="col-md-3 bottommargin center">
-								<i class="i-plain color i-large icon-sort-by-alphabet-alt inline-block" style="margin-bottom: 15px;"></i>
+								<a href="researches.php" >
+									<i class="i-plain color i-large icon-sort-by-alphabet-alt inline-block" style="margin-bottom: 15px;"></i>
+								</a>
 								<div class="heading-block nobottomborder" style="margin-bottom: 15px;">
 									<span class="before-heading"> Software Quality Assuarance <br>based on Test</span>
 									<h4>테스트 기반<br> 소프트웨어 품질 검증</h4>

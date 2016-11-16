@@ -1,3 +1,4 @@
+<?php include("session.php") ?>
 <!DOCTYPE html>
 <?php
     include("config.php");
@@ -5,7 +6,7 @@
     $num_rec_per_page = 6;
     if (array_key_exists("page", $_GET)){
         $page = $_GET['page'];
-        $offset = ($page - 1)*$num_rec_per_page; 
+        $offset = ($page - 1)*$num_rec_per_page;
     }
     else{
         $offset = 0;
@@ -93,22 +94,22 @@
 					<div class="clear"></div>
 						<ul class="pagination" style="float:right;">
 							<li><a href="members_list.php?page=1">◀</a></li>
-						<?php 
+						<?php
                             if (!isset($page))
                                 $page = 1;
-                            
+
 							$query = "select * from members";
 							$ret = mysql_query($query, $conn);
 							$total_records = mysql_num_rows($ret);  //count number of records
-							$total_pages = ceil($total_records / $num_rec_per_page); 
+							$total_pages = ceil($total_records / $num_rec_per_page);
 							for($i=1;$i<=$total_pages;$i++){
 								if( $page==$i){
 						?>
 							<li class="active"><a href="members_list.php?page=<?php echo $i ?>"><?php echo $i ?><span class="sr-only">(current)</span></a></li>
 							<?php } else{ ?>
 						  	<li><a href="members_list.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
-						  	<?php 
-						  		} 
+						  	<?php
+						  		}
 					 		}
 					 		?>
 					 		<li><a href="members_list.php?page=<?php echo $total_pages ?>">▶</a></li>
@@ -154,11 +155,11 @@
 								<span><?php echo $row['STUDENT_NUMBER'];?>, <?php echo $degree;?></span>
 							</div>
 						</article>
-                        
+
                         <?php
-                        } 
+                        }
                         ?>
-						
+
 
 					</div><!-- #portfolio end -->
 
@@ -171,7 +172,7 @@
 		<!-- Footer
 		============================================= -->
 		<?php include('../footer.html');?>
-            
+
 	</div><!-- #wrapper end -->
 
 	<!-- Go To Top

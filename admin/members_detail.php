@@ -1,14 +1,15 @@
+<?php include("session.php") ?>
 <!DOCTYPE html>
 <?php
     include "config.php";
     if (array_key_exists("id", $_GET)) {
         $id = mysql_real_escape_string($_GET['id']);
         $ret = mysql_query("select * from members where STUDENT_ID = $id", $conn);
-    
+
         $p = mysql_fetch_array($ret);
         $add = mysql_fetch_array(mysql_query("select STUDENT_ID from members where STUDENT_ID > $id ORDER BY STUDENT_ID", $conn));
         $minus = mysql_fetch_array(mysql_query("select STUDENT_ID from members where STUDENT_ID < $id ORDER BY STUDENT_ID DESC", $conn));
-        
+
 ?>
 
 <html dir="ltr" lang="en-US">
@@ -56,9 +57,9 @@
 			<div class="container clearfix">
 				<h1><?php echo $p['STUDENT_NAME'];?></h1>
                 <?php if($p['STUDENT_NAME_ENG']!=NULL){ ?>
-            
+
                 <small><?php echo $p['STUDENT_NAME_ENG'];?></small>
-            
+
                 <?php } ?>
 				<span><?php echo $p['STUDENT_NUMBER'];?></span>
 				<div id="portfolio-navigation">
@@ -71,7 +72,7 @@
                     <?php }?>
 				</div>
                 <a href="members_form.php?id=<?php echo $id?>">Edit</a>
-				
+
 			</div>
 
 		</section><!-- #page-title end -->
@@ -120,7 +121,7 @@
 							<li><span><i class="icon-user"></i>학위:</span> <?php echo $degree;?></li>
 							<li><span><i class="icon-calendar3"></i>입학년도:</span> <?php echo $p['ADMISSION_YEAR'];?></li>
                             <?php if($p['DEGREE'] == 2 || $p['DEGREE'] == 4) {?><li><span><i class="icon-calendar3"></i>졸업년도:</span> <?php echo $p['GRADUATE_YEAR'];?></li><?php }?>
-                            <?php 
+                            <?php
                             $res = mysql_query("select * from skills where STUDENT_ID = $id", $conn);
                             $i = 1;
                             while($skill = mysql_fetch_array($res)){ ?>

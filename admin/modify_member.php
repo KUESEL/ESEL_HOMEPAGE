@@ -1,3 +1,4 @@
+<?php include("session.php") ?>
 <?php
     include("config.php");
     if (array_key_exists("id", $_GET)) {
@@ -34,7 +35,7 @@ if (isset($_POST['upload_check'])) {
 			if (move_uploaded_file ($_FILES['upload']['tmp_name'], $image_storage.$name.$year.".".$type)) {
 //                unlink($image_storage.$filename);
                 $URI = $image_storage.$name.$year.".".$type;
-                
+
                 if($gyear != -1)
                     $ret = mysql_query("update `members` set STUDENT_NAME='$name', STUDENT_NUMBER='$number', ADMISSION_YEAR=$year, GRADUATE_YEAR=$gyear, DEGREE=$degree, PROFILE_PHOTO_URI='$URI', DESCP='$desc' where `STUDENT_ID` = $id",$conn);
                 else
@@ -42,7 +43,7 @@ if (isset($_POST['upload_check'])) {
                 echo "<script>alert('".$year.$degree."complete');window.location = 'index.php';</script>";
 
 			}
-			
+
 		} else {
 			echo "<script>alert('JPEG 또는 PNG 이미지만 업로드 가능합니다.')</script>";
 		}
@@ -50,7 +51,7 @@ if (isset($_POST['upload_check'])) {
 	}
 
 	if ($_FILES['upload']['error'] > 0) {
-	
+
 		switch ($_FILES['upload']['error']) {
 			case 1:
 				$error = 'php.ini 파일의 upload_max_filesize 설정값을 초과함(업로드 최대용량 초과)';
@@ -65,7 +66,7 @@ if (isset($_POST['upload_check'])) {
                 if($gyear != -1)
                     $ret = mysql_query("update `members` set STUDENT_NAME='$name', STUDENT_NUMBER='$number', ADMISSION_YEAR=$year, GRADUATE_YEAR=$gyear, DEGREE=$degree, PROFILE_PHOTO_URI='$filename', DESCP='$desc' where `STUDENT_ID` = $id",$conn);
                 else
-                    $ret = mysql_query("update `members` set STUDENT_NAME='$name', STUDENT_NUMBER='$number', ADMISSION_YEAR=$year, GRADUATE_YEAR=NULL, DEGREE=$degree, PROFILE_PHOTO_URI='$filename', DESCP='$desc' where `STUDENT_ID` = $id",$conn);                    
+                    $ret = mysql_query("update `members` set STUDENT_NAME='$name', STUDENT_NUMBER='$number', ADMISSION_YEAR=$year, GRADUATE_YEAR=NULL, DEGREE=$degree, PROFILE_PHOTO_URI='$filename', DESCP='$desc' where `STUDENT_ID` = $id",$conn);
                 echo "<script>alert('".$year.$degree."complete');window.location = 'index.php';</script>";
 				break;
 			case 6:
@@ -82,13 +83,13 @@ if (isset($_POST['upload_check'])) {
 				break;
 		}
 		echo "<script>alert('파일 업로드 실패 이유: ".$error."')</script>";
-				
+
 	}
-	
+
 	if (file_exists ($_FILES['upload']['tmp_name']) && is_file($_FILES['upload']['tmp_name']) ) {
 		unlink ($_FILES['upload']['tmp_name']);
 	}
-    
+
 }
 
 
@@ -100,17 +101,17 @@ if (isset($_POST['upload_check'])) {
 	<title>image upload test</title>
 </head>
 <body>
-    
+
 <form enctype="multipart/form-data" action="" method="post">
 	<input type="hidden" name="MAX_FILE_SIZE" value="5242888">
-	
+
 	<fieldset><legend>업로드할 사진파일(JPG,PNG)을 선택하세요(5mb이내):</legend>
-	
+
 	<p><b>파일:</b> <input type="file" name="upload" /></p>
-	
+
 	</fieldset>
 
-    
+
     <p>
         <label for="name">이름</label>
         <input type="text" name="name" id="name" placeholder="Name" value="<?php echo $name; ?>">
@@ -168,9 +169,9 @@ if (isset($_POST['upload_check'])) {
     </p>
 
 	<div align="center"><input type="submit" name="upload_form" value="업로드" /></div>
-    
-    
-    
+
+
+
 	<input type="hidden" name="upload_check" value="true" />
 </form>
 </body>

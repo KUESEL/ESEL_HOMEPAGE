@@ -1,3 +1,4 @@
+<?php include("session.php") ?>
 <?php
         include("config.php");
 
@@ -15,7 +16,7 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
         $desc = mysql_real_escape_string($_POST['desc']);
         $sponser = mysql_real_escape_string($_POST['sponser']);
         $term = mysql_real_escape_string($_POST['term']);
-        
+
        if (isset($_POST['upload_check'])) {
             if (isset($_FILES['upload']) && !$_FILES['upload']['error']) {
 
@@ -25,7 +26,7 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
                     $type = explode(".", $_FILES['upload']['name'])[1];
                     if (move_uploaded_file ($_FILES['upload']['tmp_name'], $research_storage.md5($name).".".$type)) {
                         $URI = $research_storage.md5($name).".".$type;
-                        
+
                         if($act == 1){
                             $query = "update `researches` set RESEARCH_TOPIC='$name', RESEARCH_CATEGORY=$degree, RESEARCH_PICT_URI='$URI', RESEARCH_DESC='$desc', RESEARCH_SPONSER='$sponser', RESEARCH_TERM='$term' where `RESEARCH_ID` = $id";
                             $ret = mysql_query($query,$conn);

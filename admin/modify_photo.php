@@ -1,3 +1,4 @@
+<?php include("session.php") ?>
 <?php
     include("config.php");
     if (array_key_exists("id", $_GET)) {
@@ -28,7 +29,7 @@ if(isset($_POST['title'])){
 	<title>image upload test</title>
 </head>
 <body>
-    
+
 <form action="" method="post">
             <img src="<?php echo $row['PHOTO_URI'];?>" style="max-width:250px"/>
 	        <p>
@@ -47,9 +48,9 @@ if(isset($_POST['title'])){
 
 
 	<div><input type="submit" name="upload_form" value="업로드" /></div>
-    
-    
-    
+
+
+
 	<input type="hidden" name="upload_check" value="true" />
 </form>
 </body>

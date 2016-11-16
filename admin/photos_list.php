@@ -1,3 +1,4 @@
+<?php include("session.php") ?>
 <!DOCTYPE html>
 <?php
     include("config.php");
@@ -5,7 +6,7 @@
     $num_rec_per_page = 4;
     if (array_key_exists("page", $_GET)){
         $page = $_GET['page'];
-        $offset = ($page - 1)*$num_rec_per_page; 
+        $offset = ($page - 1)*$num_rec_per_page;
     }
     else{
         $offset = 0;
@@ -73,7 +74,7 @@
 					<!-- Portfolio Filter
 					============================================= -->
 					<ul id="portfolio-filter" class="portfolio-filter clearfix" data-container="#portfolio">
-                        
+
 						<li class="activeFilter"><a href="#" data-filter="*">Show All</a></li>
                         <?php
                             $ret = mysql_query("SELECT YEAR(CREATED_AT) as YEAR FROM photos WHERE 1 GROUP BY YEAR(CREATED_AT);", $conn);
@@ -93,22 +94,22 @@
 					<div class="clear"></div>
 						<ul class="pagination" style="float:right;">
 							<li><a href="photos_list.php?page=1">◀</a></li>
-						<?php 
+						<?php
                             if (!isset($page))
                                 $page = 1;
-                            
+
 							$query = "select * from photos";
 							$ret = mysql_query($query, $conn);
 							$total_records = mysql_num_rows($ret);  //count number of records
-							$total_pages = ceil($total_records / $num_rec_per_page); 
+							$total_pages = ceil($total_records / $num_rec_per_page);
 							for($i=1;$i<=$total_pages;$i++){
 								if( $page==$i){
 						?>
 							<li class="active"><a href="photos_list.php?page=<?php echo $i ?>"><?php echo $i ?><span class="sr-only">(current)</span></a></li>
 							<?php } else{ ?>
 						  	<li><a href="photos_list.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
-						  	<?php 
-						  		} 
+						  	<?php
+						  		}
 					 		}
 					 		?>
 					 		<li><a href="photos_list.php?page=<?php echo $total_pages ?>">▶</a></li>
@@ -126,7 +127,7 @@
 							<div class="portfolio-image">
 								<a href="portfolio-single.html">
                                     <div style="background: url(<?php echo $row['PHOTO_URI'];?>) no-repeat ;height:200px;background-size:cover;"></div>
-									
+
 								</a>
 								<div class="portfolio-overlay">
 									<a href="photos_form.php?id=<?php echo $row['PHOTO_ID'];?>" class="left-icon"><i class="icon-edit-sign"></i></a>
@@ -139,11 +140,11 @@
 								<span><?php echo $row['PHOTO_DESC'];?></span>
 							</div>
 						</article>
-                        
+
                         <?php
-                        } 
+                        }
                         ?>
-						
+
 
 					</div><!-- #portfolio end -->
 
@@ -156,7 +157,7 @@
 		<!-- Footer
 		============================================= -->
 		<?php include('../footer.html');?>
-            
+
 	</div><!-- #wrapper end -->
 
 	<!-- Go To Top

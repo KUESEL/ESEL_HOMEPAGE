@@ -1,9 +1,10 @@
+
 <html lang='ko'>
     <head>
         <title>Test page for server-side</title>
         <meta charset="UTF-8">
     </head>
-<script>        
+<script>
 function returnvalue(value) {
   alert(value.name);
   window.opener.getReturnValue(value);
@@ -26,7 +27,7 @@ if (array_key_exists("name", $_POST)) {
 ?>
 
 <?php
-    
+
     $search_keyword = mysql_real_escape_string($_POST["name"]);
     $query = "select * from members";
     $query =  $query . " where STUDENT_NAME like '%$search_keyword%'";
@@ -51,11 +52,10 @@ if (array_key_exists("name", $_POST)) {
                     echo "<br/>";
             }
     }
-    
+
 }
 
-?>        
-        
+?>
+
     </body>
 </html>
-        

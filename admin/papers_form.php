@@ -1,3 +1,4 @@
+<?php include("session.php") ?>
 <!DOCTYPE html>
 <?php
     include("config.php");
@@ -100,7 +101,7 @@ function validateForm() {
         return true;
     }
 }
-    
+
 function openNewWindow(url) {
   var name = '_blank';
   var specs = 'width=460px,height=573px,scrollbars=yes,menubar=no,status=no,toolbar=no';
@@ -146,7 +147,7 @@ function getReturnValue(returnValue) {
                         <h3>Modify Now.</h3>
                     <?php }else{ ?>
                         <h3>Register Now.</h3>
-                    <?php } ?>    
+                    <?php } ?>
 
 						<form id="register-form" name="register-form" class="nobottommargin" action="papers_insert.php" method="post" onsubmit="return validateForm()">
                             <div class="col_half">
@@ -164,7 +165,7 @@ function getReturnValue(returnValue) {
                                     <option value='3' <?php if($degree == 3) echo "selected";?>>국제 컨퍼런스</option>
                                     <option value='4' <?php if($degree == 4) echo "selected";?>>특허</option>
                                     <?php }else{ ?>
-                                    
+
                                     <option value="-1" selected disabled>선택해 주십시오.</option>
                                     <option value='0'>국제 학술지</option>
                                     <option value='1'>국내 학술지</option>
@@ -186,13 +187,13 @@ function getReturnValue(returnValue) {
 
 							<div class="clear"></div>
 
-                            
+
                             <div class="col_full">
                                 <label for="co_author">공동저자 (','로 구분):</label>
                                 <input type="text" name="co_author" id="co_author" value="<?php if($act == 1) echo $co; ?>" class="form-control"/>
                             </div>
 							<div class="clear"></div>
-                            
+
                             <div class="col_half">
                                 <label for="year">게재년도:</label>
                                 <select name="year" id="year" class="form-control">
@@ -209,7 +210,7 @@ function getReturnValue(returnValue) {
                                                 else
                                                     echo "<option value='{$i}' selected>{$i}</option>";
                                             }
-                                        
+
                                     ?>
                                 </select>
 							</div>

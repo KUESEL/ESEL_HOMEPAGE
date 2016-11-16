@@ -1,3 +1,4 @@
+<?php include("session.php") ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,14 +35,15 @@
     <div id="wrapper" class="clearfix">
         <!-- Top Bar
         ============================================= -->
-
+        <?php include("top.html");?>
 
         <!-- Page Title
         ============================================= -->
         <section id="page-title">
 
             <div class="container clearfix">
-                <h1>ESEL ADMIN LOGIN PAGE</h1>
+                <h1>ESEL ADMIN</h1>
+                <span>HOME</span>
             </div>
 
         </section><!-- #page-title end -->
@@ -51,22 +53,13 @@
         <section id="content">
 
             <div class="content-wrap">
-              <div class="container clearfix">
 
-                <div class="col_three_third col_last nobottommargin">
-                  <form enctype="multipart/form-data" id="admin-login" name="admin-login" class="nobottommargin" action="login.php" method="post" onsubmit="return validateForm()">
-                   <div class="col_half">
-                    <label for="password">비밀번호:</label>
-                    <input type="password" name="password" id="password" placeholder="Admin Password" class="form-control" value="">
-                  </div>
-                  <div class="col_full">
-                    <button class="button button-3d button-black nomargin" id="admin-login-submit" name="admin-login-submit" value="register">Login</button>
-                  </div>
+               <div class="container clearfix">
+                    <h1> ESEL ADMIN 홈입니다. 메뉴에서 작업하길 원하는 모델을 고르세요 </h1>
 
-                 </form>
-               </div>
-             </div>
-          </div>
+                </div>
+
+            </div>
 
         </section><!-- #content end -->
 

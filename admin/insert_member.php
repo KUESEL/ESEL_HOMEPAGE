@@ -1,3 +1,4 @@
+<?php include("session.php") ?>
 <html>
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -20,7 +21,7 @@ if(isset($_POST['name'])&&isset($_POST['number'])&&isset($_POST['year'])&&isset(
     $tw = $_POST['twit'];
     $insta = $_POST['insta'];
     $blog = $_POST['blog'];
-    
+
     if (isset($_POST['upload_check'])) {
 
         if (isset($_FILES['upload']) && !$_FILES['upload']['error']) {
@@ -40,25 +41,25 @@ if(isset($_POST['name'])&&isset($_POST['number'])&&isset($_POST['year'])&&isset(
                     }
                     if($linkedin != NULL){
                         $q = $q.", LINKED_IN_URL";
-                        $v = $v.", '$linkedin'";                        
+                        $v = $v.", '$linkedin'";
                     }
                     if($fb != NULL){
                         $q = $q.", FACEBOOK_URL";
-                        $v = $v.", '$fb'";                                                
+                        $v = $v.", '$fb'";
                     }
                     if($tw != NULL){
                         $q = $q.", TWITTER_URL";
-                        $v = $v.", '$tw'";                                                
+                        $v = $v.", '$tw'";
                     }
                     if($insta != NULL){
                         $q = $q.", INSTAGRAM_URL";
-                        $v = $v.", '$insta'";                                                
+                        $v = $v.", '$insta'";
                     }
                     if($blog != NULL){
                         $q = $q.", BLOG_URL";
-                        $v = $v.", '$blog'";                                                
+                        $v = $v.", '$blog'";
                     }
-                    
+
                     $query = $q.$v.")";
                     $ret = mysql_query($query, $conn);
                     if($ret){
@@ -121,17 +122,17 @@ else{
 }
 }
 ?>
-	
+
 <form enctype="multipart/form-data" action="" method="post">
 	<input type="hidden" name="MAX_FILE_SIZE" value="5242888">
-	
+
 	<fieldset><legend>업로드할 사진파일(JPG,PNG)을 선택하세요(5mb이내):</legend>
-	
+
 	<p><b>파일:</b> <input type="file" name="upload" /></p>
-	
+
 	</fieldset>
 
-    
+
     <p>
         <label for="name">이름</label>
         <input type="text" name="name" id="name" placeholder="Name">
@@ -180,7 +181,7 @@ else{
         <textarea name="desc" id="desc" placeholder="DESCRIPTION"></textarea>
 
     </p>
-    
+
     <br/>
     <p>
         <label for="email">E-mail</label>
@@ -207,12 +208,12 @@ else{
         <input type="text" name="blog" id="blog" placeholder="Blog url">
     </p>
 
-    
-    
+
+
     <div align="center"><input type="submit" name="upload_form" value="업로드" /></div>
-    
-    
-    
+
+
+
 	<input type="hidden" name="upload_check" value="true" />
 </form>
 </body>

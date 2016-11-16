@@ -1,3 +1,4 @@
+<?php include("session.php") ?>
 <!DOCTYPE html>
 <?php
     include("config.php");
@@ -5,7 +6,7 @@
     $num_rec_per_page = 4;
     if (array_key_exists("page", $_GET)){
         $page = $_GET['page'];
-        $offset = ($page - 1)*$num_rec_per_page; 
+        $offset = ($page - 1)*$num_rec_per_page;
     }
     else{
         $offset = 0;
@@ -72,7 +73,7 @@
 					<!-- Portfolio Filter
 					============================================= -->
 					<ul id="portfolio-filter" class="portfolio-filter clearfix" data-container="#portfolio">
-                        
+
 						<li class="activeFilter"><a href="#" data-filter="*">Show All</a></li>
 						<li><a href="#" data-filter=".pf-0">비활성화</a></li>
 						<li><a href="#" data-filter=".pf-1">연구실 메인 토픽 | 프로젝트</a></li>
@@ -86,22 +87,22 @@
 					<div class="clear"></div>
 						<ul class="pagination" style="float:right;">
 							<li><a href="researches_list.php?page=1">◀</a></li>
-						<?php 
+						<?php
                             if (!isset($page))
                                 $page = 1;
-                            
+
 							$query = "select * from researches";
 							$ret = mysql_query($query, $conn);
 							$total_records = mysql_num_rows($ret);  //count number of records
-							$total_pages = ceil($total_records / $num_rec_per_page); 
+							$total_pages = ceil($total_records / $num_rec_per_page);
 							for($i=1;$i<=$total_pages;$i++){
 								if( $page==$i){
 						?>
 							<li class="active"><a href="researches_list.php?page=<?php echo $i ?>"><?php echo $i ?><span class="sr-only">(current)</span></a></li>
 							<?php } else{ ?>
 						  	<li><a href="researches_list.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
-						  	<?php 
-						  		} 
+						  	<?php
+						  		}
 					 		}
 					 		?>
 					 		<li><a href="researches_list.php?page=<?php echo $total_pages ?>">▶</a></li>
@@ -136,11 +137,11 @@
 						                                <span>후원: <?php echo $row['RESEARCH_SPONSER'];?></span>
 							</div>
 						</article>
-                        
+
                         <?php
-                        } 
+                        }
                         ?>
-						
+
 
 					</div><!-- #portfolio end -->
 
@@ -153,7 +154,7 @@
 		<!-- Footer
 		============================================= -->
 		<?php include('../footer.html');?>
-            
+
 	</div><!-- #wrapper end -->
 
 	<!-- Go To Top
