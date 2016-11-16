@@ -3,7 +3,7 @@
 <?php
     include("config.php");
     $query = "select *, YEAR(CREATED_AT) as YEAR from photos order by CREATED_AT DESC";
-    $num_rec_per_page = 4;
+    $num_rec_per_page = 8;
     if (array_key_exists("page", $_GET)){
         $page = $_GET['page'];
         $offset = ($page - 1)*$num_rec_per_page;
@@ -137,7 +137,11 @@
 							<div class="portfolio-desc">
 								<h3><?php echo $row['PHOTO_TITLE'];?></h3>
 								<span><?php echo $row['PHOTO_PLACE'];?>, <?php echo $row['CREATED_AT'];?></span>
-								<span><?php echo $row['PHOTO_DESC'];?></span>
+                <?php if($row['PHOTO_DESC']) { ?>
+                <span><?php echo $row['PHOTO_DESC'];?></span>
+                <?php }else { ?>
+                <span> - </span>
+                <?php } ?>
 							</div>
 						</article>
 

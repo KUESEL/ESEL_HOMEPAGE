@@ -3,7 +3,7 @@
 <?php
     include("config.php");
     $query = "select * from members order by STUDENT_ID";
-    $num_rec_per_page = 6;
+    $num_rec_per_page = 100;
     if (array_key_exists("page", $_GET)){
         $page = $_GET['page'];
         $offset = ($page - 1)*$num_rec_per_page;
@@ -128,8 +128,9 @@
                                 case 2: $degree = "박사 졸업"; break;
                                 case 3: $degree = "석사 과정 재학"; break;
                                 case 4: $degree = "석사 졸업"; break;
-                                case 5: $degree = "석박통합과정 재학"; break;
-                                case 6: $degree = "인턴 | 학부연구생"; break;
+                                case 5: $degree = "인턴 | 학부연구생"; break;
+                                case 6: $degree = "석박통합과정 재학"; break;
+
                             }
                         ?>
 						<article class="portfolio-item pf-media pf-<?php  echo $row['DEGREE'];?>">
@@ -149,10 +150,14 @@
                                     ?>
                                         <br/><small><?php echo $row['STUDENT_NAME_ENG'];?></small>
                                     <?php
-                                        }
+                                  }else{
                                     ?>
+                                      <br/><small> - </small>
+                                    <?php
+                                      }
+                                     ?>
                                     </a></h3>
-								<span><?php echo $row['STUDENT_NUMBER'];?>, <?php echo $degree;?></span>
+								<span><?php echo $degree;?></span>
 							</div>
 						</article>
 

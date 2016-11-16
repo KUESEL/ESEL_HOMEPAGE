@@ -3,7 +3,7 @@
 <?php
     include("config.php");
     $query = "select * from articles";
-    $num_rec_per_page = 6;
+    $num_rec_per_page = 4;
     if (array_key_exists("page", $_GET)){
         $page = $_GET['page'];
         $offset = ($page - 1)*$num_rec_per_page;
@@ -118,14 +118,14 @@
 
 					<!-- Portfolio Items
 					============================================= -->
-					<div id="portfolio" class="portfolio grid-container portfolio-6 clearfix">
+					<div id="portfolio" class="portfolio grid-container portfolio-4 clearfix">
                         <?php
                         while($row = mysql_fetch_array($res)){
                         ?>
 						<article class="portfolio-item pf-media pf-<?php echo $row['ARTICLE_PUBLISHED_YEAR'];?>">
 							<div class="portfolio-image">
 								<a href="portfolio-single.html">
-									<img src="<?php echo $row['ARTICLE_THUMBNAIL_URI'];?>" alt="Open Imagination">
+                  <div style="background: url(<?php echo $row['ARTICLE_THUMBNAIL_URI'];?>) no-repeat ;height:150px;background-size:cover;"></div>
 								</a>
 								<div class="portfolio-overlay">
 									<a href="articles_form.php?id=<?php echo $row['ARTICLE_ID'];?>" class="left-icon"><i class="icon-edit-sign"></i></a>
@@ -135,7 +135,7 @@
 							<div class="portfolio-desc">
 								<h3><a href="http://<?php echo $row['ARTICLE_URL'];?>"><?php echo $row['ARTICLE_TITLE'];?></a></h3>
                                 <span><?php echo $row['ARTICLE_PUBLISHED_YEAR'];?>년&nbsp;<?php echo $row['ARTICLE_PUBLISHED_MONTH'];?>월&nbsp;<?php echo $row['ARTICLE_PUBLISHED_DAY'];?>일</span>
-								<span><?php echo $row['ARTICLE_SUMMARY'];?></span>
+
 							</div>
 						</article>
 

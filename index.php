@@ -278,7 +278,7 @@ while ($member = mysql_fetch_array($res)) {
 				<div id="portfolio" class="portfolio portfolio-nomargin grid-container portfolio-notitle portfolio-full grid-container clearfix">
 
                     <?php
-$query = "select * from photos order by created_at desc limit 8";
+$query = "select * from photos order by created_at desc limit 4";
 $res   = mysql_query($query, $conn);
 if (!$res) {
     die('Query Error : ' . mysql_error());

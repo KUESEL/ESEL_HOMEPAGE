@@ -3,14 +3,14 @@
     $query = "select * from papers";
     if (array_key_exists("category", $_GET)){
         $category = $_GET['category'];
-        $offset = ($page - 1)*$num_rec_per_page; 
+        $offset = ($page - 1)*$num_rec_per_page;
         $query = $query." where paper_category=".$category;
 	    if (array_key_exists("search_keyword", $_GET)) {
 	        $search_keyword = $_GET["search_keyword"];
 	        $query =  $query . " and (paper_title like '%$search_keyword%' or paper_authors like '%$search_keyword%' or paper_published_at like '%$search_keyword%' or paper_belongs_to like '%$search_keyword%' or paper_abstraction like '%$search_keyword%')";
 	    }
     }else if(array_key_exists("search_keyword", $_GET)){
-	
+
               $search_keyword = $_GET["search_keyword"];
         	$query =  $query . " where paper_title like '%$search_keyword%' or paper_authors like '%$search_keyword%' or paper_published_at like '%$search_keyword%' or paper_belongs_to like '%$search_keyword%' or paper_abstraction like '%$search_keyword%'";
 
@@ -75,12 +75,12 @@
 			<div class="container clearfix">
 				<h1>Published Papers</h1>
 				 <span>ESEL 연구원들의 출판 논문들입니다.</span>
-                			
+
 
 			</div>
 
 		</section>
-		
+
 
 		<!-- Content
 		============================================= -->
@@ -111,10 +111,10 @@
                                 case 1: $cate = "국내 학술지"; break;
                                 case 2: $cate = "국내 컨퍼런스"; break;
                                 case 3: $cate = "국제 컨퍼런스"; break;
-                                case 4: $cate = "특허"; break; 
+                                case 4: $cate = "특허"; break;
                             }
                             ?>
-                            
+
 							<div class="entry clearfix <?php echo "category-".$data['PAPER_CATEGORY']?>" data-year="<?php echo $data['PAPER_PUBLISHED_AT']?>">
 								<div class="entry-title">
 									<h2><a href="#"><?php echo $data['PAPER_TITLE'];?></a></h2>
@@ -126,24 +126,33 @@
 									<li><i class="icon-tag"></i> <?php echo $cate;?> </li>
 									<li><i class="icon-bookmark"></i><?php echo $data['PAPER_BELONGS_TO'];?></li>
 
-									
+
 								</ul>
 
 
 								<div class="entry-content">
+                  <?php
+                    if(str_replace(' ','',$data['PAPER_ABSTRACTION']) != '-'){
+                  ?>
 									<div class="toggle">
 										<div class="togglet"><i class="toggle-closed icon-ok-circle"></i><i class="toggle-open icon-remove-circle"></i>Abstract</div>
 										<div class="togglec"><?php echo $data['PAPER_ABSTRACTION'];?></div>
 									</div>
+                  <?php } ?>
 									<br>
+                  <?php
+                    if($data['PAPER_FULL_TEXT_LINK'] != '-'){
+                  ?>
 									<a href="<?php echo $data['PAPER_FULL_TEXT_LINK'];?>"><i class="icon-link"></i> Full Text Link</a>
+                  <?php } ?>
 								</div>
+
 							</div>
 
                             <?php
                             }
                             ?>
-						   
+
 
 						</div><!-- #posts end -->
 
@@ -155,7 +164,7 @@
 
 					</div><!-- .postcontent end -->
 
-					
+
 					<!-- Sidebar
 					============================================= -->
 					<div class="sidebar nobottommargin">
@@ -163,23 +172,23 @@
 
 							<div class="widget clearfix">
 								<h4>Search</h4>
-									
+
 								<input id="search_input"type="text" value="" class="sm-form-control" placeholder="검색어를 입력하세요." onKeyDown="onKeyDown();"/>
 								<br>
 								<a href="javascript: search();" class="button button-3d button-red nomargin">검색</a>
-							
+
 
 
 							</div>
 							<div class="widget clearfix">
 								<h4>Category</h4>
-								
+
 								<a href="paper-list.php" class="button button-rounded button-reveal button-large <? if(!array_key_exists("category", $_GET)){echo 'button_red';}else{ echo 'button-white button-light';}?>  tright"><i class="icon-line-arrow-right"></i><span>SHOW ALL</span></a>
 								<a href="paper-list.php?category=0" class="button button-rounded button-reveal button-large <? if(array_key_exists("category", $_GET) && $category == 0){echo 'button_red';}else{ echo 'button-white button-light';}?> tright"><i class="icon-line-arrow-right"></i><span>국제 학술지</span></a>
 								<a href="paper-list.php?category=1" class="button button-rounded button-reveal button-large <? if(array_key_exists("category", $_GET) && $category == 1){echo 'button_red';}else{ echo 'button-white button-light';}?> tright"><i class="icon-line-arrow-right"></i><span>국내 학술지</span></a>
 								<a href="paper-list.php?category=3" class="button button-rounded button-reveal button-large <? if(array_key_exists("category", $_GET) && $category == 3){echo 'button_red';}else{ echo 'button-white button-light';}?> tright"><i class="icon-line-arrow-right"></i><span>국제 컨퍼런스</span></a>
 								<a href="paper-list.php?category=2" class="button button-rounded button-reveal button-large <? if(array_key_exists("category", $_GET) && $category == 2){echo 'button_red';}else{ echo 'button-white button-light';}?> tright"><i class="icon-line-arrow-right"></i><span>국내 컨퍼런스</span></a>
-								<a href="paper-list.php?category=4" class="button button-rounded button-reveal button-large <? if(array_key_exists("category", $_GET) && $category == 4){echo 'button_red';}else{ echo 'button-white button-light';}?> tright"><i class="icon-line-arrow-right"></i><span>특허</span></a>																																								
+								<a href="paper-list.php?category=4" class="button button-rounded button-reveal button-large <? if(array_key_exists("category", $_GET) && $category == 4){echo 'button_red';}else{ echo 'button-white button-light';}?> tright"><i class="icon-line-arrow-right"></i><span>특허</span></a>
 
 							</div>
 
@@ -216,7 +225,7 @@
 	<script type="text/javascript">
 
 		jQuery(document).ready(function($){
-		
+
 			$('.papers-container').pajinate({
 				items_per_page : 4,
 				num_page_links_to_display: 10,
@@ -225,7 +234,7 @@
 				show_first_last: true
 			});
 
-	
+
 		});
 
 		var onKeyDown = function(){

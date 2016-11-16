@@ -111,7 +111,7 @@
 					<div class="clear"></div>
 					<!-- Portfolio Items
 					============================================= -->
-					<div id="portfolio" class="portfolio grid-container portfolio-3 clearfix">
+					<div id="portfolio" class="portfolio grid-container portfolio-4 clearfix">
                         <?php
                         while($row = mysql_fetch_array($res)){
                             switch($row['RESEARCH_CATEGORY']){
@@ -123,7 +123,8 @@
 						<article class="portfolio-item pf-media pf-<?php echo $row['RESEARCH_CATEGORY'];?>">
 							<div class="portfolio-image">
 								<a href="portfolio-single.html">
-									<img src="<?php echo $row['RESEARCH_PICT_URI'];?>" alt="Open Imagination">
+                  <div style="background: url(<?php echo $row['RESEARCH_PICT_URI'];?>) no-repeat ;height:150px;background-size:cover;"></div>
+
 								</a>
 								<div class="portfolio-overlay">
 									<a href="researches_form.php?id=<?php echo $row['RESEARCH_ID'];?>" class="left-icon"><i class="icon-edit-sign"></i></a>
