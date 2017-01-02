@@ -1,4 +1,4 @@
-<?php include("session.php") ?>
+﻿<?php include("session.php") ?>
 <!DOCTYPE html>
 <?php
     include("config.php");
@@ -129,7 +129,7 @@
 								</a>
 								<div class="portfolio-overlay">
 									<a href="articles_form.php?id=<?php echo $row['ARTICLE_ID'];?>" class="left-icon"><i class="icon-edit-sign"></i></a>
-									<a href="#" onclick="if(confirm('<?php echo $row['ARTICLE_TITLE'];?>에 대한 모든 정보를 삭제하시겠습니까?  ')==true) {location.href='articles_delete.php?id=<?php echo $row['ARTICLE_ID'];?>'}" class="right-icon"><i class="icon-line-cross"></i></a>
+									<a href="#" onclick="if(confirm('이 기사에 대한 모든 정보를 삭제하시겠습니까?  ')==true) {location.href='articles_delete.php?id=<?php echo $row['ARTICLE_ID'];?>'}" class="right-icon"><i class="icon-line-cross"></i></a>
 								</div>
 							</div>
 							<div class="portfolio-desc">
