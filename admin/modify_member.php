@@ -157,9 +157,9 @@ if (isset($_POST['upload_check'])) {
             <option value='2' <?php if($degree == 2) echo "selected";?>>박사 졸업</option>
             <option value='3' <?php if($degree == 3) echo "selected";?>>석사 과정 재학</option>
             <option value='4' <?php if($degree == 4) echo "selected";?>>석사 졸업</option>
-            <option value='6' <?php if($degree == 6) echo "selected";?>>석박통합과정 재학</option>
             <option value='5' <?php if($degree == 5) echo "selected";?>>인턴 | 학부연구생</option>
-
+            <option value='6' <?php if($degree == 6) echo "selected";?>>석박통합과정 재학</option>
+            <option value='7' <?php if($degree == 7) echo "selected";?>>박사 수료</option>
         </select>
     </p>
     <p>

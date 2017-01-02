@@ -207,7 +207,7 @@ if (!$res) {
     die('Query Error : ' . mysql_error());
 }
 while ($member = mysql_fetch_array($res)) {
-    if ($member['DEGREE'] != 2 && $member['DEGREE'] != 4) {
+    if ($member['DEGREE'] != 2 && $member['DEGREE'] != 4 && $member['DEGREE'] != 7) {
 ?>
 
                         <div class="col-md-3 col-sm-6 bottommargin">

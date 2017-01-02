@@ -251,9 +251,9 @@ function validateForm() {
                                     <option value='2' <?php if($degree == 2) echo "selected";?>>박사 졸업</option>
                                     <option value='3' <?php if($degree == 3) echo "selected";?>>석사 과정 재학</option>
                                     <option value='4' <?php if($degree == 4) echo "selected";?>>석사 졸업</option>
-                                    <option value='6' <?php if($degree == 6) echo "selected";?>>석박통합과정 재학</option>
                                     <option value='5' <?php if($degree == 5) echo "selected";?>>인턴 | 학부연구생</option>
-
+                                    <option value='6' <?php if($degree == 6) echo "selected";?>>석박통합과정 재학</option>
+                                    <option value='7' <?php if($degree == 7) echo "selected";?>>박사 수료</option>
                                     <?php }else{ ?>
 
                                     <option value="-1" selected disabled>선택해 주십시오.</option>
@@ -262,8 +262,9 @@ function validateForm() {
                                     <option value='2'>박사 졸업</option>
                                     <option value='3'>석사 재학</option>
                                     <option value='4'>석사 졸업</option>
-                                    <option value='6'>석박 통합과정 재학</option>
                                     <option value='5'>인턴 | 학부연구생</option>
+                                    <option value='6'>석박 통합과정 재학</option>
+                                    <option value='7'>박사 수료</option>
                                     <?php } ?>
                                 </select>
 							</div>

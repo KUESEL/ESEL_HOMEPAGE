@@ -127,7 +127,7 @@ if (!$res) {
 }
 $index = 0;
 while ($row = mysql_fetch_array($res)) {
-    if ($row['DEGREE'] != 2 && $row['DEGREE'] != 4) {
+    if ($row['DEGREE'] != 2 && $row['DEGREE'] != 4 && $row['DEGREE'] != 7) {
         switch ($row['DEGREE']) {
             case 0:
                 $degree = "연구 교수";
@@ -323,7 +323,56 @@ while ($row = mysql_fetch_array($res)) {
     }
 }
 ?>
+
+					<div class="container clearfix">
+
+						<div class="clear"></div>
+
+						<div class="heading-block center"><br/><br/><br/>
+							<h4>박사 수료생</h4>
+						</div>
+
+
+						<?php
+					$query = "select * from members order by GRADUATE_YEAR";
+					$res   = mysql_query($query, $conn);
+					if (!$res) {
+					die('Query Error : ' . mysql_error());
+					}
+					$index = 0;
+					while ($row = mysql_fetch_array($res)) {
+					if ($row['DEGREE'] == 7) {
+					?>
+
+									<div class="col-md-3 col-sm-6 bottommargin">
+
+											<div class="team">
+													<div class="team-image">
+																	<img  style="background: url(admin/<?php echo $row['PROFILE_PHOTO_URI'];?>) no-repeat; height: 300px; background-size:cover">
+													</div>
+													<div class="team-desc team-desc-bg">
+																			<div class="team-title">
+																			<h4><?php echo $row['STUDENT_NAME'];?></h4>
+																			<span><strong><?php echo $row['DESCP'];?></strong></span>
+																	</div>
+													</div>
+											</div>
+
+									</div>
+
+
+											<?php
+					$index++;
+					}
+					}
+					?>
+
+
+					</div>
+
 				<div class="section notopmargin nobottommargin nobottomborder">
+
+
 					<div class="container clearfix">
 						<div class="heading-block center">
 							<h4>박사 졸업생</h4>

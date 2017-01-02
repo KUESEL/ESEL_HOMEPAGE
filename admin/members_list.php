@@ -78,11 +78,13 @@
 						<li class="activeFilter"><a href="#" data-filter="*">Show All</a></li>
 						<li><a href="#" data-filter=".pf-0">연구교수</a></li>
 						<li><a href="#" data-filter=".pf-1">박사 재학생</a></li>
+            <li><a href="#" data-filter=".pf-2">박사 졸업생</a></li>
 						<li><a href="#" data-filter=".pf-3">석사 재학생</a></li>
+            <li><a href="#" data-filter=".pf-4">석사 졸업생</a></li>
 						<li><a href="#" data-filter=".pf-5">학부연구생 | 인턴</a></li>
 						<li><a href="#" data-filter=".pf-6">석박 통합과정생</a></li>
-						<li><a href="#" data-filter=".pf-2">박사 졸업생</a></li>
-						<li><a href="#" data-filter=".pf-4">석사 졸업생</a></li>
+						<li><a href="#" data-filter=".pf-7">박사 수료</a></li>
+
 
 					</ul><!-- #portfolio-filter end -->
 					<a href="members_form.php">
@@ -130,6 +132,7 @@
                                 case 4: $degree = "석사 졸업"; break;
                                 case 5: $degree = "인턴 | 학부연구생"; break;
                                 case 6: $degree = "석박통합과정 재학"; break;
+                                case 7: $degree = "박사 수료"; break;
 
                             }
                         ?>
